@@ -56,7 +56,7 @@ class DirName(Node):
         fname = str(inputs[0])
         d = path.path(fname)
         d.basename()
-        self.set_caption('.../'+d.basename())
+        self.set_caption(str('.../'+d.basename()))
         return (fname, )
 
 
