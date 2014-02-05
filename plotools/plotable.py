@@ -38,7 +38,7 @@ else:
 """
 use('Qt4Agg')
 
-from matplotlib.backends.backend_qt4 import qApp
+#from matplotlib.backends.backend_qt4 import qApp
 import pylab
 
         
