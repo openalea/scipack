@@ -134,6 +134,11 @@ def color_map(val, minval=0, maxval=1, coul1=80, coul2=20):
 def rgb_color_map(value, minval=0, maxval=1, hue1=0,
         hue2=100, sat=220, val=220):
     """todo"""
+    if value < minval:
+	value = minval
+    if value > maxval:
+	value = maxval
+	
     newHue = ((value - minval)/(maxval - minval))*(hue2 - hue1) + hue1
     r, g, b = hsv_to_rgb(newHue/400., sat/255., val/255.)
     
