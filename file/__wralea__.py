@@ -17,7 +17,7 @@ __institutes__ = 'INRIA/CIRAD'
 __icon__ = ''
 
 
-__all__ = ['files_DirName', 'files_joinpath', 'expand_user', 'files_FileReadlines', 'parentdir_parentdir', 'files_py_write', 'files_glob', 'viewfile', 'files_FileName', 'files_FileRead', 'files_py_tmpnam', 'files_PackageDir', 'files_select_multiple_files']
+__all__ = ['files_DirName', 'files_joinpath', 'expand_user', 'files_FileReadlines', 'parentdir_parentdir', 'files_py_write', 'files_glob', 'viewfile', 'files_FileName', 'files_FileRead', 'files_py_tmpnam', 'files_PackageDir']
 
 
 
@@ -254,15 +254,3 @@ httpfile =  Factory(name='http file',
                         dict(name='headers', interface=None)),
                )
 __all__.append('httpfile')
-
-files_select_multiple_files = Factory(name='select_multiple_files',
-                    authors='C.Chambon',
-                    description='',
-                    category='File,IO',
-                    nodemodule='files',
-                    nodeclass='select_multiple_files',
-                    inputs=[{'interface': IStr, 'name': 'package', 'value': None, 'desc': 'The name of the package where to select the files.'}, {'interface': IStr, 'name': 'pattern_1', 'value': '*', 'desc': 'The pattern that file 1 must satisfy.'}, {'interface': IStr, 'name': 'pattern_2', 'value': '*', 'desc': 'The pattern that file 2 must satisfy.'}, {'interface': IStr, 'name': 'filename_1', 'value': None, 'desc': 'The name of the file 1.'}, {'interface': IStr, 'name': 'filename_2', 'value': None, 'desc': 'The name of the file 2.'}],
-                    outputs=[{'interface': IStr, 'name': 'filepath_1'}, {'interface': IStr, 'name': 'filepath_2'}],
-                    widgetmodule='files',
-                    widgetclass='SelectMultipleFiles',
-                   )
