@@ -45,7 +45,7 @@ class SelectCallable(QtGui.QWidget, NodeWidget):
         #                    QtGui.QSizePolicy.Preferred)
         self._mainLayout = QtGui.QVBoxLayout(self)
         self._mainLayout.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
-        self._mainLayout.setMargin(3)
+        self._mainLayout.setContentsMargins(3, 3, 3, 3)
         self._mainLayout.setSpacing(2)
 
         # -- the method name selection group box -- #
@@ -55,7 +55,7 @@ class SelectCallable(QtGui.QWidget, NodeWidget):
         self._mainLayout.addWidget(self.__methodGBox, 0, QtCore.Qt.AlignTop)
 
         methNameLayout = QtGui.QHBoxLayout()
-        methNameLayout.setMargin(3)
+        methNameLayout.setContentsMargins(3, 3, 3, 3)
         methNameLayout.setSpacing(2)
 
         methNameLabel  = QtGui.QLabel("Method name:")
