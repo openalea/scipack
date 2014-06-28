@@ -25,4 +25,5 @@ class IColor(IInterface) :
     """
     __pytype__ = tuple
     __color__ = lime
+    __alias__ = 'Color'
 
