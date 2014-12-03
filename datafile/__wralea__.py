@@ -22,7 +22,7 @@ datafile_GetDataBrowser = Factory(name='get_data',
                 description='This node permits to find a shared data file located in a given Python package. \
 The data file is searched among the data nodes of the PackageManager.',
                 category='data i/o',
-                nodemodule='datafile',
+                nodemodule='openalea.datafile.datafile',
                 nodeclass='GetData',
                 inputs=[{'interface': IStr, 'name': 'package', 'value': None, 'desc': ''}, 
                         {'interface': IStr, 'name': 'glob', 'value': '*'}, 

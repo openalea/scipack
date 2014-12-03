@@ -35,7 +35,7 @@ __all__ = []
 ifelse = Factory(name="ifelse",
                  description="Condition",
                  category="Python",
-                 nodemodule="python",
+                 nodemodule="openalea.python.python",
                  nodeclass="py_ifelse",
                  )
 
@@ -49,9 +49,9 @@ getitem = Factory( name="getitem",
                    inputs=[dict(name="obj", interface=None),
                            dict(name="key", interface='IInt', value=0),],
                    outputs = [dict(name='obj')],
-                   nodemodule="python",
+                   nodemodule="openalea.python.python",
                    nodeclass="PyGetItem",
-                   widgetmodule="python",
+                   widgetmodule="openalea.python.python",
                    widgetclass="ListSelectorWidget",
                    )
 
@@ -62,7 +62,7 @@ setitem = Factory(name="setitem",
                   description="Python __setitem__",
                   category="Python",
                   inputs=[dict(name="obj", interface=None), dict(name="key", interface=None), dict(name="value", interface=None)],
-                  nodemodule="python",
+                  nodemodule="openalea.python.python",
                   nodeclass="py_setitem",
                   )
 
@@ -72,7 +72,7 @@ __all__.append('setitem')
 delitem = Factory(name="delitem",
                  description="Python __delitem__",
                  category="Python",
-                 nodemodule="python",
+                 nodemodule="openalea.python.python",
                  nodeclass="py_delitem",
                  )
 
@@ -82,7 +82,7 @@ __all__.append('delitem')
 keys = Factory( name="keys",
                 description="Python keys()",
                 category="Python",
-                nodemodule="python",
+                nodemodule="openalea.python.python",
                 nodeclass="keys",
                 )
 
@@ -92,7 +92,7 @@ __all__.append('keys')
 values = Factory(name="values",
                  description="Python values()",
                  category="Python",
-                 nodemodule="python",
+                 nodemodule="openalea.python.python",
                  nodeclass="values",
                  )
 
@@ -103,7 +103,7 @@ __all__.append('values')
 items = Factory(name="items",
                  description="Python items()",
                  category="Python",
-                 nodemodule="python",
+                 nodemodule="openalea.python.python",
                  nodeclass="items",
                  )
 
@@ -112,7 +112,7 @@ __all__.append('items')
 range_ = Factory(name="range",
                  description="Returns an arithmetic progression of integers",
                  category="Python",
-                 nodemodule="python",
+                 nodemodule="openalea.python.python",
                  nodeclass="pyrange",
                  )
 
@@ -123,7 +123,7 @@ __all__.append('range_')
 enum_ = Factory(name="enumerate",
                 description="Returns a python enumerate object.",
                 category="Python",
-                nodemodule="python",
+                nodemodule="openalea.python.python",
                 nodeclass="pyenumerate",
                 )
 
@@ -133,7 +133,7 @@ __all__.append('enum_')
 len_ = Factory(name="len",
                  description="Returns the number of items of a sequence or mapping.",
                  category="Python",
-                 nodemodule="python",
+                 nodemodule="openalea.python.python",
                  nodeclass="pylen",
                  )
 
@@ -144,7 +144,7 @@ __all__.append('len_')
 print_ = Factory(name="print",
                  description="Console output",
                  category="Python",
-                 nodemodule="python",
+                 nodemodule="openalea.python.python",
                  nodeclass="py_print",
                  #outputs=(),
                  lazy=False,
@@ -169,7 +169,7 @@ __all__.append('sorted_')
 method_ = Factory(name="method",
                   description="Calls object method",
                   category="Python",
-                  nodemodule="python",
+                  nodemodule="openalea.python.python",
                   nodeclass="py_method",
                   inputs=(dict(name="obj", interface=None),
                           dict(name="member_name", interface=IStr),
@@ -184,7 +184,7 @@ __all__.append('method_')
 getattr_ = Factory( name="getattr",
                     description="Gets class attribute",
                     category="Python",
-                    nodemodule="python",
+                    nodemodule="openalea.python.python",
                     nodeclass="py_getattr",
 
                     inputs=(dict(name="obj", interface=None),
@@ -197,7 +197,7 @@ __all__.append('getattr_')
 setattr_ = Factory( name="setattr",
                     description="Sets class attribute",
                     category="Python",
-                    nodemodule="python",
+                    nodemodule="openalea.python.python",
                     nodeclass="py_setattr",
                     lazy = False,
                     inputs=(dict(name="obj", interface=None),
@@ -211,7 +211,7 @@ __all__.append('getattr_')
 eval_ = Factory( name="eval",
                   description="Eval str as python expression",
                   category="Python",
-                  nodemodule="python",
+                  nodemodule="openalea.python.python",
                   nodeclass="py_eval",
 
                   inputs=(dict(name="expression", interface=ITextStr),),
@@ -224,7 +224,7 @@ __all__.append('eval_')
 exec_ = Factory( name="exec",
                   description="Exec str as python code",
                   category="Python",
-                  nodemodule="python",
+                  nodemodule="openalea.python.python",
                   nodeclass="py_exec",
 
                   inputs=(dict(name="code", interface=ITextStr),),
@@ -238,7 +238,7 @@ __all__.append('exec_')
 source_code = Factory( name="source code",
                   description="Execute python code",
                   category="Python",
-                  nodemodule="python",
+                  nodemodule="openalea.python.python",
                   nodeclass="py_exec",
                   inputs=(dict(name="code", interface=ICodeStr),),
                   outputs=(dict(name="locals", interface=IDict),),
@@ -251,7 +251,7 @@ __all__.append('source_code')
 zip_ = Factory( name="zip",
                 description="Zip 2 sequences",
                 category="Python",
-                nodemodule="python",
+                nodemodule="openalea.python.python",
                 nodeclass="py_zip",
                 )
 
@@ -261,7 +261,7 @@ __all__.append('zip_')
 zip2_ = Factory( name="zip2",
                 description="Zip N sequences",
                 category="Python",
-                nodemodule="python",
+                nodemodule="openalea.python.python",
                 nodeclass="py_zip2",
                 inputs =[dict(name="lists", interface="ISequence")],
                 outputs=[dict(name="zipped", interface="ISequence")]
@@ -273,7 +273,7 @@ __all__.append('zip2_')
 flatten_ = Factory( name="flatten",
               description="flatten list",
               category="Python",
-              nodemodule="python",
+              nodemodule="openalea.python.python",
               nodeclass="py_flatten",
               )
 
@@ -283,7 +283,7 @@ __all__.append('flatten_')
 extract_ = Factory( name= "extract",
                   description= "Extract element from a list or a dict",
                   category = "Python",
-                  nodemodule = "python",
+                  nodemodule = "openalea.python.python",
                   nodeclass = "extract",
                   inputs = [dict(name='indexable' , interface=ISequence, value=[]),
                             dict(name='keys' , interface=ISequence, value=[])
@@ -296,7 +296,7 @@ __all__.append('extract_')
 pysum = Factory( name = "sum",
                  description= sum.__doc__,
                  category = "Python",
-                 nodemodule = "python",
+                 nodemodule = "openalea.python.python",
                  nodeclass = "pysum",
                  inputs = [dict(name='sequence' , interface=ISequence, value=[]),],
                  outputs = [dict(name='value')],
@@ -305,7 +305,7 @@ __all__.append('pysum')
 pymean = Factory( name = "mean",
                  description= "Compute the mean of a sequence",
                  category = "Python",
-                 nodemodule = "python",
+                 nodemodule = "openalea.python.python",
                  nodeclass = "pymean",
                  inputs = [dict(name='sequence' , interface=ISequence, value=[]),],
                  outputs = [dict(name='value')],
@@ -316,7 +316,7 @@ __all__.append('pymean')
 fwrite = Factory(name="fwrite",
                  description="File output",
                  category="Python",
-                 nodemodule="python",
+                 nodemodule="openalea.python.python",
                  nodeclass="py_fwrite",
                  inputs=(dict(name="x", interface=IStr),
                          dict(name="filename", interface=IFileStr),
@@ -332,7 +332,7 @@ __all__.append('fwrite_')
 fread = Factory(name="fread",
                 description="File input",
                 category="Python",
-                nodemodule="python",
+                nodemodule="openalea.python.python",
                 nodeclass="FileRead",
                 inputs=(dict(name="filename", interface=IFileStr),
                         ),

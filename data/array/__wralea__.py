@@ -38,7 +38,7 @@ __all__ = []
 array_= Factory( name="array",
               description="Python array",
               category="datatype",
-              nodemodule="arrays",
+              nodemodule="openalea.data.array.arrays",
               nodeclass="PyArray",
               )
 

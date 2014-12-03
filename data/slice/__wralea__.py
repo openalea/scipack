@@ -41,7 +41,7 @@ __all__ = []
 slice_ = Factory( name="slice",
               description="Python slice",
               category="datatype",
-              nodemodule="slices",
+              nodemodule="openalea.data.slice.slices",
               nodeclass="Slice",
               inputs=(dict(name="start", interface=IInt, value=0),
                       dict(name="stop", interface=IInt, value=None),

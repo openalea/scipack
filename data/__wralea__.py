@@ -39,7 +39,7 @@ __all__ = []
 var_ = Factory( name="variable", 
                description="Variable", 
                category="datatype", 
-               nodemodule="data",
+               nodemodule="openalea.data.data",
                nodeclass="Variable",
                
                inputs=(dict(name='Caption', interface=IStr, value='Variable'),
@@ -53,7 +53,7 @@ __all__.append('var_')
 str_ = Factory( name=protected("string"), 
               description="String", 
               category="datatype", 
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="String",
               
               inputs=(dict(name="String", interface=IStr, value=''),),
@@ -66,7 +66,7 @@ __all__.append('str_')
 text = Factory( name=protected("text"), 
               description="Text", 
               category="datatype", 
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="Text",
               
               inputs=(dict(name="Text", interface=ITextStr, value=''),),
@@ -79,7 +79,7 @@ __all__.append('text')
 datetime_ = Factory( name="datetime", 
               description="DateTime", 
               category="datatype", 
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="DateTime",
               
               inputs=(dict(name="DateTime", interface=IDateTime),),
@@ -92,7 +92,7 @@ __all__.append('datetime_')
 bool_ = Factory( name="bool", 
               description="boolean", 
               category="datatype", 
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="Bool",
               
               inputs=(dict(name="Bool", interface=IBool, value=False),),
@@ -106,7 +106,7 @@ __all__.append('bool_')
 float_ = Factory( name="float",
               description="Float Value",
               category="datatype",
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="Float",
               
               inputs=(dict(name="Float", interface=IFloat, value=0.0),),
@@ -120,7 +120,7 @@ __all__.append('float_')
 floatscy = Factory( name="float scy",
               description="Float Value",
               category="datatype",
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="FloatScy",
               
               inputs=(dict(name="str", interface=IStr, value="0.0"),),
@@ -134,7 +134,7 @@ __all__.append('floatscy')
 int_ = Factory( name="int",
               description="Int Value",
               category="datatype",
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="Int",
               
               inputs=(dict(name="Int", interface=IInt, value=0),),
@@ -147,7 +147,7 @@ __all__.append('int_')
 rgb_ = Factory( name=protected("rgb"),
               description="RGB tuple",
               category="Color,datatype",
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="RGB",
               
               inputs=(dict(name="RGB", interface=IRGBColor, value=(0,0,0), desc='3 uples RGB color'),),
@@ -161,7 +161,7 @@ Alias(rgb_, 'rgb')
 list_ = Factory( name=protected("list"),
               description="Python list",
               category="datatype",
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="List",
               
               inputs=(dict(name="List", interface=ISequence),),
@@ -175,7 +175,7 @@ __all__.append('list_')
 dict_ = Factory( name=protected("dict"),
               description="Python dictionary",
               category="datatype",
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="Dict",
               
               inputs=(dict(name="Dict", interface=IDict),),
@@ -189,7 +189,7 @@ __all__.append('dict_')
 pair = Factory( name=protected("pair"),
               description="Python 2-uples",
               category="datatype",
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="Pair",
               inputs=(dict(name="IN0", interface=None,),
                       dict(name="IN1", interface=None,),),
@@ -201,7 +201,7 @@ __all__.append('pair')
 tuple3 = Factory( name=protected("tuple3"),
               description="Python 3-uples",
               category="datatype",
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="Tuple3",
               inputs=(dict(name="IN0", interface=None,),
                       dict(name="IN1", interface=None,),
@@ -216,7 +216,7 @@ __all__.append('tuple3')
 fname = Factory( name=protected("filename"), 
               description="File name", 
               category="datatype", 
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="FileName",
               
               inputs=(dict(name='FileStr', interface=IFileStr, value=''),
@@ -231,7 +231,7 @@ __all__.append('fname')
 dname = Factory( name=protected("dirname"), 
               description="Directory name", 
               category="datatype", 
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="DirName",
               
               inputs=(dict(name='DirStr', interface=IDirStr, value=''),
@@ -246,7 +246,7 @@ __all__.append('dname')
 pdir = Factory( name=protected("packagedir"), 
               description="Package Directory", 
               category="datatype", 
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="PackageDir",
               
               inputs=(dict(name='PackageStr', interface=IStr, value=''),),
@@ -258,7 +258,7 @@ __all__.append('pdir')
 none_ = Factory( name="None", 
               description="None object", 
               category="datatype", 
-              nodemodule="data",
+              nodemodule="openalea.data.data",
               nodeclass="none",
               
               outputs=(dict(name="None" ),),

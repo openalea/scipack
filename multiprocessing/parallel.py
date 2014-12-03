@@ -19,7 +19,10 @@ __revision__ = " $Id$ "
 from openalea.core import Node, ITextStr
 
 from multiprocessing import Pool, cpu_count
-import pickle
+try:
+    import dill as pickle
+except ImportError:
+    import pickle
 
 def pymap(func, seq, N):
     """ map(func, seq) """

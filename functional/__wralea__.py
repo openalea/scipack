@@ -37,7 +37,7 @@ map_ = Factory( name="map",
                category="Functional",
                inputs=(dict(name='func', interface=IFunction), 
                        dict(name='seq', interface=ISequence),),
-               nodemodule="functional",
+               nodemodule="openalea.functional.functional",
                nodeclass="pymap",
                )
 
@@ -48,7 +48,7 @@ filter_ = Factory( name="filter",
                    inputs=(dict(name='func', interface=IFunction), 
                            dict(name='seq', interface=ISequence)),
 
-                   nodemodule="functional",
+                   nodemodule="openalea.functional.functional",
                    nodeclass="pyfilter",
                   )
     
@@ -58,7 +58,7 @@ reduce_ = Factory( name="reduce",
                    inputs=(dict(name='func', interface=IFunction), 
                            dict(name='seq', interface=ISequence)),
                    
-                   nodemodule="functional",
+                   nodemodule="openalea.functional.functional",
                    nodeclass="pyreduce",
                    )
 
@@ -70,7 +70,7 @@ apply_ = Factory( name="apply",
               inputs=(dict(name='func', interface=IFunction), 
                       dict(name='seq', interface=ISequence),
                       dict(name='one argument', interface=IBool, value=False),),
-              nodemodule="functional",
+              nodemodule="openalea.functional.functional",
               nodeclass="pyapply",
               )
 
@@ -78,7 +78,7 @@ apply_ = Factory( name="apply",
 func = Factory( name="function",
                 description="Creates a function from a python string",
                 category="Functional",
-                nodemodule="functional",
+                nodemodule="openalea.functional.functional",
                 nodeclass="pyfunction",
                 )
 ifelse_= Factory( name="ifelse",
@@ -89,6 +89,6 @@ ifelse_= Factory( name="ifelse",
                            dict(name='function1', interface=IFunction), 
                            dict(name='function2', interface=IFunction), 
                            ),
-                nodemodule="functional",
+                nodemodule="openalea.functional.functional",
                 nodeclass="pyifelse",
                 )

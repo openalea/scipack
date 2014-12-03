@@ -41,7 +41,7 @@ __all__ = []
 list_ = Factory( name="list",
               description="Python list",
               category="datatype",
-              nodemodule="lists",
+              nodemodule="openalea.data.list.lists",
               nodeclass="List",
 
               inputs=(dict(name="list", interface=ISequence),),
@@ -50,7 +50,7 @@ list_ = Factory( name="list",
 
 slice_ = Factory( name="slice",
               category="datatype",
-              nodemodule="lists",
+              nodemodule="openalea.data.list.lists",
               nodeclass="Slice",
 
               inputs=(dict(name="list", interface="ISequence"),

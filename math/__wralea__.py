@@ -240,7 +240,7 @@ __all__.append('abs')
 cmp = Factory( name="cmp", 
         description="Compare 2 objects", 
         category="Math", 
-        nodemodule="maths",
+        nodemodule="openalea.math.maths",
         nodeclass="py_cmp",
         )
 
@@ -349,7 +349,7 @@ __all__.append('degrees')
 round = Factory( name="round", 
         description="Round value", 
         category="Math", 
-        nodemodule="maths",
+        nodemodule="openalea.math.maths",
         nodeclass="py_round",
         )
 
@@ -428,7 +428,7 @@ __all__.append('exp')
 min = Factory( name="min", 
         description="Minimum of a sequence", 
         category="Math", 
-        nodemodule="maths",
+        nodemodule="openalea.math.maths",
         nodeclass="py_min",
         )
 
@@ -439,7 +439,7 @@ __all__.append('min')
 max = Factory( name="max", 
         description="Maximum of a sequence", 
         category="Math", 
-        nodemodule="maths",
+        nodemodule="openalea.math.maths",
         nodeclass="py_max",
         )
 
@@ -477,7 +477,7 @@ __all__.append('random')
 randlist = Factory( name="randlist", 
         description="List of Random integer", 
         category="Math", 
-        nodemodule="maths",
+        nodemodule="openalea.math.maths",
         nodeclass="py_randlist",
         inputs=(dict(name='a', interface=IInt, value=0),
             dict(name='b', interface=IInt, value=100),

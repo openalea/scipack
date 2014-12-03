@@ -36,7 +36,7 @@ __all__ = ['linear']
 linear = Factory( name=protected("linearmodel"), 
                   description="Linear Model", 
                   category="misc", 
-                  nodemodule="models",
+                  nodemodule="openalea.model.models",
                   nodeclass="linearmodel",
                   )
 

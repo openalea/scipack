@@ -40,7 +40,7 @@ __all__ = []
 dict_ = Factory( name="dict",
               description="Python dictionary",
               category="datatype",
-              nodemodule="dicts",
+              nodemodule="openalea.data.dict.dicts",
               nodeclass="Dict",
               
               inputs=(dict(name="Dict", interface=IDict),),
@@ -51,7 +51,7 @@ __all__.append('dict_')
 edict_ = Factory( name="edit dict",
               description="Python dictionary",
               category="datatype",
-              nodemodule="dicts",
+              nodemodule="openalea.data.dict.dicts",
               nodeclass="EditDict",
               
               inputs=(dict(name="Dict"), dict(name="dict", interface=IDict),),

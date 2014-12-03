@@ -36,7 +36,7 @@ __all__ = [ 'read_csv', 'write_csv']
 read_csv = Factory(name='read csv', 
                    description='Csv converter', 
                    category='io', 
-                   nodemodule='csv',
+                   nodemodule='openalea.csv.csv',
                    nodeclass='parseText',
                    lazy = False,
                    outputs=(dict(name='objects', interface=None),
@@ -48,7 +48,7 @@ Alias(read_csv, 'csv2objs')
 write_csv = Factory(name='write csv', 
                   description='Csv exporter', 
                   category='io', 
-                  nodemodule='csv',
+                  nodemodule='openalea.csv.csv',
                   nodeclass='writeObjs',
                   lazy = False,
                   outputs=(dict(name='string', interface=IStr),)

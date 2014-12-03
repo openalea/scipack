@@ -20,7 +20,7 @@ __all__ = []
 
 abspath = Factory(name='abspath',
                 category='File,IO',
-                nodemodule='paths',
+                nodemodule='openalea.path.paths',
                 nodeclass='py_abspath',
                 inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},),
                 outputs=({'interface': IFileStr, 'name': 'path'},),
@@ -29,7 +29,7 @@ __all__.append('abspath')
 
 basename= Factory(name='basename',
                 category='File,IO',
-                nodemodule='paths',
+                nodemodule='openalea.path.paths',
                 nodeclass='py_basename',
                 inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},),
                 outputs=({'interface': IFileStr, 'name': 'path'},),
@@ -38,7 +38,7 @@ __all__.append('basename')
 
 bytes= Factory(name='bytes',
                 category='File,IO',
-                nodemodule='paths',
+                nodemodule='openalea.path.paths',
                 nodeclass='py_bytes',
                 inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},),
                 outputs=({'interface': IStr, 'name': 'content'},),
@@ -47,7 +47,7 @@ __all__.append('bytes')
 
 chmod = Factory(name='chmod',
                 category='File,IO',
-                nodemodule='paths',
+                nodemodule='openalea.path.paths',
                 nodeclass='py_chmod',
                 inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},
                 dict(name='mode', interface=IInt,value=755)),
@@ -57,7 +57,7 @@ __all__.append('chmod')
 
 chown = Factory(name='chown',
                 category='File,IO',
-                nodemodule='paths',
+                nodemodule='openalea.path.paths',
                 nodeclass='py_chown',
                 inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},
                 dict(name='uid', interface=IInt), dict(name='gid', interface=IInt)),
@@ -67,7 +67,7 @@ __all__.append('chown')
 
 copy = Factory(name='copy',
                 category='File,IO',
-                nodemodule='paths',
+                nodemodule='openalea.path.paths',
                 nodeclass='py_copy',
                 inputs=({'interface': IFileStr, 'name': 'src', 'value': '.'},
                 {'interface': IFileStr, 'name': 'dest', 'value': '.'},),
@@ -77,7 +77,7 @@ __all__.append('copy')
 
 copy_dir = Factory(name='copy (dir)',
                 category='File,IO',
-                nodemodule='paths',
+                nodemodule='openalea.path.paths',
                 nodeclass='py_copy',
                 inputs=({'interface': IFileStr, 'name': 'src', 'value': '.'},
                 {'interface': IDirStr, 'name': 'dest', 'value': '.'},),
