@@ -35,7 +35,7 @@ __all__ = []
 ifelse = Factory(name="ifelse",
                  description="Condition",
                  category="Python",
-                 nodemodule="openalea.python.python",
+                 nodemodule="python",
                  nodeclass="py_ifelse",
                  )
 
@@ -48,10 +48,10 @@ getitem = Factory( name="getitem",
 
                    inputs=[dict(name="obj", interface=None),
                            dict(name="key", interface='IInt', value=0),],
-                   outputs = [dict(name='obj')],
+                   outputs = [dict(name='obj', interface=None)],
                    nodemodule="openalea.python.python",
                    nodeclass="PyGetItem",
-                   widgetmodule="openalea.python.python",
+                   widgetmodule="python",
                    widgetclass="ListSelectorWidget",
                    )
 
