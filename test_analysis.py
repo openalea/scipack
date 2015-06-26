@@ -40,7 +40,7 @@ def test_on_simple_array():
                   [2, 2, 1, 7, 3, 3],
                   [1, 1, 1, 4, 1, 1]])
     
-    from openalea.image.algo.analysis import SpatialImageAnalysis, LIST, DICT
+    from vplants.tissue_analysis.spatial_image_analysis import SpatialImageAnalysis, LIST, DICT
     analysis = SpatialImageAnalysis(a, return_type=LIST)
 
     res = analysis.neighbors(7)
