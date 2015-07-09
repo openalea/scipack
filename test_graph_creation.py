@@ -18,7 +18,7 @@
 import numpy as np
 
 from openalea.image.serial.basics import imread
-from openalea.image.algo.analysis import SpatialImageAnalysis
+from vplants.tissue_analysis.spatial_image_analysis import SpatialImageAnalysis
 from openalea.image.algo.graph_from_image import graph_from_image
 from openalea.plantgl.gui import Viewer
 
