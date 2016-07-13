@@ -137,8 +137,8 @@ int_ = Factory( name="int",
               nodemodule="openalea.data.data",
               nodeclass="Int",
               
-              inputs=(dict(name="Int", interface=IInt, value=0),),
-              outputs=(dict(name="Int", interface=IInt),),
+              inputs=(dict(name="in", interface=IInt, value=0),),
+              outputs=(dict(name="out", interface=IInt),),
               )
 
 __all__.append('int_')
