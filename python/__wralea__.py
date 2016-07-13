@@ -61,11 +61,10 @@ __all__.append('getitem')
 setitem = Factory(name="setitem",
                   description="Python __setitem__",
                   category="Python",
-                  inputs=[
-                      dict(
-                          name="obj", interface=None), dict(
-                          name="key", interface=None), dict(
-                          name="value", interface=None)],
+                  inputs=[dict(name="obj", interface=None),
+                          dict(name="key", interface=None),
+                          dict(name="value", interface=None)],
+                  outputs=(dict(name="out", interface=None),),
                   nodemodule="openalea.python.python",
                   nodeclass="py_setitem",
                   )
@@ -118,6 +117,10 @@ range_ = Factory(name="range",
                  category="Python",
                  nodemodule="openalea.python.python",
                  nodeclass="pyrange",
+                 inputs=[dict(name="start", interface=IInt),
+                         dict(name="stop", interface=IInt),
+                         dict(name="step", interface=IInt)],
+                 outputs=(dict(name="out", interface=IInt),),
                  )
 
 

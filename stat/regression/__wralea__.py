@@ -86,8 +86,8 @@ linearregressiontoplot = Factory( name="linear regression to plot (plotools)",
                                   nodeclass="LR2Plot",
                                   inputs= ( dict( name='reg', interface=IDict ),
                                           ),
-                                  outputs=( dict(name='plotObjList',),
-                                            dict(name='plotObjList',),
+                                  outputs=( dict(name='plotObjList0',),
+                                            dict(name='plotObjList1',),
                                           ),
                                   )
 

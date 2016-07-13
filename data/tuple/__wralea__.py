@@ -55,7 +55,7 @@ tuple3 = Factory( name="tuple3",
               nodeclass="Tuple3",
               inputs=(dict(name="IN0", interface=None,),
                       dict(name="IN1", interface=None,),
-                      dict(name="IN1", interface=None,),
+                      dict(name="IN2", interface=None,),
                       ),
               outputs=(dict(name="OUT", interface = ISequence),),
               )
