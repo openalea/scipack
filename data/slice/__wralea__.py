@@ -17,12 +17,10 @@
 
 __doc__ = """ OpenAlea dictionary data structure"""
 __license__ = "Cecill-C"
-__revision__ =" $Id:  $ "
+__revision__ = " $Id:  $ "
 
-
-from openalea.core import *
-from openalea.core.pkgdict import protected
-
+from openalea.core import Factory as Fa
+from openalea.core import IInt, ISlice
 
 __name__ = "openalea.data structure.slice"
 __alias__ = []
@@ -34,20 +32,18 @@ __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Nodes for standard data structure creation, edition and visualisation.'
 __url__ = 'http://openalea.gforge.inria.fr'
 
-               
-
 __all__ = []
 
-slice_ = Factory( name="slice",
-              description="Python slice",
-              category="datatype",
-              nodemodule="openalea.data.slice.slices",
-              nodeclass="Slice",
-              inputs=(dict(name="start", interface=IInt, value=0),
-                      dict(name="stop", interface=IInt, value=None),
-                      dict(name="step", interface=IInt, value=None),),
-              outputs=(dict(name="slice", interface = ISlice),),
-              )
+slice_ = Fa(uid="9bb8d0344e7011e6bff6d4bed973e64a",
+            name="slice",
+            description="Python slice",
+            category="datatype",
+            nodemodule="openalea.data.slice.slices",
+            nodeclass="Slice",
+            inputs=(dict(name="start", interface=IInt, value=0),
+                    dict(name="stop", interface=IInt, value=None),
+                    dict(name="step", interface=IInt, value=None),),
+            outputs=(dict(name="slice", interface=ISlice),),
+            )
 
 __all__.append('slice_')
-

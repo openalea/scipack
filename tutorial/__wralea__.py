@@ -1,9 +1,3 @@
-
-# This file has been generated at Thu Dec 18 10:36:22 2008
-
-from openalea.core import *
-
-
 __name__ = 'openalea.tutorial'
 
 __editable__ = True

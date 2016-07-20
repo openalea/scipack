@@ -1,8 +1,5 @@
-
-# This file has been generated at Wed Apr 21 17:24:35 2010
-
-from openalea.core import *
-
+from openalea.core import Factory as Fa
+from openalea.core import IDirStr, IFileStr, IInt, IStr
 
 __name__ = 'openalea.path'
 
@@ -15,77 +12,82 @@ __authors__ = 'OpenAlea Consortium'
 __institutes__ = 'INRIA/CIRAD'
 __icon__ = ''
 
-
 __all__ = []
 
-abspath = Factory(name='abspath',
-                category='File,IO',
-                nodemodule='openalea.path.paths',
-                nodeclass='py_abspath',
-                inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},),
-                outputs=({'interface': IFileStr, 'name': 'path'},),
-               )
+abspath = Fa(uid="bdce27864e7611e6bff6d4bed973e64a",
+             name='abspath',
+             category='File,IO',
+             nodemodule='openalea.path.paths',
+             nodeclass='py_abspath',
+             inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},),
+             outputs=({'interface': IFileStr, 'name': 'path'},),
+             )
 __all__.append('abspath')
 
-basename= Factory(name='basename',
-                category='File,IO',
-                nodemodule='openalea.path.paths',
-                nodeclass='py_basename',
-                inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},),
-                outputs=({'interface': IFileStr, 'name': 'path'},),
-               )
+basename = Fa(uid="bdce27874e7611e6bff6d4bed973e64a",
+              name='basename',
+              category='File,IO',
+              nodemodule='openalea.path.paths',
+              nodeclass='py_basename',
+              inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},),
+              outputs=({'interface': IFileStr, 'name': 'path'},),
+              )
 __all__.append('basename')
 
-bytes= Factory(name='bytes',
-                category='File,IO',
-                nodemodule='openalea.path.paths',
-                nodeclass='py_bytes',
-                inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},),
-                outputs=({'interface': IStr, 'name': 'content'},),
-               )
-__all__.append('bytes')
+bytes_ = Fa(uid="bdce27884e7611e6bff6d4bed973e64a",
+            name='bytes',
+            category='File,IO',
+            nodemodule='openalea.path.paths',
+            nodeclass='py_bytes',
+            inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},),
+            outputs=({'interface': IStr, 'name': 'content'},),
+            )
+__all__.append('bytes_')
 
-chmod = Factory(name='chmod',
-                category='File,IO',
-                nodemodule='openalea.path.paths',
-                nodeclass='py_chmod',
-                inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},
-                dict(name='mode', interface=IInt,value=755)),
-                outputs=({'interface': IFileStr, 'name': 'path'},),
-               )
+chmod = Fa(uid="bdce27894e7611e6bff6d4bed973e64a",
+           name='chmod',
+           category='File,IO',
+           nodemodule='openalea.path.paths',
+           nodeclass='py_chmod',
+           inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},
+                   dict(name='mode', interface=IInt, value=755)),
+           outputs=({'interface': IFileStr, 'name': 'path'},),
+           )
 __all__.append('chmod')
 
-chown = Factory(name='chown',
-                category='File,IO',
-                nodemodule='openalea.path.paths',
-                nodeclass='py_chown',
-                inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},
-                dict(name='uid', interface=IInt), dict(name='gid', interface=IInt)),
-                outputs=({'interface': IFileStr, 'name': 'path'},),
-               )
+chown = Fa(uid="bdce278a4e7611e6bff6d4bed973e64a",
+           name='chown',
+           category='File,IO',
+           nodemodule='openalea.path.paths',
+           nodeclass='py_chown',
+           inputs=({'interface': IFileStr, 'name': 'path', 'value': '.'},
+                   dict(name='uid', interface=IInt),
+                   dict(name='gid', interface=IInt)),
+           outputs=({'interface': IFileStr, 'name': 'path'},),
+           )
 __all__.append('chown')
 
-copy = Factory(name='copy',
-                category='File,IO',
-                nodemodule='openalea.path.paths',
-                nodeclass='py_copy',
-                inputs=({'interface': IFileStr, 'name': 'src', 'value': '.'},
-                {'interface': IFileStr, 'name': 'dest', 'value': '.'},),
-                outputs=({'interface': IFileStr, 'name': 'path'},),
-               )
+copy = Fa(uid="bdce278b4e7611e6bff6d4bed973e64a",
+          name='copy',
+          category='File,IO',
+          nodemodule='openalea.path.paths',
+          nodeclass='py_copy',
+          inputs=({'interface': IFileStr, 'name': 'src', 'value': '.'},
+                  {'interface': IFileStr, 'name': 'dest', 'value': '.'},),
+          outputs=({'interface': IFileStr, 'name': 'path'},),
+          )
 __all__.append('copy')
 
-copy_dir = Factory(name='copy (dir)',
-                category='File,IO',
-                nodemodule='openalea.path.paths',
-                nodeclass='py_copy',
-                inputs=({'interface': IFileStr, 'name': 'src', 'value': '.'},
-                {'interface': IDirStr, 'name': 'dest', 'value': '.'},),
-                outputs=({'interface': IFileStr, 'name': 'path'},),
-               )
+copy_dir = Fa(uid="bdce278c4e7611e6bff6d4bed973e64a",
+              name='copy (dir)',
+              category='File,IO',
+              nodemodule='openalea.path.paths',
+              nodeclass='py_copy',
+              inputs=({'interface': IFileStr, 'name': 'src', 'value': '.'},
+                      {'interface': IDirStr, 'name': 'dest', 'value': '.'},),
+              outputs=({'interface': IFileStr, 'name': 'path'},),
+              )
 __all__.append('copy_dir')
-
-
 
 """
 copy
@@ -203,6 +205,3 @@ write_lines
 write_text
 zfill
 """
-
-
-

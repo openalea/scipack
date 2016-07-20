@@ -15,12 +15,9 @@
 
 __doc__ = """ OpenAlea dictionary data structure"""
 __license__ = "Cecill-C"
-__revision__ =" $Id$ "
+__revision__ = " $Id$ "
 
-
-from openalea.core import *
-from openalea.core.pkgdict import protected
-
+from openalea.core import Factory as Fa
 
 __name__ = "openalea.data structure.array"
 
@@ -31,19 +28,14 @@ __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Nodes for standard data structure creation, edition and visualisation.'
 __url__ = 'http://openalea.gforge.inria.fr'
 
-               
-
 __all__ = []
 
-array_= Factory( name="array",
-              description="Python array",
-              category="datatype",
-              nodemodule="openalea.data.array.arrays",
-              nodeclass="PyArray",
-              )
+array_ = Fa(uid="11d72baa4e6f11e6bff6d4bed973e64a",
+            name="array",
+            description="Python array",
+            category="datatype",
+            nodemodule="openalea.data.array.arrays",
+            nodeclass="PyArray",
+            )
 
 __all__.append('array_')
-
-
-
-

@@ -13,14 +13,13 @@
 ################################################################################
 """ catalog.model """
 
-__revision__=" $Id$ "
+__revision__ = " $Id$ "
 
-
-from openalea.core import *
+from openalea.core import Factory as Fa
 from openalea.core.pkgdict import protected
 
 __name__ = protected("openalea.model")
-#__name__ = "openalea.model"
+# __name__ = "openalea.model"
 __alias__ = ["catalog.model", ]
 
 __version__ = '0.0.1'
@@ -32,13 +31,10 @@ __url__ = 'http://openalea.gforge.inria.fr'
 
 __all__ = ['linear']
 
-    
-linear = Factory( name=protected("linearmodel"), 
-                  description="Linear Model", 
-                  category="misc", 
-                  nodemodule="openalea.model.models",
-                  nodeclass="linearmodel",
-                  )
-
-
-
+linear = Fa(uid="8005f33e4e7611e6bff6d4bed973e64a",
+            name=protected("linearmodel"),
+            description="Linear Model",
+            category="misc",
+            nodemodule="openalea.model.models",
+            nodeclass="linearmodel",
+            )

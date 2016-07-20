@@ -15,7 +15,9 @@
 #
 
 
-from openalea.core import *
+from openalea.core import Factory as Fa
+from openalea.core import IDict, IFloat, ISequence, IStr
+
 __name__ = "openalea.stat.test"
 __alias__ = ["stat.test"]
 
@@ -25,52 +27,51 @@ __authors__ = 'OpenAlea consortium'
 __institutes__ = 'INRIA/CIRAD/UM2'
 __description__ = 'Test functions  from Rpy and Scipy.'
 __url__ = 'http://rpy.sourceforge.net and http://www.scipy.org/'
- 
-__editable__ = 'False' 
- 
-__all__ = ['chisquare','studenttest','kstest',]
-    
-    
-###### begin nodes definitions #############
 
-chisquare = Factory( name="chi square test (rpy)",
-                     description="Compute the Chisquare Test",
-                     category="test",
-                     nodemodule="openalea.stat.stattest",
-                     nodeclass="chisqtest",
-                     inputs= ( dict( name = "X", interface=ISequence, showwidget=True ),
-                               dict( name = "Y", interface=ISequence, showwidget=True ),
-                               dict( name = "Proportion", interface=ISequence, showwidget=True ),
-                             ),
-                     outputs=(dict(name="chisqtest", interface = IDict),
-                             ),
-                     )
+__editable__ = 'False'
 
-studenttest = Factory( name="student test (scipy)",
-                       description="compute the Student Test",
-                       category="test",
-                       nodemodule="openalea.stat.stattest",
-                       nodeclass="ttest",
-                       inputs= ( dict( name = "X", interface=ISequence, showwidget=True ),
-                                 dict( name = "Y", interface=ISequence, showwidget=True ),
-                                 dict( name = "mu", interface=IFloat, value=0. ),
-                               ),
-                       outputs=(dict(name="ttest", interface = IDict),
-                               ),
-                       )
+__all__ = ['chisquare', 'studenttest', 'kstest', ]
 
-kstest = Factory( name="kolmogorov smirnov test (scipy)",
-                  description="compute the Kolmogorov-Smirnov Test",
-                  category="test",
-                  nodemodule="openalea.stat.stattest",
-                  nodeclass="kstest",
-                  inputs= ( dict( name = "X", interface=ISequence, showwidget=True ),
-                            dict( name = "Y", interface=ISequence, showwidget=True ),
-                            dict( name = "Cdf", interface=IStr, showwidget=True ),
-                            dict( name = "Args", interface=ISequence, showwidget=True),
+chisquare = Fa(uid="0fff229c4e7911e6bff6d4bed973e64a",
+               name="chi square test (rpy)",
+               description="Compute the Chisquare Test",
+               category="test",
+               nodemodule="openalea.stat.stattest",
+               nodeclass="chisqtest",
+               inputs=(dict(name="X", interface=ISequence, showwidget=True),
+                       dict(name="Y", interface=ISequence, showwidget=True),
+                       dict(name="Proportion", interface=ISequence,
+                            showwidget=True),
+                       ),
+               outputs=(dict(name="chisqtest", interface=IDict),
+                        ),
+               )
+
+studenttest = Fa(uid="0fff229d4e7911e6bff6d4bed973e64a",
+                 name="student test (scipy)",
+                 description="compute the Student Test",
+                 category="test",
+                 nodemodule="openalea.stat.stattest",
+                 nodeclass="ttest",
+                 inputs=(dict(name="X", interface=ISequence, showwidget=True),
+                         dict(name="Y", interface=ISequence, showwidget=True),
+                         dict(name="mu", interface=IFloat, value=0.),
+                         ),
+                 outputs=(dict(name="ttest", interface=IDict),
                           ),
-                  outputs=(dict(name="kstest", interface = IDict),
-                          ),
-                  )
+                 )
 
-###### end nodes definitions ###############
+kstest = Fa(uid="0fff229e4e7911e6bff6d4bed973e64a",
+            name="kolmogorov smirnov test (scipy)",
+            description="compute the Kolmogorov-Smirnov Test",
+            category="test",
+            nodemodule="openalea.stat.stattest",
+            nodeclass="kstest",
+            inputs=(dict(name="X", interface=ISequence, showwidget=True),
+                    dict(name="Y", interface=ISequence, showwidget=True),
+                    dict(name="Cdf", interface=IStr, showwidget=True),
+                    dict(name="Args", interface=ISequence, showwidget=True),
+                    ),
+            outputs=(dict(name="kstest", interface=IDict),
+                     ),
+            )

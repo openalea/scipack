@@ -15,7 +15,8 @@
 #
 
 
-from openalea.core import *
+from openalea.core import Factory as Fa
+from openalea.core import IBool, IInt, ISequence, IStr
 
 __name__ = "openalea.stat.graphics"
 __alias__ = ["stat.graphics"]
@@ -26,54 +27,56 @@ __authors__ = 'OpenAlea consortium'
 __institutes__ = 'INRIA/CIRAD/UM2'
 __description__ = 'Graphical statistics from Rpy and Scipy.'
 __url__ = 'http://rpy.sourceforge.net and http://www.scipy.org/'
- 
-__editable__ = 'False' 
- 
-__all__ = ['plot', 'hist', 'plotdensity',]
-    
-    
-###### begin nodes definitions #############
 
-plot = Factory( name="plot (x,y)",
-                description="Plot (x,y)",
-                category="graphics",
-                nodemodule="openalea.stat.graphics.graphics",
-                nodeclass="Plot",
-                inputs= ( dict( name = "X", interface=ISequence, showwidget=True),
-                          dict( name = "Y", interface=ISequence, showwidget=True),
-                          dict( name = "xlab", interface=IStr,value = None, showwidget=True),
-                          dict( name = "ylab", interface=IStr, value = None, showwidget=True),
-                          dict( name = "main", interface=IStr, value = None, showwidget=True),
-                        ),
-                outputs=(dict(name="Plot", interface = ISequence),
-                        ),
-                )
+__editable__ = 'False'
 
-hist = Factory( name="hist (x)",
-                description="Histogram (x)",
-                category="graphics",
-                nodemodule="openalea.stat.graphics.graphics",
-                nodeclass="Hist",
-                inputs= ( dict( name = "X", interface=ISequence, showwidget=True),
-                          dict( name = "K", interface=IInt, value = 0, showwidget=True),
-                          dict( name = "xlab", interface=IStr,value = None, showwidget=True),
-                          dict( name = "main", interface=IStr, value = None, showwidget=True),
-                          dict( name = "counts", interface=IBool, showwidget=True),
-                        ),
-                outputs=(dict(name="Histogram", interface = ISequence),
-                        ),
-                )
+__all__ = ['plot', 'hist', 'plotdensity', ]
 
-plotdensity = Factory( name="plot density(x)",
-                       description="Plot the kernel density estimation",
-                       category="graphics",
-                       nodemodule="openalea.stat.graphics.graphics",
-                       nodeclass="PlotDens",
-                       inputs= ( dict( name = "X", interface=ISequence, showwidget=True),
-                               ),
-                       outputs=(dict(name="PlotDens", interface = ISequence),
-                               ),
-                       )
+plot = Fa(uid="ce6415ea4e7811e6bff6d4bed973e64a",
+          name="plot (x,y)",
+          description="Plot (x,y)",
+          category="graphics",
+          nodemodule="openalea.stat.graphics.graphics",
+          nodeclass="Plot",
+          inputs=(dict(name="X", interface=ISequence, showwidget=True),
+                  dict(name="Y", interface=ISequence, showwidget=True),
+                  dict(name="xlab", interface=IStr, value=None,
+                       showwidget=True),
+                  dict(name="ylab", interface=IStr, value=None,
+                       showwidget=True),
+                  dict(name="main", interface=IStr, value=None,
+                       showwidget=True),
+                  ),
+          outputs=(dict(name="Plot", interface=ISequence),
+                   ),
+          )
 
-    
-###### end nodes definitions ###############
+hist = Fa(uid="ce6415eb4e7811e6bff6d4bed973e64a",
+          name="hist (x)",
+          description="Histogram (x)",
+          category="graphics",
+          nodemodule="openalea.stat.graphics.graphics",
+          nodeclass="Hist",
+          inputs=(dict(name="X", interface=ISequence, showwidget=True),
+                  dict(name="K", interface=IInt, value=0, showwidget=True),
+                  dict(name="xlab", interface=IStr, value=None,
+                       showwidget=True),
+                  dict(name="main", interface=IStr, value=None,
+                       showwidget=True),
+                  dict(name="counts", interface=IBool, showwidget=True),
+                  ),
+          outputs=(dict(name="Histogram", interface=ISequence),
+                   ),
+          )
+
+plotdensity = Fa(uid="ce6415ec4e7811e6bff6d4bed973e64a",
+                 name="plot density(x)",
+                 description="Plot the kernel density estimation",
+                 category="graphics",
+                 nodemodule="openalea.stat.graphics.graphics",
+                 nodeclass="PlotDens",
+                 inputs=(dict(name="X", interface=ISequence, showwidget=True),
+                         ),
+                 outputs=(dict(name="PlotDens", interface=ISequence),
+                          ),
+                 )

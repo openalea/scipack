@@ -14,10 +14,10 @@
 
 
 __doc__ = """ OpenAlea.file.CSV """
-__revision__=" $Id$ "
+__revision__ = " $Id$ "
 
-
-from openalea.core import *
+from openalea.core import Factory as Fa
+from openalea.core import Alias, IStr
 from openalea.core.pkgdict import protected
 
 __name__ = "openalea.file.csv"
@@ -30,28 +30,28 @@ __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Csv Node library.'
 __url__ = 'http://openalea.gforge.inria.fr'
 
+__all__ = ['read_csv', 'write_csv']
 
-
-__all__ = [ 'read_csv', 'write_csv']
-read_csv = Factory(name='read csv', 
-                   description='Csv converter', 
-                   category='io', 
-                   nodemodule='openalea.csv.csv',
-                   nodeclass='parseText',
-                   lazy = False,
-                   outputs=(dict(name='objects', interface=None),
-                            dict(name='header', interface=None),)
-                   )
+read_csv = Fa(uid="718d331e4e5611e6bff6d4bed973e64a",
+              name='read csv',
+              description='Csv converter',
+              category='io',
+              nodemodule='openalea.csv.csv',
+              nodeclass='parseText',
+              lazy=False,
+              outputs=(dict(name='objects', interface=None),
+                       dict(name='header', interface=None),)
+              )
 
 Alias(read_csv, 'csv2objs')
 
-write_csv = Factory(name='write csv', 
-                  description='Csv exporter', 
-                  category='io', 
-                  nodemodule='openalea.csv.csv',
-                  nodeclass='writeObjs',
-                  lazy = False,
-                  outputs=(dict(name='string', interface=IStr),)
-                  )
+write_csv = Fa(uid="76ed920e4e5611e6bff6d4bed973e64a",
+               name='write csv',
+               description='Csv exporter',
+               category='io',
+               nodemodule='openalea.csv.csv',
+               nodeclass='writeObjs',
+               lazy=False,
+               outputs=(dict(name='string', interface=IStr),)
+               )
 Alias(write_csv, 'obj2csv')
-
