@@ -257,6 +257,8 @@ zip_ = Fa(uid="3b5edf544e7711e6bff6d4bed973e64a",
           category="Python",
           nodemodule="openalea.python.python",
           nodeclass="py_zip",
+          inputs=[dict(name='in1'), dict(name='in2')],
+          outputs=[dict(name='res')]
           )
 
 __all__.append('zip_')
