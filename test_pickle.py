@@ -31,6 +31,6 @@ def check(node):
         try:
             pickle.dumps(v)
         except:
-            print 'Pickle Error ', k
+            print('Pickle Error ', k)
 
 
