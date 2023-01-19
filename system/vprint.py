@@ -20,7 +20,7 @@ try:
             self.setupUi(self)
             
 except:
-    print 'visual print disabled'
+    print('visual print disabled')
     __visual_print_enabled = False
 
     

@@ -2,7 +2,7 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
@@ -40,7 +40,7 @@ class Obj(object):
                             val = str(values[i])
                     self.__dict__[prop.replace('"', '')] = val
             except IndexError:
-                print "index : ", i, " prop : ", propnames[i]
+                print("index : ", i, " prop : ", propnames[i])
 
     def __getitem__(self, key):
         return self.__getattribute__(key)

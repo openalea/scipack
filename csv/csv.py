@@ -40,7 +40,7 @@ class Obj(object):
                             val = str(values[i])
                     self.__dict__[prop.replace('"', '')] = val
             except IndexError:
-                print "index : ", i, " prop : ", propnames[i]
+                print("index : ", i, " prop : ", propnames[i])
 
     def __getitem__(self, key):
         return self.__getattribute__(key)

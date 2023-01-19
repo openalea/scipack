@@ -2,7 +2,7 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA  
+#       Copyright 2006-2023 INRIA - CIRAD - INRA  
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
@@ -18,14 +18,17 @@ __revision__ = " $Id: parallel.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
 from openalea.core import Node, ITextStr
 
-from IPython.kernel import client
+import ipyparallel as ipp
 
 def pmap(func, seq):
     """ map(func, seq) """
     
-    tc = client.TaskClient()
     if func and seq:
-        return ( tc.map(func, seq), )
+        cluster = ipp.Cluster(n=4)
+        cluster.start_cluster_sync()
+        rc = cluster.connect_client_sync()
+        dview = rc[:]
+        return ( dview.map_sync(func, seq), )
     else:
         return ( [], )
 

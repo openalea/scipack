@@ -3,7 +3,7 @@ from types import FunctionType
 def parallel_map(function, seq):
     '''    
     '''
-    from IPython.parallel import Client
+    from ipyparallel import Client
     rc = Client() # remote client
 
     dview = rc[:]

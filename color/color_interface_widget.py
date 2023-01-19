@@ -1,7 +1,7 @@
 # -*- python -*-
 #
 #
-#       Copyright 2006-2010 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Chopard
 #
@@ -17,18 +17,17 @@
 __license__ = "Cecill-C"
 __revision__ = " $Id: interface.py 2245 2010-02-08 17:11:34Z cokelaer $"
 
-from openalea.vpltk.qt import QtCore, QtGui
+from openalea.vpltk.qt import QtCore, QtGui, QtWidgets
 from openalea.core.observer import lock_notify
 from openalea.core.interface import IInterfaceWidget, make_metaclass
 from color_interface import IColor
 
 
-class IColorWidget (IInterfaceWidget, QtGui.QPushButton):
+class IColorWidget (IInterfaceWidget, QtWidgets.QPushButton,metaclass=make_metaclass()):
 
     """Interface for colors expressed as triplet of values
     """
     __interface__ = IColor
-    __metaclass__ = make_metaclass()
 
     def __init__(self, node, parent, parameter_str, interface):
         """Constructor
@@ -39,15 +38,15 @@ class IColorWidget (IInterfaceWidget, QtGui.QPushButton):
          - `parameter_str` (str) - the parameter key the widget is associated to
          - `interface` (Ismth) - instance of interface object
         """
-        QtGui.QPushButton.__init__(self, parent)
+        QtWidgets.QPushButton.__init__(self, parent)
         IInterfaceWidget.__init__(self, node, parent, parameter_str, interface)
         self.setMinimumSize(64, 64)
 
         self._color = (0, 0, 0)
-        self._brush = QtGui.QBrush(QtGui.QColor(*self._color[:3]))
+        self._brush = QtWidgets.QBrush(QtGui.QColor(*self._color[:3]))
 
-        QtCore.QObject.connect(self, QtCore.SIGNAL("clicked(bool)"), self.open_color_dialog)
-
+        #QtCore.QObject.connect(self, QtCore.pyqtSignal("clicked(bool)"), self.open_color_dialog)
+        self.clicked.connect(self.open_color_dialog)
         self.notify(node, ("input_modified", self.param_str))
 
     def paintEvent(self, event):
@@ -67,11 +66,11 @@ class IColorWidget (IInterfaceWidget, QtGui.QPushButton):
 
         color = None
         if len(old_color) == 3:
-            col = QtGui.QColorDialog.getColor(QtGui.QColor(*old_color), self)
+            col = QtWidgets.QColorDialog.getColor(QtGui.QColor(*old_color), self)
             if col.isValid():
                 color = (col.red(), col.green(), col.blue())
         elif len(old_color) == 4:
-            col, ok = QtGui.QColorDialog.getRgba(QtGui.qRgba(*old_color), self)
+            col, ok = QtWidgets.QColorDialog.getRgba(QtGui.qRgba(*old_color), self)
             if ok:
                 col = QtGui.QColor.fromRgba(col)
                 color = (col.red(), col.green(), col.blue(), col.alpha())
