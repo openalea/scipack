@@ -1,50 +1,51 @@
-from openalea.vpltk.qt import QtCore, QtGui
+from openalea.vpltk.qt import QtCore, QtWidgets
 
+from openalea.core.interface import make_metaclass
 from openalea.core.system import systemnodes
 from openalea.core.observer import lock_notify
 from openalea.deploy.util import get_metadata
 from openalea.visualea.node_widget import NodeWidget
 
 
-class GetDataBrowser(NodeWidget, QtGui.QDialog):
+class GetDataBrowser(NodeWidget, QtWidgets.QDialog, metaclass=make_metaclass()):
     ''' This widget permits to select a shared data file located in a given Python 
     package. The data file is searched among the data nodes of the PackageManager. '''
     def __init__(self, node, parent):
 
-        QtGui.QDialog.__init__(self, parent)
+        QtWidgets.QDialog.__init__(self, parent)
         NodeWidget.__init__(self, node)
 
-        self.gridlayout = QtGui.QGridLayout(self)
+        self.gridlayout = QtWidgets.QGridLayout(self)
         self.gridlayout.setContentsMargins(3, 3, 3, 3)
         self.gridlayout.setSpacing(5)
 
-        self.package_lineedit_label = QtGui.QLabel('1. Set the package', self)
+        self.package_lineedit_label = QtWidgets.QLabel('1. Set the package', self)
         self.gridlayout.addWidget(self.package_lineedit_label, 0, 0)
         
-        self.package_lineedit = QtGui.QLineEdit(self)
+        self.package_lineedit = QtWidgets.QLineEdit(self)
         self.gridlayout.addWidget(self.package_lineedit, 0, 1, 1, 3)
         self.connect(self.package_lineedit, 
                      QtCore.SIGNAL("textChanged()"), 
                      self.package_changed)
 
-        self.metadata_textedit = QtGui.QTextEdit('', self)
+        self.metadata_textedit = QtWidgets.QTextEdit('', self)
         self.metadata_textedit.setReadOnly(True)
         self.metadata_textedit.setTextInteractionFlags(QtCore.Qt.TextBrowserInteraction)
         self.gridlayout.addWidget(self.metadata_textedit, 1, 1, 1, 3)
 
-        self.glob_lineedit_label = QtGui.QLabel('2.Filter the data: (e.g., *.dat)', self)
+        self.glob_lineedit_label = QtWidgets.QLabel('2.Filter the data: (e.g., *.dat)', self)
         self.gridlayout.addWidget(self.glob_lineedit_label, 2, 0)
 
-        self.glob_lineedit = QtGui.QLineEdit(self)
+        self.glob_lineedit = QtWidgets.QLineEdit(self)
         self.gridlayout.addWidget(self.glob_lineedit, 2, 1, 1, 2)
         self.connect(self.glob_lineedit, 
                      QtCore.SIGNAL("textChanged()"), 
                      self.glob_changed)
 
-        self.filenames_combobox_label = QtGui.QLabel('3. Select the data file:', self)
+        self.filenames_combobox_label = QtWidgets.QLabel('3. Select the data file:', self)
         self.gridlayout.addWidget(self.filenames_combobox_label, 3, 0)
 
-        self.filenames_combobox = QtGui.QComboBox(self)
+        self.filenames_combobox = QtWidgets.QComboBox(self)
         self.connect(self.filenames_combobox,
                      QtCore.SIGNAL("activated()"), 
                      self.filename_changed)
