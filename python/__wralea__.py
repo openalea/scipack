@@ -2,13 +2,13 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
 #           http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
 #
-#       OpenAlea WebSite : http://openalea.gforge.inria.fr
+#       OpenAlea WebSite : https://openalea.rtfd.io
 #
 ################################################################################
 
@@ -22,12 +22,12 @@ from openalea.core import (ICodeStr, IDict, IFileStr, IInt,
 __name__ = "openalea.python method"
 __alias__ = ["catalog.python", "openalea.python"]
 
-__version__ = '0.0.2'
+__version__ = '1.0.0'
 __license__ = 'CECILL-C'
 __authors__ = 'OpenAlea Consortium'
 __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Python Node library.'
-__url__ = 'http://openalea.gforge.inria.fr'
+__url__ = 'https://openalea.rtfd.io'
 
 __all__ = []
 

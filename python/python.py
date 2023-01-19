@@ -2,7 +2,7 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
@@ -16,10 +16,10 @@
 __license__ = "Cecill-C"
 __revision__ = " $Id$ "
 
-from openalea.core import *
 import os
 import operator
 
+from openalea.core import *
 
 def py_ifelse(c=True, a=None, b=None):
     """ Return a if c is true else b """
@@ -29,28 +29,28 @@ def py_ifelse(c=True, a=None, b=None):
 def keys(obj):
     """ call keys() on obj """
 
-    ret = obj.keys()
+    ret = list(obj.keys())
     return (ret,)
 
 
 def values(obj):
     """ call values() on obj """
 
-    ret = obj.values()
+    ret = list(obj.values())
     return (ret,)
 
 
 def items(obj):
     """ call items() on obj """
 
-    ret = obj.items()
+    ret = list(obj.items())
     return (ret,)
 
 
 def pyrange(start=0, stop=0, step=1):
     """ range(start, stop, step) """
 
-    return (range(start, stop, step),)
+    return (list(range(start, stop, step)),)
 
 
 def pyenumerate(obj):
@@ -86,7 +86,7 @@ def py_delitem(obj, key):
 
 def py_print(x):
     """ Print to the console """
-    print x
+    print(x)
     return (x,)
 
 
@@ -121,12 +121,12 @@ def py_exec(str):
 
 def py_zip(s1=(), s2=()):
     __doc__ = zip.__doc__
-    return (zip(s1, s2),)
+    return (list(zip(s1, s2)),)
 
 
 def py_zip2(args):
     __doc__ = zip.__doc__
-    return (zip(*args),)
+    return (list(zip(*args)),)
 
 
 def py_flatten(obj=[]):
@@ -143,7 +143,7 @@ def py_flatten(obj=[]):
         for v in iter(obj):
             for x in iter(py_flatten(v)[0]):
                 nl.append(x)
-        #print nl
+
         return (nl,)
 
 
@@ -188,7 +188,7 @@ def pymean(sequence):
 def py_fwrite(x="", filename="", mode="w"):
     """ Write to a file """
 
-    print "This node is DEPRECATED. Use %s instead" % ("Catalog.File.write")
+    print("This node is DEPRECATED. Use %s instead" % ("Catalog.File.write"))
     f = open(filename, mode)
     f.write(x)
     f.close()
@@ -205,7 +205,7 @@ class FileRead(object):
 
     def __call__(self, filename=""):
 
-        print "This node is DEPRECATED. Use %s instead" % ("Catalog.File.read")
+        print("This node is DEPRECATED. Use %s instead" % ("Catalog.File.read"))
         try:
             mtime = os.stat(filename).st_mtime
         except:
