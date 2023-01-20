@@ -6,7 +6,6 @@ from openalea.core.observer import lock_notify
 from openalea.deploy.util import get_metadata
 from openalea.visualea.node_widget import NodeWidget
 
-
 class GetDataBrowser(NodeWidget, QtWidgets.QDialog, metaclass=make_metaclass()):
     ''' This widget permits to select a shared data file located in a given Python 
     package. The data file is searched among the data nodes of the PackageManager. '''

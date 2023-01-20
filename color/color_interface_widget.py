@@ -20,7 +20,7 @@ __revision__ = " $Id: interface.py 2245 2010-02-08 17:11:34Z cokelaer $"
 from openalea.vpltk.qt import QtCore, QtGui, QtWidgets
 from openalea.core.observer import lock_notify
 from openalea.core.interface import IInterfaceWidget, make_metaclass
-from color_interface import IColor
+from .color_interface import IColor
 
 
 class IColorWidget (IInterfaceWidget, QtWidgets.QPushButton,metaclass=make_metaclass()):
