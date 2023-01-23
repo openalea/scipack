@@ -26,7 +26,7 @@ from os import path
 import numpy as np
 from struct import calcsize,pack,unpack
 import gzip
-from cStringIO import StringIO
+from io import StringIO
 from openalea.image.spatial_image import SpatialImage
 
 __all__ = ["read_inriheader","read_inrimage","write_inrimage"]

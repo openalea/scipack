@@ -80,19 +80,19 @@ def save (filename, img, is_vectorial=False) :
     # we can be sure it is a scalar 2D image
     # and we can reshape to a 3D scalar image.
     if lenShape==2:
-        print "openalea.image.serial.basics.save: assuming 2D scalar image"
+        print("openalea.image.serial.basics.save: assuming 2D scalar image")
         img = img.reshape(img.shape+(1,))
         if len(resolution) == 2:
             resolution += (1.,)
     elif lenShape == 3 and not is_vectorial:
-        print "openalea.image.serial.basics.save: assuming 3D scalar image"
+        print("openalea.image.serial.basics.save: assuming 3D scalar image")
     elif lenShape == 3 and  is_vectorial:
-        print "openalea.image.serial.basics.save: interpreting as 2D scalar RGB[A] image"
+        print("openalea.image.serial.basics.save: interpreting as 2D scalar RGB[A] image")
         img = img.reshape( img.shape[:2] + (1, img.shape[2]) )
         if len(resolution) == 2:
             resolution += (1.,)
     elif lenShape == 4 and not is_vectorial:
-        print "openalea.image.serial.basics.save: assuming 3D RGB[A] image"
+        print("openalea.image.serial.basics.save: assuming 3D RGB[A] image")
     else:
         raise IOError("Unable to identify image shape and encoding")
 
@@ -135,19 +135,19 @@ def load (file, mmap_mode=None, is_vectorial=False) :
         # we can be sure it is a scalar 2D image
         # and we can reshape to a 3D scalar image.
         if len(data.shape) == 2:
-            print "openalea.image.serial.basics.load: assuming 2D scalar image"
+            print("openalea.image.serial.basics.load: assuming 2D scalar image")
             data = data.reshape(data.shape+(1,))
             if len(res) == 2:
                 res += (1.,)
         elif len(data.shape) == 3 and not is_vectorial:
-            print "openalea.image.serial.basics.load: assuming 3D scalar image"
+            print("openalea.image.serial.basics.load: assuming 3D scalar image")
         elif len(data.shape) == 3 and  is_vectorial:
-            print "openalea.image.serial.basics.load: interpreting as 2D scalar RGB[A] image"
+            print("openalea.image.serial.basics.load: interpreting as 2D scalar RGB[A] image")
             data = data.reshape( data.shape[:2] + (1, data.shape[2]) )
             if len(res) == 2:
                 res += (1.,)
         elif len(data.shape) == 4 and not is_vectorial:
-            print "openalea.image.serial.basics.load: assuming 3D RGB[A] image"
+            print("openalea.image.serial.basics.load: assuming 3D RGB[A] image")
         else:
             raise IOError("Unable to identify image shape and encoding")
 
@@ -184,7 +184,7 @@ def read_sequence ( directory, grayscale=True, number_images=None, start=0, incr
     _images = []
     _files = []
 
-    if verbose : print "Loading : "
+    if verbose : print("Loading : ")
     for f in os.listdir(directory):
         if fnmatch.fnmatch(f, '*%s*' %filename_contains):
             try :
@@ -195,10 +195,10 @@ def read_sequence ( directory, grayscale=True, number_images=None, start=0, incr
                 else:
                     _images.append(im)
             except :
-                if verbose : print "\t warning : cannot open %s" %f
+                if verbose : print("\t warning : cannot open %s" %f)
 
     if len(_images) == 0 :
-        if verbose : print "\t no images loaded"
+        if verbose : print("\t no images loaded")
         return -1
 
     xdim, ydim = _images[0].size
@@ -219,10 +219,10 @@ def read_sequence ( directory, grayscale=True, number_images=None, start=0, incr
     for i in _images[start:_nmax+start:increment] :
         if i.size == _images[start].size :
             nd_image[:,:,j] = i
-            if verbose : print "\t ./%s" %_files[_images.index(i)]
+            if verbose : print("\t ./%s" %_files[_images.index(i)])
             j += 1
         else :
-            if verbose : print "%s : wrong size - %s expected, %s found" %(_files[_images.index(i)], _images[start].size, i.size)
+            if verbose : print("%s : wrong size - %s expected, %s found" %(_files[_images.index(i)], _images[start].size, i.size))
     result = nd_image.transpose(1,0,2)
 
     if voxels_size is None :
@@ -365,7 +365,7 @@ def lazy_image_or_path(image):
         |SpatialImage|
     """
     wp = False
-    if isinstance(image, (str, unicode)):
+    if isinstance(image, str):
         image = imread(image)
         wp = True
     else:

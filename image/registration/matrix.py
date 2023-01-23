@@ -126,7 +126,7 @@ def matrix_real2voxels( matrix, target_res, source_res ) :
     h_out = np.diag(source_res)
     res[0:3,0:3] = np.dot(res[0:3,0:3],h_out)
     
-    size_in = map(lambda x:1./x, target_res)
+    size_in = [1./x for x in target_res]
     h_in = np.diag(size_in)
     res[0:3,:] = np.dot(h_in, res[0:3,:])
     assert (res[3,0:3] == (0,0,0)).all()

@@ -16,4 +16,4 @@
 __license__= "Cecill-C"
 __revision__ = " $Id$ "
 
-from interpolation import *
+from .interpolation import *
