@@ -45,7 +45,7 @@ class ImageQt(QImage):
         if hasattr(im, "toUtf8"):
             # FIXME - is this really the best way to do this?
             im = str(im.toUtf8(), "utf-8")
-        if Image.isStringType(im):
+        if Image.is_path(im):
             im = Image.open(im)
 
         if im.mode == "1":
@@ -62,11 +62,11 @@ class ImageQt(QImage):
             for i in range(0, len(palette), 3):
                 colortable.append(rgb(*palette[i:i+3]))
         elif im.mode == "RGB":
-            data = im.tostring("raw", "BGRX")
+            data = im.tobytes("raw", "BGRX")
             format = QImage.Format_RGB32
         elif im.mode == "RGBA":
             try:
-                data = im.tostring("raw", "BGRA")
+                data = im.tobytes("raw", "BGRA")
             except SystemError:
                 # workaround for earlier versions
                 r, g, b, a = im.split()
@@ -76,7 +76,7 @@ class ImageQt(QImage):
             raise ValueError("unsupported image mode %r" % im.mode)
 
         # must keep a reference, or Qt will crash!
-        self.__data = data or im.tostring()
+        self.__data = data or im.tobytes()
 
         QImage.__init__(self, self.__data, im.size[0], im.size[1], format)
 

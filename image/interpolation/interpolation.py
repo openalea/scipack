@@ -2,7 +2,7 @@
 #
 #       image: geometric transform filters
 #
-#       Copyright 2006-2011 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Eric Moscardi <eric.moscardi@sophia.inria.fr>
 #
@@ -10,7 +10,7 @@
 #       See accompanying file LICENSE.txt or copy at
 #           http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
 #
-#       OpenAlea WebSite : http://openalea.gforge.inria.fr
+#       OpenAlea WebSite : http://openalea.rtfd.io
 ################################################################################
 """
 This module import functions for Geometric Transformation Filters
@@ -84,7 +84,7 @@ def resampling(img, transformation, order=1, output_shape=None, output_voxels=No
 
     else:
         if not isinstance(img,SpatialImage) :
-	    _data = SpatialImage(img)
+            _data = SpatialImage(img)
         else:
             _data = img
 

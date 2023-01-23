@@ -56,7 +56,7 @@ def to_img (img, scalar_type=None, lut=None, forceNativeLut=None) :
         else:
             raise Exception("Unknown image shape, cannot deduce pixel format")
     _img = Image.fromarray(img)
-    pseudo_QImage = ImageQt.ImageQt(_img)
+    pseudo_QImage = ImageQt(_img)
     return pseudo_QImage
 
     try:
