@@ -131,7 +131,7 @@ def to_img_fast( img, scalar_type=None, lut=None, forceNativeLut=False):
             # Currently doesn't work on non-square images maybe  because all
             # data is not 32bits aligned.  --
             if forceNativeLut: #cmax <= 255:
-                print "using native 8bit color map"
+                print("using native 8bit color map")
                 if img.dtype != uint8 :
                     img = uint8(img)
                 qim = QImage(sip.voidptr(img.ctypes.data), img.shape[0], img.shape[1], QImage.Format_Indexed8)
@@ -147,17 +147,17 @@ def to_img_fast( img, scalar_type=None, lut=None, forceNativeLut=False):
                 return to_img(img, scalar_type="argb32")
 
         elif scalar_type=="argb32":
-            print "using native scalar argb32"
+            print("using native scalar argb32")
             qim = QImage(sip.voidptr(img.ctypes.data), img.shape[0], img.shape[1], QImage.Format_ARGB32).copy()
             return qim
 
     elif vdim in [3,4]  : # : We are working on vectorial things like RGB ...
         data = img.ctypes.data
         if vdim == 3:
-            print "using native vectorial rgb888"
+            print("using native vectorial rgb888")
             fmt = QImage.Format_RGB888
         elif vdim == 4: # ... or RGBA
-            print "using native vectorial argb32"
+            print("using native vectorial argb32")
             fmt = QImage.Format_ARGB32
         else:
             raise Exception("Unhandled vectorial pixel type")

@@ -34,7 +34,7 @@ def read_image_path(urls, mimetype_in, mimetype_out):
         if url.exists():
             try:
                 data = imread(url)
-            except Exception, e:
+            except Exception as e:
                 e = MimeConversionError(url, mimetype_in, mimetype_out, e)
                 raise e
             else:

@@ -186,7 +186,7 @@ class PixmapStackView (PixmapView) :
             if data.dtype != uint8:
                 raise Exception("Only uint8 RGB[A] images supported, got %s instead"%str(data.dtype))
             pal = None
-        for z in xrange(data.shape[axis]) :
+        for z in range(data.shape[axis]) :
             if axis == 0 :
                 dat = data[z,:,:] 
             elif axis == 1 :

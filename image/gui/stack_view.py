@@ -20,7 +20,7 @@ __revision__=" $Id$ "
 import OpenGL.GL as ogl
 from openalea.pglviewer import ElmView,Vec
 from openalea.pglviewer.constants import DRAW_MODE
-from pixmap import to_tex
+from .pixmap import to_tex
 
 class StackView( ElmView) :
     """View a 3D image as a stack of slides
@@ -62,7 +62,7 @@ class StackView( ElmView) :
 
         #indices
         if slices is None :
-            self._slices = range(image.shape[2])
+            self._slices = list(range(image.shape[2]))
         else :
             self._slices = [v for v in slices if 0 <= v < image.shape[2] ]
 
@@ -176,7 +176,7 @@ class StackView( ElmView) :
             ogl.glDisable(ogl.GL_TEXTURE_2D)
             ogl.glPopAttrib()
         else :
-            print "toto"
+            print("toto")
 
     #########################################################
     #

@@ -225,7 +225,7 @@ def color_select (img, color, tol) :
 
     return apply_along_axis(func,-1,img)
 
-def border(img, (x_min,y_min,z_min)=(0,0,0), (x_max,y_max,z_max)=(0,0,0) ):
+def border(img, xxx_todo_changeme=(0,0,0), xxx_todo_changeme1=(0,0,0) ):
     """
     A border is a outside black space that can be added to an array object.
 
@@ -238,7 +238,8 @@ def border(img, (x_min,y_min,z_min)=(0,0,0), (x_max,y_max,z_max)=(0,0,0) ):
 
     :Returns Type: (N+x_min+x_max) x (M+y_min+y_max) x (P+z_min+z_max) array
     """
-
+    (x_min,y_min,z_min) = xxx_todo_changeme
+    (x_max,y_max,z_max) = xxx_todo_changeme1
     xdim, ydim, zdim = img.shape
 
     mat = zeros([xdim+x_min+x_max, ydim+y_min+y_max, zdim+z_min+z_max], img.dtype)
@@ -335,7 +336,7 @@ def color2grey (image):
     Convert a color image into a grey-level image.
     """
     if image.ndim != 4:
-        print "Error : Not a color image"
+        print("Error : Not a color image")
         return -1
 
     if not isinstance(image,SpatialImage) :
@@ -351,7 +352,7 @@ def grey2color (r,g,b):
     convert a grey-level image into a color image.
     """
     if (r.shape != g.shape) or (r.shape != b.shape):
-        print "Error : r,g,b have not the same shape"
+        print("Error : r,g,b have not the same shape")
         return -1
 
     xdim,ydim,zdim = r.shape
@@ -374,7 +375,7 @@ def logicalnot (img) :
     """
     """
     d = img.dtype
-    vmax = eval(d.name)(sys.maxint)
+    vmax = eval(d.name)(sys.maxsize)
     im_target = vmax * ones(img.shape, img.dtype)
 
     image = bitwise_xor(img,im_target)

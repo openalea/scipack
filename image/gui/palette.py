@@ -77,7 +77,7 @@ def grayscale (cmax, alpha = False) :
     pal = [(int(i * 255. / cmax),
         int(i * 255. / cmax),
         int(i * 255. / cmax),
-        255) for i in xrange(cmax + 1)]
+        255) for i in range(cmax + 1)]
 
     return array(pal,uint8)
 
@@ -93,7 +93,7 @@ def grayscale_alpha (cmax, alpha = False) :
     pal = [(int(i * 255. / cmax),
             int(i * 255. / cmax),
             int(i * 255. / cmax),
-            int(i * 255. / cmax) ) for i in xrange(cmax + 1)]
+            int(i * 255. / cmax) ) for i in range(cmax + 1)]
 
     return array(pal,uint8)
 
@@ -108,7 +108,7 @@ def rainbow (cmax) :
     if cmax==0 : cmax = 255
     cmax = float(cmax)
     pal = [tuple(int(v * 255) for v in hsv_to_rgb(i / cmax,1.,1.) ) + (255,) \
-            for i in xrange(int(cmax + 1) )]
+            for i in range(int(cmax + 1) )]
 
     return array(pal,uint8)
 
@@ -124,7 +124,7 @@ def bwrainbow (cmax, alpha = False) :
     cmax = float(cmax)
     pal = [(255,255,255,0),(0,0,0,0)] \
         + [tuple(int(v * 255) for v in hsv_to_rgb(i / cmax,1.,1.) ) + (255,) \
-        for i in xrange(int(cmax - 1) )]
+        for i in range(int(cmax - 1) )]
 
     return array(pal,uint8)
 

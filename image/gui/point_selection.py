@@ -38,15 +38,15 @@ load_local(QtGui,"""QApplication,QMainWindow,QGraphicsScene,QGraphicsPixmapItem,
 import numpy as np
 from openalea.image.gui import icons_rc
 
-from pixmap_view import PixmapStackView, ScalableGraphicsView
-from palette import palette_names, palette_factory
+from .pixmap_view import PixmapStackView, ScalableGraphicsView
+from .palette import palette_names, palette_factory
 
 from openalea.image.serial.basics import load
 from openalea.image.spatial_image import SpatialImage
 try:
     from openalea.container.utils import IdSetGenerator
 except ImportError:
-    from id_generator import IdSetGenerator
+    from .id_generator import IdSetGenerator
 
 
 class PointSelection (QMainWindow) :
@@ -187,7 +187,7 @@ class PointSelection (QMainWindow) :
         if pix is not None :
             self._item.setPixmap(pix)
         else:
-            print 'None pixmap'
+            print('None pixmap')
         #update points
         ind = self._view.current_slice()
         for point in self._points :
@@ -215,7 +215,8 @@ class PointSelection (QMainWindow) :
                 item.setTransform(tr)
                 item.update()
 
-    def coordinates (self,(i,j,k)) :
+    def coordinates (self, xxx_todo_changeme) :
+        (i,j,k) = xxx_todo_changeme
         self._last_mouse_x,self._last_mouse_y, self._last_slice = i,j,k
         self.fill_infos()
 
@@ -375,7 +376,7 @@ class PointSelection (QMainWindow) :
             if my_pid is None:
                 if self._points is not None:
                     pid = len(self._points)
-                for pt in xrange(len(self._points)):
+                for pt in range(len(self._points)):
                     if self._points[pt] is None :
                         pid = pt
                         found_item = True
@@ -443,7 +444,7 @@ class PointSelection (QMainWindow) :
             self._id_gen.clear()
         img = self._view.image()
         if img is not None :
-            for i in xrange(len(points)):
+            for i in range(len(points)):
                 pid = i
 #X                 if version >= 2:
 #X                     x,y,z = points[i,0],points[i,1],points[i,2]
