@@ -18,7 +18,7 @@
 #
 ###############################################################################
 
-from openalea.vpltk.qt import QtGui, QtCore
+from openalea.vpltk.qt import QtGui, QtCore, QtWidgets
 from openalea.image.gui.slide_viewer_widget import ImageStackViewerWidget, to_image
 from openalea.oalab.control.widget import AbstractQtControlWidget
 from openalea.oalab.painter import AbstractPainter
@@ -53,7 +53,7 @@ class IImagePainter(AbstractPainter):
         if option:
             rectangle = option.rect
             pen = QtGui.QPen()
-            if option.state & QtGui.QStyle.State_Selected:
+            if option.state & QtWidgets.QStyle.State_Selected:
                 pen.setColor(option.palette.highlightedText().color())
                 painter.setPen(pen)
                 painter.setRenderHint(painter.Antialiasing, True)

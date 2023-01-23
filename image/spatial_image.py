@@ -2,7 +2,7 @@
 #
 #       spatial_image: spatial nd images
 #
-#       Copyright 2006 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Jerome Chopard <jerome.chopard@sophia.inria.fr>
 #
@@ -24,9 +24,10 @@ from scipy import ndimage
 import copy as cp
 
 # -- deprecation messages --
-import warnings, exceptions
+import warnings
+
 msg = "SpatialImage.resolution is deprecated, use SpatialImage.voxelsize"
-rezexc = exceptions.PendingDeprecationWarning(msg)
+rezexc = PendingDeprecationWarning(msg)
 
 class SpatialImage(np.ndarray) :
     """
@@ -178,12 +179,12 @@ def checkerboard(nx=9, ny=8, nz=5, size=10, vs=(1.,1.,1.), dtype=np.uint8):
     typeinfo = np.iinfo(dtype)
 
     # -- wooo surely not the most beautiful implementation out here --
-    for k in xrange(nz):
+    for k in range(nz):
         kval = typeinfo.max if (k%2==0) else typeinfo.min
         jval = kval
-        for j in xrange(ny):
+        for j in range(ny):
             ival = jval
-            for i in xrange(nx):
+            for i in range(nx):
                 array[i*sxv:i*sxv+sxv, j*syv:j*syv+syv, k*szv:k*szv+szv] = ival
                 ival = typeinfo.max if (ival==typeinfo.min) else typeinfo.min
             jval = typeinfo.max if (jval==typeinfo.min) else typeinfo.min

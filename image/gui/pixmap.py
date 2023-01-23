@@ -2,7 +2,7 @@
 #
 #       image: image manipulation GUI
 #
-#       Copyright 2006 - 2011 INRIA - CIRAD - INRA
+#       Copyright 2006 - 2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Jerome Chopard <jerome.chopard@sophia.inria.fr>
 #                       Eric Moscardi <eric.moscardi@sophia.inria.fr>
@@ -21,16 +21,15 @@ This module defines functions to transform images into QPixmaps
 __license__= "Cecill-C"
 __revision__ = " $Id: __init__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
-from openalea.vpltk.qt import QtCore, QtGui
-from openalea.vpltk.qt import qt
+from openalea.vpltk.qt import QtGui
 from numpy import array, zeros, uint32, uint8
 
 from openalea.image.spatial_image import SpatialImage
 from openalea.image.gui.palette import palette_factory, from_argb_swap_columns_and_recast
 from openalea.image.pil import Image, ImageQt
 
-QPixmap = qt.QtGui.QPixmap
-QImage = qt.QtGui.QImage
+QPixmap = QtGui.QPixmap
+QImage = QtGui.QImage
 
 def to_img (img, scalar_type=None, lut=None, forceNativeLut=None) :
     """Transform an image array into a QImage

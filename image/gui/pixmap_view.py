@@ -24,23 +24,13 @@ __revision__=" $Id$ "
 __all__ = ["PixmapView","PixmapStackView",
            "ScalableLabel","ScalableGraphicsView"]
 
-def load_local(mod,modules):
-    modules = modules.split()
-    modules = ''.join(modules).split(',')
-
-    for m in modules:
-        globals()[m] = mod.__getattribute__(m)
-
 from numpy import array,uint32, uint8
-from openalea.vpltk.qt import QtCore, QtGui
-load_local(QtCore,'Qt,SIGNAL')
-load_local(QtGui,"""QImage,QPixmap,QTransform,QMatrix,
-                         QLabel,QGraphicsView """)                         
+from openalea.vpltk.qt import QtCore, QtGui, QtWidgets
                          
-from pixmap import to_img, to_pix
+from .pixmap import to_img, to_pix
 from openalea.image.spatial_image import SpatialImage
 
-class PixmapView (object) :
+class PixmapView:
     """Base class for 2D views on spatial images
 
     Provide a QPixmap when asked to
@@ -185,7 +175,7 @@ class PixmapStackView (PixmapView) :
 
 
         #rotation
-        tr = QTransform()
+        tr = QtGui.QTransform()
         tr.rotate(self._transform)
 
         #construct pixmaps
@@ -208,10 +198,6 @@ class PixmapStackView (PixmapView) :
                 dat = pal[dat]
                 if isinstance(data, SpatialImage):
                     dat=SpatialImage(dat)
-            #img = QImage(dat,
-            #             data.shape[0],
-            #             data.shape[1],
-            #             QImage.Format_ARGB32)
             dat = to_pix (dat)
             pix.append(dat.transformed(tr) )
 
@@ -223,7 +209,7 @@ class PixmapStackView (PixmapView) :
         data = self.image()
 
         #rotation
-        tr = QTransform()
+        tr = QtGui.QTransform()
         tr.rotate(self._transform)
 
         #construct pixmaps
@@ -242,7 +228,7 @@ class PixmapStackView (PixmapView) :
         # set to true to copy img to a c_contiguous buffer
         make_contiguous = False if (vdim == 1 or axis!=2) else True
 
-        for z in xrange(data.shape[axis]) :
+        for z in range(data.shape[axis]) :
             if axis == 0 :
                 dat = data[z,:,:]
             elif axis == 1 :
@@ -336,7 +322,7 @@ class PixmapStackView (PixmapView) :
         """
         PixmapView.rotate(self,orient)
 
-        tr = QTransform()
+        tr = QtGui.QTransform()
         tr.rotate(orient * 90)
         self._pixmaps = [pix.transformed(tr) for pix in self._pixmaps]
 
@@ -396,11 +382,11 @@ class PixmapStackView (PixmapView) :
         return x_pix,y_pix
 
 
-class ScalableLabel (QLabel) :
+class ScalableLabel (QtWidgets.QLabel) :
     """Scalable label that respect the ratio of the pixmap it display
     """
     def __init__ (self, parent = None) :
-        QLabel.__init__(self,parent)
+        QtWidgets.QLabel.__init__(self,parent)
         self.setScaledContents(True)
 
         self._ratio = 1.
@@ -451,38 +437,38 @@ class ScalableLabel (QLabel) :
                 self.resize(h / self._ratio,h)
 
     def setPixmap (self, pix) :
-        QLabel.setPixmap(self,pix)
+        QtWidgets.QLabel.setPixmap(self,pix)
         self._compute_ratio()
 
     def mousePressEvent (self, event) :
-        self.emit(SIGNAL("mouse_press"),event)
+        self.emit(QtCore.pyqtSignal("mouse_press"),event)
 
     def mouseMoveEvent (self, event) :
-        self.emit(SIGNAL("mouse_move"),event)
+        self.emit(QtCore.pyqtSignal("mouse_move"),event)
 
 
-class ScalableGraphicsView (QGraphicsView) :
+class ScalableGraphicsView (QtWidgets.QGraphicsView) :
     """Graphics View that always zoom to fit it's content
     """
 
     def __init__ (self, *args, **kwargs) :
-        QGraphicsView.__init__(self,*args,**kwargs)
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        QtWidgets.QGraphicsView.__init__(self,*args,**kwargs)
+        self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
 
     def resizeEvent (self, event) :
         sc = self.scene()
         if sc is not None and event.oldSize() != event.size() :
             if sc.width() > 0 and sc.height() > 0 :
-                s = min(event.size().width() / sc.width(),
-                event.size().height() / sc.height() )
+                s = min(event.size().width() // sc.width(),
+                event.size().height() // sc.height() )
 
-                t = QMatrix()
+                t = QtGui.QMatrix()
                 t.scale(s,s)
                 self.setMatrix(t)
 
     def mousePressEvent (self, event) :
-        self.emit(SIGNAL("mouse_press"),event.pos(),self)
+        self.emit(QtCore.pyqtSignal("mouse_press"),event.pos(),self)
 
     def mouseMoveEvent (self, event) :
-        self.emit(SIGNAL("mouse_move"),event)
+        self.emit(QtCore.pyqtSignal("mouse_move"),event)

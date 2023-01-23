@@ -4,9 +4,10 @@
 #
 #       OpenAlea.OALab: Multi-Paradigm GUI
 #
-#       Copyright 2015 INRIA - CIRAD - INRA
+#       Copyright 2015-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Guillaume Baty <guillaume.baty@inria.fr>
+#                       Christophe Pradal
 #
 #       File contributor(s):
 #
@@ -21,13 +22,13 @@
 import weakref
 import numpy as np
 
-from openalea.vpltk.qt import QtGui, QtCore
+from openalea.vpltk.qt import QtWidgets, QtCore
 
 from openalea.image.spatial_image import SpatialImage
 
-from pixmap_view import PixmapStackView, ScalableLabel
-from openalea.image.gui.pixmap import to_img
-from palette import palette_names, palette_factory
+from .pixmap_view import PixmapStackView, ScalableLabel
+from .pixmap import to_img
+from .palette import palette_names, palette_factory
 
 if 'bw' in palette_names:
     palette_names.remove('bw')
@@ -40,7 +41,7 @@ def to_image(data, axis=2):
         if data.dtype != np.uint8:
             raise Exception("Only uint8 RGB[A] images supported, got %s instead" % str(data.dtype))
     pal = None
-    for z in xrange(data.shape[axis]):
+    for z in range(data.shape[axis]):
         if axis == 0:
             dat = data[z, :,:] 
         elif axis == 1:
@@ -63,42 +64,42 @@ def connect(widget, signal, method):
     if signal:
         if hasattr(signal, 'connect') and hasattr(signal, 'disconnect'):
             signal.connect(method)
-        elif isinstance(signal, basestring):
-            widget.connect(widget, QtCore.SIGNAL(signal), method)
+        elif isinstance(signal, str):
+            widget.connect(widget, QtCore.pyqtSignal(signal), method)
         else:
-            raise NotImplementedError, 'Signal %s support is not implemented' % signal
+            raise NotImplementedError('Signal %s support is not implemented' % signal)
 
 
 def disconnect(widget, signal, method):
     if signal:
         if hasattr(signal, 'connect') and hasattr(signal, 'disconnect'):
             signal = signal.signal
-        elif isinstance(signal, basestring):
+        elif isinstance(signal, str):
             pass
         else:
-            raise NotImplementedError, 'Signal %s support is not implemented' % signal
-        widget.disconnect(widget, QtCore.SIGNAL(signal), method)
+            raise NotImplementedError('Signal %s support is not implemented' % signal)
+        widget.disconnect(widget, QtCore.pyqtSignal(signal), method)
 
 
-class ImageStackViewerPanel(QtGui.QWidget):
+class ImageStackViewerPanel(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
 
-        QtGui.QWidget.__init__(self)
-        layout = QtGui.QHBoxLayout(self)
+        QtWidgets.QWidget.__init__(self)
+        layout = QtWidgets.QHBoxLayout(self)
 
-        self.palette_select = QtGui.QComboBox()
+        self.palette_select = QtWidgets.QComboBox()
         for palname in palette_names:
             self.palette_select.addItem(palname)
 
         #axis
-        self.axis = QtGui.QComboBox()
+        self.axis = QtWidgets.QComboBox()
         self.axis.addItem("Z-axis")
         self.axis.addItem("Y-axis")
         self.axis.addItem("X-axis")
 
         #slider
-        self.img_slider = QtGui.QSlider(QtCore.Qt.Horizontal)
+        self.img_slider = QtWidgets.QSlider(QtCore.Qt.Horizontal)
         self.img_slider.setEnabled(False)
 
         layout.addWidget(self.palette_select)
@@ -149,7 +150,7 @@ class ImageStackViewerPanel(QtGui.QWidget):
                 self.palette_select.setCurrentIndex(palette_names.index(palette_name))
 
 
-class ImageStackViewerWidget(QtGui.QWidget):
+class ImageStackViewerWidget(QtWidgets.QWidget):
 
     """
     Widget based on openalea.image.gui.slide_viewer.PixmapStackView
@@ -158,11 +159,11 @@ class ImageStackViewerWidget(QtGui.QWidget):
     stackChanged = QtCore.Signal(object)
 
     def __init__(self):
-        QtGui.QWidget.__init__(self)
+        QtWidgets.QWidget.__init__(self)
         self._im_view = PixmapStackView()
         self._label = ScalableLabel()
 
-        self._layout = QtGui.QVBoxLayout(self)
+        self._layout = QtWidgets.QVBoxLayout(self)
         self._layout.addWidget(self._label)
 
         self._label.setMouseTracking(True)
@@ -220,7 +221,7 @@ class ImageStackViewerWidget(QtGui.QWidget):
             res = list(self.resolution)
             del res[self.axis]
             tr = self._im_view._transform
-            print res
+            print(res)
             if tr % 180:
                 self._label._resolution = res[1], res[0]
             else:
@@ -317,9 +318,9 @@ if __name__ == '__main__':
     matrix[:10, :10, 90:100] = 3
     img3d = SpatialImage(matrix)
 
-    instance = QtGui.QApplication.instance()
+    instance = QtWidgets.QApplication.instance()
     if instance is None:
-        app = QtGui.QApplication([])
+        app = QtWidgets.QApplication([])
     else:
         app = instance
 
