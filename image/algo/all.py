@@ -16,7 +16,7 @@
 __license__ = "Cecill-C"
 __revision__ = " $Id$ "
 
-from openalea.image.algo.analysis import *
+#from openalea.image.algo.analysis import *
 from openalea.image.algo.basic import *
 from openalea.image.algo.image_filtering import *
 from openalea.image.algo.morpho import *

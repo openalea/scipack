@@ -2,13 +2,13 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006 - 2008 INRIA - CIRAD - INRA
+#       Copyright 2006 - 2023 INRIA - CIRAD - INRA
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
 #           http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
 #
-#       OpenAlea WebSite : http://openalea.gforge.inria.fr
+#       OpenAlea WebSite : https://openalea.rtfd.io
 #
 ################################################################################
 """
@@ -17,18 +17,8 @@ Expose the animator as a visualea node
 
 __revision__ = " $$ "
 
-def load_local(mod,modules):
-    modules = modules.split()
-    modules = ''.join(modules).split(',')
+from openalea.vpltk.qt import QtGui, QtCore, QtWidgets
 
-    for m in modules:
-        globals()[m] = mod.__getattribute__(m)
-
-from openalea.vpltk.qt import QtGui, QtCore
-load_local(QtCore,'QObject,SIGNAL,QRect,QSize,QPoint')
-load_local(QtGui,"""QWidget,QLabel,QPixmap,
-                         QHBoxLayout,QVBoxLayout,
-                         QColor,QCursor,QPainter,QPen""")
 from openalea.core import Node
 from openalea.visualea.node_widget import NodeWidget
 from openalea.image.gui.all import to_pix, ScalableLabel
@@ -48,7 +38,7 @@ class SelectBoxWidget(NodeWidget,ScalableLabel) :
 		self.setMouseTracking(True)
 
 		self._mouse_ini_pos = None
-		self._select_rect = QRect()
+		self._select_rect = QtCore.QRect()
 
 		self.notify(node,("input_modified",0) )
 
@@ -82,7 +72,7 @@ class SelectBoxWidget(NodeWidget,ScalableLabel) :
 		y1 = self._mouse_ini_pos.y()
 		x2 = pos.x()
 		y2 = pos.y()
-		rect = QRect(min(x1,x2),min(y1,y2),abs(x2-x1),abs(y2-y1) )
+		rect = QtCore.QRect(min(x1,x2),min(y1,y2),abs(x2-x1),abs(y2-y1))
 		return rect
 
 	def mousePressEvent (self, event) :
@@ -91,7 +81,7 @@ class SelectBoxWidget(NodeWidget,ScalableLabel) :
 	def mouseReleaseEvent (self, event) :
 		if self._mouse_ini_pos is not None :
 			if self._mouse_ini_pos == event.pos() :
-				self._select_rect = QRect()
+				self._select_rect = QtCore.QRect()
 				self.update()
 			else :
 				rect = self.selected_rect(event.pos() )
@@ -107,23 +97,23 @@ class SelectBoxWidget(NodeWidget,ScalableLabel) :
 
 	def mouseMoveEvent (self, event) :
 		if self._mouse_ini_pos is not None :
-			old_rect = QRect(self._select_rect.topLeft(),
-			                 self._select_rect.size() + QSize(1,1) )
+			old_rect = QtCore.QRect(self._select_rect.topLeft(),
+			                 self._select_rect.size() + QtCore.QSize(1,1) )
 			self._select_rect = self.selected_rect(event.pos() )
-			update_rect = QRect(self._select_rect.topLeft(),
-			                 self._select_rect.size() + QSize(1,1) ) | old_rect
+			update_rect = QtCore.QRect(self._select_rect.topLeft(),
+			                 self._select_rect.size() + QtCore.QSize(1,1) ) | old_rect
 			self.update(update_rect)
 
 	def paintEvent (self, event) :
 		ScalableLabel.paintEvent(self,event)
 
 		if self._select_rect is not None :
-			painter = QPainter(self)
-			pen = QPen(QColor(255,255,255) )
+			painter = QtCore.QPainter(self)
+			pen = QtCore.QPen(QtCore.QColor(255,255,255) )
 			pen.setDashPattern([5,5])
 			painter.setPen(pen)
 			painter.drawRect(self._select_rect)
-			pen.setColor(QColor(0,0,0) )
+			pen.setColor(QtCore.QColor(0,0,0) )
 			pen.setDashOffset(5.)
 			painter.setPen(pen)
 			painter.drawRect(self._select_rect)

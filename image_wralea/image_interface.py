@@ -1,7 +1,7 @@
 # -*- python -*-
 #
 #
-#       Copyright 2006-2010 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Chopard
 #
@@ -9,7 +9,7 @@
 #       See accompanying file LICENSE.txt or copy at
 #           http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
 #
-#       OpenAlea WebSite : http://openalea.gforge.inria.fr
+#       OpenAlea WebSite : https://openalea.rtfd.io
 #
 """Declaration of IImage interface
 """
