@@ -2,7 +2,7 @@
 #
 #       OpenAlea.Image
 #
-#       Copyright 2006 - 2008 INRIA - CIRAD - INRA
+#       Copyright 2006 - 2023 INRIA - CIRAD - INRA
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
@@ -36,7 +36,7 @@ class PointSelectionWidget(NodeWidget,PointSelection) :
     @lock_notify
     def pointsChanged(self,event):
         """ update points """
-        print "update points"
+        print("update points")
         pts = self.get_points()
         self.node.set_input(2, pts)
         self.node.set_output(1, pts)

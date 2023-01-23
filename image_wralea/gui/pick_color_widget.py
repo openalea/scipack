@@ -2,13 +2,13 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006 - 2008 INRIA - CIRAD - INRA
+#       Copyright 2006 - 2023 INRIA - CIRAD - INRA
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
 #           http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
 #
-#       OpenAlea WebSite : http://openalea.gforge.inria.fr
+#       OpenAlea WebSite : https://openalea.rtfd.io
 #
 ################################################################################
 """
@@ -17,22 +17,13 @@ Expose the animator as a visualea node
 
 __revision__ = " $$ "
 
-def load_local(mod,modules):
-    modules = modules.split()
-    modules = ''.join(modules).split(',')
+from openalea.vpltk.qt import QtGui, QtCore, QtWidgets
 
-    for m in modules:
-        globals()[m] = mod.__getattribute__(m)
-
-from openalea.vpltk.qt import QtGui, QtCore
-load_local(QtCore,'QObject,SIGNAL')
-load_local(QtGui,"""QWidget,QLabel,QPixmap,
-                         QHBoxLayout,QVBoxLayout,
-                         QColor,QCursor,QApplication""")
 from openalea.core import Node
 from openalea.visualea.node_widget import NodeWidget
+
 from openalea.image.gui.all import to_pix,ScalableLabel
-from openalea.image.gui     import icons_rc
+from openalea.image.gui import icons_rc
 
 def pick_color (img, col) :
 	return img,col
@@ -48,7 +39,7 @@ class InteractiveScalableLabel(ScalableLabel) :
 
 	def mouseDoubleClickEvent (self, event) :
 		self._last_mouse_pos = None
-		self.emit(SIGNAL("mouse_double_click"),event)
+		self.emit(QtCore.pyqtSignal("mouse_double_click"),event)
 
 	def mousePressEvent (self, event) :
 		self._last_mouse_pos = event.pos()
@@ -56,16 +47,16 @@ class InteractiveScalableLabel(ScalableLabel) :
 	def mouseReleaseEvent (self, event) :
 		if self._last_mouse_pos is not None :
 			if self._last_mouse_pos == event.pos() :
-				self.emit(SIGNAL("mouse_click"),event)
+				self.emit(QtCore.pyqtSignal("mouse_click"),event)
 
 			self._last_mouse_pos = None
 
 	def mouseMoveEvent (self, event) :
 		if self._last_mouse_pos is None :
-			self.emit(SIGNAL("mouse_move"),event)
+			self.emit(QtCore.pyqtSignal("mouse_move"),event)
 
 
-class PickColorWidget(NodeWidget,QWidget) :
+class PickColorWidget(NodeWidget, QtWidgets.QWidget) :
 	"""
 	Node widget to pick a color in an image
 	"""
@@ -73,22 +64,22 @@ class PickColorWidget(NodeWidget,QWidget) :
 	def __init__(self, node, parent) :
 		"""
 		"""
-		QWidget.__init__(self, parent)
+		QtWidgets.QWidget.__init__(self, parent)
 		NodeWidget.__init__(self, node)
 
 		self._img_lab = InteractiveScalableLabel()
-		self._img_lab.setCursor(QCursor(QPixmap(":cursor/pick.png"),9,10) )
+		self._img_lab.setCursor(QtGui.QCursor(QtGui.QPixmap(":cursor/pick.png"),9,10) )
 
-		self._col_picked_lab = QLabel("col")
-		self._col_picked_lab.setPixmap(QPixmap(32,32) )
-		self._col_picked_lab.pixmap().fill(QColor(0,0,0) )
+		self._col_picked_lab = QtWidgets.QLabel("col")
+		self._col_picked_lab.setPixmap(QtGui.QPixmap(32,32) )
+		self._col_picked_lab.pixmap().fill(QtGui.QColor(0,0,0) )
 
-		self._col_current_lab = QLabel("col")
-		self._col_current_lab.setPixmap(QPixmap(32,32) )
-		self._col_current_lab.pixmap().fill(QColor(0,0,0) )
+		self._col_current_lab = QtWidgets.QLabel("col")
+		self._col_current_lab.setPixmap(QtGui.QPixmap(32,32) )
+		self._col_current_lab.pixmap().fill(QtGui.QColor(0,0,0) )
 
-		self._h_layout = QHBoxLayout()
-		self._v_layout = QVBoxLayout()
+		self._h_layout = QtWidgets.QHBoxLayout()
+		self._v_layout = QtWidgets.QVBoxLayout()
 
 		self._v_layout.addWidget(self._col_picked_lab)
 		self._v_layout.addWidget(self._col_current_lab)
@@ -103,8 +94,8 @@ class PickColorWidget(NodeWidget,QWidget) :
 		self.notify(node,("input_modified",0) )
 		self.notify(node,("input_modified",1) )
 
-		QObject.connect(self._img_lab,SIGNAL("mouse_click"),self.mouse_click)
-		QObject.connect(self._img_lab,SIGNAL("mouse_move"),self.mouse_move)
+		self._img_lab.mouse_click.connect(self.mouse_click)
+		self._img_lab.mouse_move.connect(self.mouse_move)
 
 	def notify(self, sender, event):
 		"""Notification sent by node
@@ -121,7 +112,7 @@ class PickColorWidget(NodeWidget,QWidget) :
 					self._img_lab.setPixmap(to_pix(img) )
 			if event[1] == 1 :
 				col = self.node.get_input(1)
-				self._col_picked_lab.pixmap().fill(QColor(*col[:3]) )
+				self._col_picked_lab.pixmap().fill(QtGui.QColor(*col[:3]) )
 
 		self.update()
 
@@ -130,9 +121,8 @@ class PickColorWidget(NodeWidget,QWidget) :
 		if img is not None :
 			j,i = self._img_lab.pixmap_coordinates(event.x(),event.y() )
 			col = tuple(img[i,j])
-			print "color",col
 			self.node.set_input(1,col)
-			self._col_picked_lab.pixmap().fill(QColor(*col[:3]) )
+			self._col_picked_lab.pixmap().fill(QtGui.QColor(*col[:3]) )
 			self._col_picked_lab.update()
 
 	def mouse_move (self, event) :
@@ -140,7 +130,7 @@ class PickColorWidget(NodeWidget,QWidget) :
 		if img is not None :
 			j,i = self._img_lab.pixmap_coordinates(event.x(),event.y() )
 			col = img[i,j]
-			self._col_current_lab.pixmap().fill(QColor(*col[:3]) )
+			self._col_current_lab.pixmap().fill(QtGui.QColor(*col[:3]) )
 			self._col_current_lab.update()
 
 

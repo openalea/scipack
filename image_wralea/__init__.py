@@ -2,7 +2,7 @@
 #
 #       image: image manipulation
 #
-#       Copyright 2006 INRIA - CIRAD - INRA  
+#       Copyright 2006-2023 INRIA - CIRAD - INRA  
 #
 #       File author(s): Jerome Chopard <jerome.chopard@sophia.inria.fr>
 #                       Eric Moscardi <eric.moscardi@sophia.inria.fr>
