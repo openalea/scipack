@@ -27,7 +27,7 @@ from numpy import array,apply_along_axis
 qapp = QtGui.QApplication.instance()
 
 if qapp:
-	data = array(range(10000) ).reshape( (100,100) )
+	data = array(list(range(10000)) ).reshape( (100,100) )
 
 	pal = rainbow(10000)
 

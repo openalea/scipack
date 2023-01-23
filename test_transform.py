@@ -28,7 +28,7 @@ from scipy.ndimage import rotate
 qapp = QtGui.QApplication.instance()
 
 if qapp:
-    data = array(range(10000) ).reshape( (100,100) )
+    data = array(list(range(10000)) ).reshape( (100,100) )
 
     data = rotate(data,30)
 

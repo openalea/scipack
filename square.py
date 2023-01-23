@@ -1,7 +1,7 @@
 #
 #       image: image GUI
 #
-#       Copyright 2006 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Eric Moscardi <eric.moscardi@sophia.inria.fr>
 #
@@ -40,8 +40,8 @@ def square(shape=(100,100), voxels=(1,1), dimensions=(10,10), center=(49,49)):
 
     data = np.zeros([xdim, ydim, zdim],np.uint8)
 
-    for i in xrange(xdim):
-        for j in xrange(ydim):
+    for i in range(xdim):
+        for j in range(ydim):
             if abs(i * vx - cx) < w and abs(j * vy - cy) < h :
                 data[i,j] = 255 * i*j
 

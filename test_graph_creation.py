@@ -34,7 +34,7 @@ def test_graph_from_simple_image(visual = False):
                   [2, 2, 1, 7, 3, 3],
                   [1, 1, 1, 4, 1, 1]])
     borders = SpatialImageAnalysis(im).cells_in_image_margins()
-    print '**', SpatialImageAnalysis(im).boundingbox(real=False)
+    print('**', SpatialImageAnalysis(im).boundingbox(real=False))
     #~ print borders
     #~ print np.unique(im)
     graph = graph_from_image(im)
@@ -44,8 +44,8 @@ def test_graph_from_simple_image(visual = False):
     #~ print list(graph.vertex_property_names())
     #~ print list(graph.edge_property_names())
     for propname in graph.vertex_property_names():
-        print propname
-        print graph.vertex_property(propname)
+        print(propname)
+        print(graph.vertex_property(propname))
 
     #~ for propname in graph.edge_property_names():
         #~ print propname

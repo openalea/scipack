@@ -26,7 +26,7 @@ from openalea.image.all import save,load,SpatialImage,rainbow
 
 def test_numpy_serialiser():
     #create image
-    data = array(range(30000) ).reshape( (100,300) )
+    data = array(list(range(30000)) ).reshape( (100,300) )
 
     pal = rainbow(30000)
 

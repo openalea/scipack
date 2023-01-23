@@ -21,16 +21,16 @@ __license__= "Cecill-C"
 __revision__ = " $Id: __init__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
 from numpy import array, random, zeros
-from openalea.vpltk.qt import QtGui
+from openalea.vpltk.qt import QtWidgets
 from openalea.image.all import (rainbow,grayscale,bw,
 				apply_mask,saturate,high_level,color_select, to_pix)
 
-qapp = QtGui.QApplication.instance()
+qapp = QtWidgets.QApplication.instance()
 
 if qapp:
 
 	#create image
-	data = array(range(30000) ).reshape( (100,300) )
+	data = array(list(range(30000)) ).reshape( (100,300) )
 
 	pal = rainbow(30000)
 
@@ -58,7 +58,7 @@ if qapp:
 			(sat,"sat"),
 			(hgimg,"hgimg"),(hg,"hg"),
 			(selimg,"selimg"),(sel,"sel")] :
-		w = QtGui.QLabel()
+		w = QtWidgets.QLabel()
 		w.setWindowTitle(name)
 		w.setPixmap(to_pix(im) )
 		w.show()
