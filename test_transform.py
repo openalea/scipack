@@ -20,12 +20,12 @@ Test frame manipulator
 __license__= "Cecill-C"
 __revision__ = " $Id: __init__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
-from openalea.vpltk.qt import QtGui
+from openalea.vpltk.qt import QtWidgets
 from openalea.image.all import rainbow,grayscale, to_pix
 from numpy import array
 from scipy.ndimage import rotate
 
-qapp = QtGui.QApplication.instance()
+qapp = QtWidgets.QApplication.instance()
 
 if qapp:
     data = array(list(range(10000)) ).reshape( (100,100) )
@@ -40,7 +40,7 @@ if qapp:
 
     pix = to_pix(img)
 
-    w = QtGui.QLabel()
+    w = QtWidgets.QLabel()
     w.setPixmap(pix)
 
     w.show()

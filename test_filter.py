@@ -2,7 +2,7 @@
 #
 #       image: image manipulation GUI
 #
-#       Copyright 2006 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Jerome Chopard <jerome.chopard@sophia.inria.fr>
 #                       Eric Moscardi <eric.moscardi@sophia.inria.fr>
@@ -20,11 +20,11 @@ Test frame manipulator
 __license__= "Cecill-C"
 __revision__ = " $Id: __init__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
-from openalea.vpltk.qt import QtGui
+from openalea.vpltk.qt import QtWidgets
 from openalea.image.all import rainbow,grayscale, to_pix
 from numpy import array,apply_along_axis
 
-qapp = QtGui.QApplication.instance()
+qapp = QtWidgets.QApplication.instance()
 
 if qapp:
 	data = array(list(range(10000)) ).reshape( (100,100) )
