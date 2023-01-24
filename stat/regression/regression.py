@@ -113,7 +113,7 @@ class LR2Plot(Node):
         reg = self.get_input( 'reg' )
         reg_x = numpy.array( [ min(reg[ 'x' ]), max(reg[ 'x' ]) ] )
         reg_y = reg_x*reg[ 'slope' ]+reg[ 'intercept' ]
-        if reg.has_key('ic'):
+        if 'ic' in reg:
             reg_legend = "y = " + str( round(reg['slope'], 3 ) ) + \
                        "x + " + str( round(reg['intercept'], 3 )) + \
                        " $\pm$ "+str( round(reg['ic'], 3 ) ) + \

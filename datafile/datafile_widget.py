@@ -148,7 +148,7 @@ class GetDataBrowser(NodeWidget, QtWidgets.QDialog, metaclass=make_metaclass()):
         else:
             data = systemnodes.get_data(globpattern, package)
             self.filename2filepath_mapping.update(data)
-            self.filenames_combobox.addItems(self.filename2filepath_mapping.keys())
+            self.filenames_combobox.addItems(list(self.filename2filepath_mapping.keys()))
         self.updating = False
         
         

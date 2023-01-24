@@ -20,7 +20,7 @@ __revision__ = " $Id$ "
 import random as rd
 from openalea.core import *
 from openalea.core.observer import lock_notify
-import colormap
+from . import colormap
 from colorsys import hsv_to_rgb,rgb_to_hsv
 
 color_list=[(0,0,0),

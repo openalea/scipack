@@ -62,7 +62,7 @@ class ListSelectorWidget(QtWidgets.QListWidget, NodeWidget):
 
             if(self.mode == "DICT"):
                 try:
-                    i = seq.keys().index(index)
+                    i = list(seq.keys()).index(index)
                     self.setCurrentRow(i)
                 except:
                     pass
@@ -80,7 +80,7 @@ class ListSelectorWidget(QtWidgets.QListWidget, NodeWidget):
             return
 
         if(self.mode == "DICT"):
-            seq = seq.keys()
+            seq = list(seq.keys())
 
         for elt in seq:
 

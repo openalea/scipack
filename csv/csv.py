@@ -40,7 +40,7 @@ class Obj(object):
                             val = str(values[i])
                     self.__dict__[prop.replace('"', '')] = val
             except IndexError:
-                print("index : ", i, " prop : ", propnames[i])
+                print(("index : ", i, " prop : ", propnames[i]))
 
     def __getitem__(self, key):
         return self.__getattribute__(key)
@@ -67,7 +67,8 @@ class Obj(object):
         nbprop = len(self.__dict__)
         if nbprop:
             propid = 0
-            for key, val in iter(self.__dict__.items()):
+
+            for key, val in self.__dict__.items():
                 res += str(key) + '=' + str(val)
                 propid += 1
                 if propid < nbprop:
@@ -134,7 +135,7 @@ def read_csv_from_file(filename=None, delimiter=' ', header=False):
         T. Cokelaer
 
     """
-    import csv
+    from . import csv
     from os import path
     if path.exists(filename):
         csv_data = csv.reader(open(filename), delimiter=delimiter)
@@ -147,7 +148,7 @@ def read_csv_from_file(filename=None, delimiter=' ', header=False):
             res.append(r)
     elif header == True:
         res = {}
-        header = csv_data.next()
+        header = next(csv_data)
         for x in header:
             res[x] = []
         for row in csv_data:

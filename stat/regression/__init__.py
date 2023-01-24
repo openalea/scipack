@@ -1,1 +1,1 @@
-from regression import *
+from .regression import *

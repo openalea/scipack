@@ -86,7 +86,7 @@ class VisualSequence(object):
         if len(self.abs) == len(self.ord):
             return self.abs
         else:
-            return range(len(self.ord))
+            return list(range(len(self.ord)))
 
     def set_x(self, value):
         """Set the x array of values"""
@@ -268,7 +268,7 @@ def tuples2VisualSequence(seq1=[], marker="o", color="b", **keys):
     :type color: `string`
 
     """
-    sx, sy = zip(*seq1)
+    sx, sy = list(zip(*seq1))
 
     return VisualSequence(x=sx, y=sy, z=None, marker=marker, color=color, **keys)
 

@@ -40,7 +40,7 @@ class PyArray(Node):
     def __init__(self):
         Node.__init__(self)
 
-        self.typedict = dict(zip(self.codename, self.typecodes))
+        self.typedict = dict(list(zip(self.codename, self.typecodes)))
         self.add_input(name='typecode', interface=IEnumStr(self.codename), 
                        value='signed integer (4)')
         self.add_input(name='values', interface=ISequence)

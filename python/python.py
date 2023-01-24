@@ -154,7 +154,7 @@ class PyGetItem(Node):
         obj, key = inputs[0:2]
         if isinstance(obj, dict):
             if obj and (key not in obj):
-                key = obj.iterkeys().next()
+                key = next(iter(obj.keys()))
                 # send an event to the node to set the 2nd inputs
                 self.set_input(1, key)
             return obj[key],
@@ -188,7 +188,7 @@ def pymean(sequence):
 def py_fwrite(x="", filename="", mode="w"):
     """ Write to a file """
 
-    print("This node is DEPRECATED. Use %s instead" % ("Catalog.File.write"))
+    print(("This node is DEPRECATED. Use %s instead" % ("Catalog.File.write")))
     f = open(filename, mode)
     f.write(x)
     f.close()
@@ -205,7 +205,7 @@ class FileRead(object):
 
     def __call__(self, filename=""):
 
-        print("This node is DEPRECATED. Use %s instead" % ("Catalog.File.read"))
+        print(("This node is DEPRECATED. Use %s instead" % ("Catalog.File.read")))
         try:
             mtime = os.stat(filename).st_mtime
         except:
