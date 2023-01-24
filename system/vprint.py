@@ -8,7 +8,7 @@ from openalea.core.node import AbstractNode, Node
 try:
     from openalea.vpltk.qt import QtCore, QtWidgets
     __visual_print_enabled = True
-    from ui_vprint import Ui_Dialog
+    from .ui_vprint import Ui_Dialog
     
     class VisualPrintDialog (QtWidgets.QDialog,Ui_Dialog):
         def __init__(self,parent = None):
@@ -68,7 +68,7 @@ class VPrint(Node):
                 else:
                     self.widget.show()
         else:
-            print(caption+':'+txt)
+            print((caption+':'+txt))
         return (obj,)
 
 

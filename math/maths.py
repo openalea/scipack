@@ -46,4 +46,4 @@ def py_randlist(a=0, b=100, size=10):
     import random
     a = int(a)
     b = int(b)
-    return ([random.randrange(a, b) for _i in xrange(size)], )
+    return ([random.randrange(a, b) for _i in range(size)], )

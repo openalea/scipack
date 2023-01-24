@@ -17,12 +17,13 @@ __license__ =  "Cecill-C"
 __revision__ = " $Id$ "
 
 from openalea.core import Node, ITextStr, ICodeStr
+from functools import reduce
 
 def pymap(func, seq):
     """ map(func, seq) """
 
     if func is not None and seq is not None and len(seq):
-        return ( map(func, seq), )
+        return ( list(map(func, seq)), )
     else:
         return ( [], )
 
@@ -31,7 +32,7 @@ def pyfilter(func, seq):
     """ filter(func, seq) """
 
     if func is not None and seq is not None and len(seq):
-        return ( filter(func, seq), )
+        return ( list(filter(func, seq)), )
     else:
         return ( [], )
 
@@ -53,7 +54,7 @@ def pyapply(func, seq, one_argument=False):
         seq = [seq]
 
     if func is not None:
-        return apply(func, seq)
+        return func(*seq)
     else:
         return ()
 

@@ -1,1 +1,1 @@
-from stattest import *
+from .stattest import *

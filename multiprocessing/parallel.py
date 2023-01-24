@@ -19,6 +19,7 @@ __revision__ = " $Id$ "
 from openalea.core import Node, ITextStr
 
 from multiprocessing import Pool, cpu_count
+from functools import reduce
 try:
     import dill as pickle
 except ImportError:
@@ -49,7 +50,7 @@ def pyfilter(func, seq):
     """ filter(func, seq) """
     
     if func and seq:
-        return ( filter(func, seq), )
+        return ( list(filter(func, seq)), )
     else:
         return ( [], )
 
@@ -74,7 +75,7 @@ def pyapply(func, seq):
         seq = list([seq])
 
     if func:
-        return apply(func, seq)
+        return func(*seq)
     else:
         return ()
 

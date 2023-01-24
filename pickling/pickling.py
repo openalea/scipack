@@ -18,14 +18,14 @@ __license__ = "Cecill-C"
 __revision__ = " $Id$"
 
 from openalea.core import *
-import cPickle
+import pickle
 
 def py_load( file_path ):
   f = open( file_path, 'r' )
   data = []
   try:
     while(1):
-      data.append(cPickle.load(f))
+      data.append(pickle.load(f))
 
   except EOFError :
       f.close()
@@ -41,6 +41,6 @@ def py_dump( data, file_path, append=False ):
   else:
     f = open( file_path, 'w' )
 
-  cPickle.dump( data, f )
+  pickle.dump( data, f )
   f.close()
 

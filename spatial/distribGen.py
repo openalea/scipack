@@ -276,7 +276,7 @@ class basic_distrib(Node):
 
         Node.__init__(self)
 
-        funs = self.distr_func.keys()
+        funs = list(self.distr_func.keys())
         funs.sort()
         self.add_input(name="Type", interface=IEnumStr(funs), value=funs[0])
         self.add_output(name="Distribution", interface=None)
@@ -325,7 +325,7 @@ class aggregative_distrib(Node):
 
         Node.__init__(self)
 
-        funs = self.distr_func.keys()
+        funs = list(self.distr_func.keys())
         funs.sort()
         self.add_input(name="Type", interface=IEnumStr(funs), value=funs[0])
         self.add_input(name="Cluster number", interface=IInt(min=1), value=2)
