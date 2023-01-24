@@ -67,7 +67,7 @@ class Obj(object):
         nbprop = len(self.__dict__)
         if nbprop:
             propid = 0
-            for key, val in self.__dict__.iteritems():
+            for key, val in iter(self.__dict__.items()):
                 res += str(key) + '=' + str(val)
                 propid += 1
                 if propid < nbprop:
