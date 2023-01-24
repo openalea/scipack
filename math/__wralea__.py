@@ -221,7 +221,7 @@ div = Fa(uid="9852b8e84e7411e6bff6d4bed973e64a",
                  dict(name="b", interface=IInt, value=1),),
          outputs=(dict(name="out", interface=IInt),),
          nodemodule="operator",
-         nodeclass="div",
+         nodeclass="truediv",
          )
 
 __all__.append('div')

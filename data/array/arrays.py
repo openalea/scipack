@@ -48,7 +48,13 @@ class PyArray(Node):
 
     def __call__(self, inputs):
         """ inputs is the list of input values """
-        typecode = inputs[0]
+        if inputs[0] in self.codename:
+            typecode = inputs[0]
+        else:
+            index = int(inputs[0])
+            typecode = self.codename[index]
+
+        # typecode = inputs[0]
         values = inputs[1]
 
         code = self.typedict[typecode]
