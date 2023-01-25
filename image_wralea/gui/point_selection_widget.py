@@ -22,19 +22,20 @@ class PointSelectionWidget(NodeWidget,PointSelection) :
     """
     def __init__ (self, node, parent = None) :
 
-	PointSelection.__init__(self)
-    	NodeWidget.__init__(self, node)
+        NodeWidget.__init__(self, node) # mix of tab and space
+
+        PointSelection.__init__(self) # mix of tab and space
+
 
         self.notify(node, ('input_modified',))
 
-        self.connect(self, QtCore.SIGNAL("points_changed"), \
-                     self.pointsChanged)
+        self.pointsChanged.connect(self.on_pointsChanged)
 
         self.window().setWindowTitle(node.get_caption())
 
 
     @lock_notify
-    def pointsChanged(self,event):
+    def on_pointsChanged(self,event):
         """ update points """
         print("update points")
         pts = self.get_points()

@@ -69,11 +69,13 @@ class PointSelection (QtWidgets.QMainWindow) :
         self._last_mouse_y = 0
         self._last_slice = 0
 
-        self._widget.mouse_press.connect(self.mouse_pressed)
+        # self._widget.mouse_press.connect(self.mouse_pressed)
+        self._widget.mouse_press.connect(self.on_mouse_pressed)
 
-        self._widget.mouse_move.connect(self.mouse_moved)
+        # self._widget.mouse_move.connect(self.mouse_moved)
+        self._widget.mouse_move.connect(self.on_mouse_moved)
 
-        self.mouse_moved.connect(self.coordinates)
+        # self.mouse_moved.connect(self.coordinates) # don't understand mouse_moved have never been a signal?
 
         ################### menubar ###################
         self.menu = self.menuBar()
@@ -307,7 +309,8 @@ class PointSelection (QtWidgets.QMainWindow) :
     #
     ##############################################
 
-    def mouse_pressed (self, pos):
+    def on_mouse_pressed (self):
+        pos = self._widget.to_inheritance_event.pos
         if pos is not None :
             sc_coords = self._widget.mapToScene(pos)
             if self._action_add.isChecked() :
@@ -315,7 +318,8 @@ class PointSelection (QtWidgets.QMainWindow) :
             elif self._action_delete.isChecked() :
                 self.del_point(sc_coords)
 
-    def mouse_moved (self, event) :
+    def on_mouse_moved (self):
+        event = self._widget.to_inheritance_event
         sc_coords = self._widget.mapToScene(event.pos() )
         item_coords = self._item.mapFromScene(sc_coords)
         img = self._view.image()

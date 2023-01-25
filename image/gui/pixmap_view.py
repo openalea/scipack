@@ -385,12 +385,18 @@ class PixmapStackView (PixmapView) :
 class ScalableLabel (QtWidgets.QLabel) :
     """Scalable label that respect the ratio of the pixmap it display
     """
+
+    mouse_move = QtCore.pyqtSignal()
+    mouse_press = QtCore.pyqtSignal()
+
     def __init__ (self, parent = None) :
         QtWidgets.QLabel.__init__(self,parent)
         self.setScaledContents(True)
 
         self._ratio = 1.
         self._resolution = (1.,1.)
+        self._last_mouse_x = 0
+        self._last_mouse_y = 0
 
     def _compute_ratio (self) :
         pix = self.pixmap()
@@ -422,8 +428,8 @@ class ScalableLabel (QtWidgets.QLabel) :
         if pix is None :
             return None
 
-        x_pix = x_screen * pix.width() / self.width()
-        y_pix = y_screen * pix.height() / self.height()
+        x_pix = x_screen * pix.width() // self.width()
+        y_pix = y_screen * pix.height() // self.height()
 
         return x_pix,y_pix
 
@@ -441,20 +447,32 @@ class ScalableLabel (QtWidgets.QLabel) :
         self._compute_ratio()
 
     def mousePressEvent (self, event) :
-        self.emit(QtCore.pyqtSignal("mouse_press"),event)
+        # self.emit(QtCore.pyqtSignal("mouse_press"),event)
+        self._last_mouse_x = event.x()
+        self._last_mouse_y = event.y()
+        self.mouse_press.emit()
 
     def mouseMoveEvent (self, event) :
-        self.emit(QtCore.pyqtSignal("mouse_move"),event)
+        # self.emit(QtCore.pyqtSignal("mouse_move"),event)
+        self._last_mouse_x = event.x()
+        self._last_mouse_y = event.y()
+        self.mouse_move.emit()
+
+
 
 
 class ScalableGraphicsView (QtWidgets.QGraphicsView) :
     """Graphics View that always zoom to fit it's content
     """
 
+    mouse_move = QtCore.pyqtSignal()
+    mouse_press = QtCore.pyqtSignal()
+
     def __init__ (self, *args, **kwargs) :
         QtWidgets.QGraphicsView.__init__(self,*args,**kwargs)
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.to_inheritance_event = self.event
 
     def resizeEvent (self, event) :
         sc = self.scene()
@@ -468,7 +486,11 @@ class ScalableGraphicsView (QtWidgets.QGraphicsView) :
                 self.setMatrix(t)
 
     def mousePressEvent (self, event) :
-        self.emit(QtCore.pyqtSignal("mouse_press"),event.pos(),self)
+        # self.emit(QtCore.pyqtSignal("mouse_press"),event.pos(),self)
+        self.to_inheritance_event = event
+        self.mouse_press.emit()
 
     def mouseMoveEvent (self, event) :
-        self.emit(QtCore.pyqtSignal("mouse_move"),event)
+        # self.emit(QtCore.pyqtSignal("mouse_move"),event)
+        self.to_inheritance_event = event
+        self.mouse_move.emit()

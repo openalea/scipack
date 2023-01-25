@@ -62,10 +62,10 @@ class SlideViewer (QtWidgets.QMainWindow) :
         self._label.setMouseTracking(True)
         self._last_mouse_x = 0
         self._last_mouse_y = 0
-
-        self._label.mouse_press.connect(self.mouse_pressed)
-
-        self._label.mouse_move.connect(self.mouse_pressed)
+        # self._label.mouse_press.connect(self.mouse_pressed)
+        self._label.mouse_press.connect(self.on_mouse_pressed_moved)
+        # self._label.mouse_move.connect(self.mouse_pressed)
+        self._label.mouse_move.connect(self.on_mouse_pressed_moved)
 
         #toolbar
         self.ui.action_close.triggered.connect(self.close)
@@ -246,9 +246,13 @@ class SlideViewer (QtWidgets.QMainWindow) :
         self._im_view.rotate(1)
         self.update_pix()
 
-    def mouse_pressed (self, event) :
-        self._last_mouse_x = event.x()
-        self._last_mouse_y = event.y()
+    # def mouse_pressed (self, event) :
+    #     self._last_mouse_x = event.x()
+    #     self._last_mouse_y = event.y()
+    #     self.fill_infos()
+    def on_mouse_pressed_moved (self) :
+        self._last_mouse_x = self._label._last_mouse_x
+        self._last_mouse_y = self._label._last_mouse_y
         self.fill_infos()
 
 def display (image, palette_name = "grayscale", title = None , color_index_max = None) :
