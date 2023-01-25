@@ -76,7 +76,7 @@ class Plotting(Node):
                 #print 'figure exist already, nothing to do'
                 pass
             else:
-                print 'figure not found. Maybe it was closed !!! consider reloading this node.'
+                print('figure not found. Maybe it was closed !!! consider reloading this node.')
 
                 self.fig = fig
                 del self.axe
@@ -98,7 +98,7 @@ class Plotting(Node):
         #sometimes, we want to add data to existing axe provided as an input argument. In such case, we do not want to clean
         # the axe and create a new one.
         if self.get_input('axes') != None:
-            print 'Input axes found. Using it (%s)'  % self.get_input('axes')
+            print('Input axes found. Using it (%s)'  % self.get_input('axes'))
             axes = self.get_input('axes')
             import matplotlib
             assert axes.__module__ in [matplotlib.axes.__name__,matplotlib.projections.polar.__name__], 'input must be a valid axes from matplotlib.axes %s given for %s' % (type(axes), axes)
@@ -110,14 +110,14 @@ class Plotting(Node):
             try:
                 #matplotlib 1.0.0
                 from pylab import sca, cla
-                print 'No input axe, but axes already set. Clear it. %s' % self.axe, self.axe.__str__
+                print('No input axe, but axes already set. Clear it. %s' % self.axe, self.axe.__str__)
                 self.axe.clear()
                 self.axe.get_figure().canvas.draw()
                 sca(self.axe)
             except:
                 #matplotlib 0.99.1
                 from pylab import Figure
-                print 'No input axe, but axes already set. Clear it. %s' % self.axe, self.axe.__str__
+                print('No input axe, but axes already set. Clear it. %s' % self.axe, self.axe.__str__)
                 self.axe.clear()
                 self.axe.get_figure().canvas.draw()
                 f = self.axe.get_figure()
@@ -125,7 +125,7 @@ class Plotting(Node):
         #else, we need to create a new axe. Note, the use of label. Indeed, if same position is used, and same default label then
         # no new axes is created. See add_axes help. Our label is the number of axes.
         else:
-            print 'No input axe and not axes set. Creating a new one.'
+            print('No input axe and not axes set. Creating a new one.')
             label='axe' + str(len(self.fig.get_axes()))
             self.axe = self.fig.add_axes([.1,.1,.8,.8], label=label)
 
@@ -229,7 +229,7 @@ class PlotxyInterface():
             #plot(line2D) and plot([line2D, line2D])
             if type(xinputs[0])==Line2D:
                 for x in xinputs:
-                    print kwds
+                    print(kwds)
                     line2dkwds = tools.get_kwds_from_line2d(line2d=x, input_kwds=kwds, type=plottype)
                     #print line2dkwds
                     #returns the processed data ?
@@ -248,10 +248,10 @@ class PlotxyInterface():
                 c = enumerate(tools.colors)
                 for x in xinputs:
                     try:
-                        color = c.next()
+                        color = next(c)
                         kwds['color']=color[1]
                     except:
-                        print 'no more colors'
+                        print('no more colors')
                     try:
                         output = plot(x, **kwds)
                     except:
@@ -264,10 +264,10 @@ class PlotxyInterface():
                 c = enumerate(tools.colors)
                 for y in yinputs:
                     try:
-                        color = c.next()
+                        color = next(c)
                         kwds['color']=color[1]
                     except:
-                        print 'no more colors'
+                        print('no more colors')
                     try:
                         output = plot(xinputs[0], y, **kwds)
                     except:
@@ -275,7 +275,7 @@ class PlotxyInterface():
                     hold(True)
             else:
                 if len(xinputs)!=len(yinputs):
-                    print 'warning more x inputs than y inputs. correct the connectors'
+                    print('warning more x inputs than y inputs. correct the connectors')
                 for x,y in zip(xinputs, yinputs):
                     try:
                         output = plot(x, y, **kwds)
@@ -371,10 +371,10 @@ class PyLabPlot(Plotting, PlotxyInterface):
         inputs = [
                     {'name':'x',          'interface':None,                           'value':None},
                     {'name':'y',          'interface':None,                           'value':None},
-                    {'name':'marker',     'interface':IEnumStr(tools.markers.keys()),  'value':'circle'},
+                    {'name':'marker',     'interface':IEnumStr(list(tools.markers.keys())),  'value':'circle'},
                     {'name':'markersize', 'interface':IFloat,                         'value':10},
-                    {'name':'linestyle',  'interface':IEnumStr(tools.linestyles.keys()),    'value':'solid'},
-                    {'name':'color',      'interface':IEnumStr(tools.colors.keys()),   'value':'blue'},
+                    {'name':'linestyle',  'interface':IEnumStr(list(tools.linestyles.keys())),    'value':'solid'},
+                    {'name':'color',      'interface':IEnumStr(list(tools.colors.keys())),   'value':'blue'},
                     {'name':'scalex',     'interface':IBool, 'value':True},
                     {'name':'scaley',     'interface':IBool, 'value':True},
                     {'name':'kwargs',     'interface':IDict, 'value':{'label':None}},
@@ -385,7 +385,7 @@ class PyLabPlot(Plotting, PlotxyInterface):
     def __call__(self, inputs):
         #todo label must be cast into string
         kwds = {}
-        for key,value in self.get_input('kwargs').iteritems():
+        for key,value in self.get_input('kwargs').items():
             kwds[key] = value
         kwds['markersize']=self.get_input("markersize")
         kwds['marker']=tools.markers[self.get_input("marker")]
@@ -449,10 +449,10 @@ class PyLabLogLog(Plotting, PlotxyInterface):
         inputs = [
                     {'name':'x',            'interface':None,                           'value':None},
                     {'name':'y',            'interface':None,                           'value':None},
-                    {'name':'marker',       'interface':IEnumStr(tools.markers.keys()),       'value':'circle'},
+                    {'name':'marker',       'interface':IEnumStr(list(tools.markers.keys())),       'value':'circle'},
                     {'name':'markersize',   'interface':IFloat,                         'value':10},
-                    {'name':'linestyle',    'interface':IEnumStr(tools.linestyles.keys()),    'value':'solid'},
-                    {'name':'color',        'interface':IEnumStr(tools.colors.keys()),        'value':'blue'},
+                    {'name':'linestyle',    'interface':IEnumStr(list(tools.linestyles.keys())),    'value':'solid'},
+                    {'name':'color',        'interface':IEnumStr(list(tools.colors.keys())),        'value':'blue'},
         ]
         Plotting.__init__(self, inputs)
         self.add_input(name='kwargs', interface=IDict, value={'label':None})
@@ -460,7 +460,7 @@ class PyLabLogLog(Plotting, PlotxyInterface):
 
     def __call__(self, inputs):
         kwds = {}
-        for key,value in self.get_input('kwargs').iteritems():
+        for key,value in self.get_input('kwargs').items():
             kwds[key] = value
         kwds['markersize']=self.get_input("markersize")
         kwds['marker']=tools.markers[self.get_input("marker")]
@@ -516,10 +516,10 @@ class PyLabSemiLogy(Plotting, PlotxyInterface):
         inputs = [
                     {'name':'x',            'interface':None,                           'value':None},
                     {'name':'y',            'interface':None,                           'value':None},
-                    {'name':'marker',       'interface':IEnumStr(tools.markers.keys()),       'value':'circle'},
+                    {'name':'marker',       'interface':IEnumStr(list(tools.markers.keys())),       'value':'circle'},
                     {'name':'markersize',   'interface':IFloat,                         'value':10},
-                    {'name':'linestyle',    'interface':IEnumStr(tools.linestyles.keys()),    'value':'solid'},
-                    {'name':'color',        'interface':IEnumStr(tools.colors.keys()),        'value':'blue'},
+                    {'name':'linestyle',    'interface':IEnumStr(list(tools.linestyles.keys())),    'value':'solid'},
+                    {'name':'color',        'interface':IEnumStr(list(tools.colors.keys())),        'value':'blue'},
         ]
         Plotting.__init__(self, inputs)
         self.add_input(name='kwargs', interface=IDict, value={'label':None})
@@ -527,7 +527,7 @@ class PyLabSemiLogy(Plotting, PlotxyInterface):
 
     def __call__(self, inputs):
         kwds = {}
-        for key,value in self.get_input('kwargs').iteritems():
+        for key,value in self.get_input('kwargs').items():
             kwds[key] = value
         kwds['markersize'] = self.get_input("markersize")
         kwds['marker'] = tools.markers[self.get_input("marker")]
@@ -586,10 +586,10 @@ class PyLabSemiLogx(Plotting, PlotxyInterface):
         inputs = [
                     {'name':'x',            'interface':None,                           'value':None},
                     {'name':'y',            'interface':None,                           'value':None},
-                    {'name':'marker',       'interface':IEnumStr(tools.markers.keys()),       'value':'circle'},
+                    {'name':'marker',       'interface':IEnumStr(list(tools.markers.keys())),       'value':'circle'},
                     {'name':'markersize',   'interface':IFloat,                         'value':10},
-                    {'name':'linestyle',    'interface':IEnumStr(tools.linestyles.keys()),    'value':'solid'},
-                    {'name':'color',        'interface':IEnumStr(tools.colors.keys()),        'value':'blue'},
+                    {'name':'linestyle',    'interface':IEnumStr(list(tools.linestyles.keys())),    'value':'solid'},
+                    {'name':'color',        'interface':IEnumStr(list(tools.colors.keys())),        'value':'blue'},
         ]
         Plotting.__init__(self, inputs)
         self.add_input(name='kwargs', interface=IDict, value={'label':None})
@@ -597,7 +597,7 @@ class PyLabSemiLogx(Plotting, PlotxyInterface):
 
     def __call__(self, inputs):
         kwds = {}
-        for key,value in self.get_input('kwargs').iteritems():
+        for key,value in self.get_input('kwargs').items():
             kwds[key] = value
         kwds['markersize']=self.get_input("markersize")
         kwds['marker']=tools.markers[self.get_input("marker")]
@@ -654,12 +654,12 @@ class PyLabHist(Plotting):
         inputs = [
             {'name':'x'},
             {'name':'bins',         'interface':IInt, 'value':10},
-            {'name':'facecolor',    'interface':IEnumStr(tools.colors.keys()), 'value':'blue'},
+            {'name':'facecolor',    'interface':IEnumStr(list(tools.colors.keys())), 'value':'blue'},
             {'name':'normed',       'interface':IBool, 'value':False},
             {'name':'cumulative',   'interface':IBool, 'value':False},
-            {'name':'histtype',     'interface':IEnumStr(tools.histtype.keys()), 'value':'bar'},
-            {'name':'align',        'interface':IEnumStr(tools.align.keys()), 'value':'mid'},
-            {'name':'orientation',  'interface':IEnumStr(tools.orientations.keys()), 'value':'vertical'},
+            {'name':'histtype',     'interface':IEnumStr(list(tools.histtype.keys())), 'value':'bar'},
+            {'name':'align',        'interface':IEnumStr(list(tools.align.keys())), 'value':'mid'},
+            {'name':'orientation',  'interface':IEnumStr(list(tools.orientations.keys())), 'value':'vertical'},
             {'name':'log',          'interface':IBool,  'value':False},
             {'name':'label',        'interface':IStr,  'value':''}
         ]
@@ -688,7 +688,7 @@ class PyLabHist(Plotting):
         kwds['align']=tools.align[self.get_input("align")]
         kwds['cumulative']=self.get_input("cumulative")
         #!! facecolor is alrady in the Hist node, so override it if available in kwargs dict
-        for key,value in self.get_input('kwargs').iteritems():
+        for key,value in self.get_input('kwargs').items():
             kwds[key] = value
 
         xinputs = self.get_input('x')
@@ -702,9 +702,9 @@ class PyLabHist(Plotting):
                 else:
                     res = self.axe.hist(x,**kwds)
             hold(True)
-        except ValueError, e:
+        except ValueError as e:
             res = (None, None)
-            print e
+            print(e)
             raise ValueError('tttt')
 
         hold(False)
@@ -764,7 +764,7 @@ class PyLabAcorr(Plotting):
                     {'name':"maxlags",   'interface':IInt,  'value':10},
                     {'name':"normed",    'interface':IBool, 'value':True},
                     {'name':"usevlines", 'interface':IBool, 'value':True},
-                    {'name':'detrend', 'interface':IEnumStr(tools.detrends.keys()), 'value':'none'},
+                    {'name':'detrend', 'interface':IEnumStr(list(tools.detrends.keys())), 'value':'none'},
                     {'name':"kwargs(line2d)",    'interface':IDict, 'value':{}}
                 ]
         Plotting.__init__(self, inputs)
@@ -799,7 +799,7 @@ class PyLabAcorr(Plotting):
 
 
         else:
-            for key,value in self.get_input('kwargs(line2d)').iteritems():
+            for key,value in self.get_input('kwargs(line2d)').items():
                 kwds[key] = value
 
         #print kwds
@@ -878,7 +878,7 @@ class PyLabXcorr(Plotting):
                     {'name':"maxlags",   'interface':IInt,  'value':10},
                     {'name':"normed",    'interface':IBool, 'value':True},
                     {'name':"usevlines", 'interface':IBool, 'value':True},
-                    {'name':'detrend', 'interface':IEnumStr(tools.detrends.keys()), 'value':'none'},
+                    {'name':'detrend', 'interface':IEnumStr(list(tools.detrends.keys())), 'value':'none'},
                     {'name':"kwargs(line2d)",    'interface':IDict, 'value':{}}
                 ]
         Plotting.__init__(self, inputs)
@@ -913,7 +913,7 @@ class PyLabXcorr(Plotting):
 
 
         else:
-            for key,value in self.get_input('kwargs(line2d)').iteritems():
+            for key,value in self.get_input('kwargs(line2d)').items():
                 kwds[key] = value
 
         kwds['maxlags'] = self.get_input("maxlags")
@@ -992,9 +992,9 @@ class PyLabScatter(Plotting):
             {'name':'x',        'value':None},
             {'name':'y',        'value':None},
             {'name':'sizes',    'value':20},
-            {'name':"color",    'interface':IEnumStr(tools.colors.keys()),  'value':'blue'},
-            {'name':"marker",   'interface':IEnumStr(tools.markers.keys()), 'value' : 'circle'},
-            {'name':"cmap",   'interface':IEnumStr(tools.cmaps.keys()), 'value' : 'jet'},
+            {'name':"color",    'interface':IEnumStr(list(tools.colors.keys())),  'value':'blue'},
+            {'name':"marker",   'interface':IEnumStr(list(tools.markers.keys())), 'value' : 'circle'},
+            {'name':"cmap",   'interface':IEnumStr(list(tools.cmaps.keys())), 'value' : 'jet'},
             {'name':"norm",   'interface':IFloat, 'value' : None},
             {'name':"vmin",   'interface':IFloat, 'value' : None},
             {'name':"vmax",   'interface':IFloat, 'value' : None},
@@ -1032,7 +1032,7 @@ class PyLabScatter(Plotting):
         verts = self.get_input('verts')
 
         kwds = {}
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
 
         self.figure()
@@ -1097,8 +1097,8 @@ class PyLabBoxPlot(Plotting):
         inputs = [
             {'name':"x"},
             {'name':"notch",    'interface':IEnumStr({'0':0,'1':1}), 'value':0},
-            {'name':"marker",      'interface':IEnumStr(tools.markers.keys()), 'value':'plus'},
-            {'name':"color",      'interface':IEnumStr(tools.colors.keys()), 'value':'blue'},
+            {'name':"marker",      'interface':IEnumStr(list(tools.markers.keys())), 'value':'plus'},
+            {'name':"color",      'interface':IEnumStr(list(tools.colors.keys())), 'value':'blue'},
             {'name':"vert",     'interface':IEnumStr({'0':0,'1':1}), 'value':1},
             {'name':"whis",     'interface':IFloat,  'value':1.5},
             {'name':"positions",'interface':ISequence,  'value':None},
@@ -1164,12 +1164,12 @@ class PyLabLine2D(Node):
 
         self.add_input(name="xdata", value=[])
         self.add_input(name="ydata", value=[])
-        self.add_input(name="linestyle", interface=IEnumStr(tools.linestyles.keys()), value='solid')
-        self.add_input(name="color", interface=IEnumStr(tools.colors.keys()),value='blue')
-        self.add_input(name="marker", interface=IEnumStr(tools.markers.keys()),value='circle')
+        self.add_input(name="linestyle", interface=IEnumStr(list(tools.linestyles.keys())), value='solid')
+        self.add_input(name="color", interface=IEnumStr(list(tools.colors.keys())),value='blue')
+        self.add_input(name="marker", interface=IEnumStr(list(tools.markers.keys())),value='circle')
         self.add_input(name="markersize", interface=IInt, value=10)
         self.add_input(name="markeredgewidth", interface=IFloat(0.,10,0.1) , value=None)
-        self.add_input(name="markeredgecolor", interface=IEnumStr(tools.colors.keys()), value='None')
+        self.add_input(name="markeredgecolor", interface=IEnumStr(list(tools.colors.keys())), value='None')
         self.add_input(name="linewidth", interface=IFloat, value=1.)
         self.add_input(name="fillstyle", interface=IEnumStr(tools.fillstyles), value='full')
         self.add_input(name="label", interface=IStr, value=None)
@@ -1182,7 +1182,7 @@ class PyLabLine2D(Node):
         from pylab import Line2D
 
         kwds = {}
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
 
         xdata=self.get_input('xdata')
@@ -1190,7 +1190,7 @@ class PyLabLine2D(Node):
         #why?
         if ydata == None or len(ydata)==0:
             ydata = xdata
-            xdata = range(0, len(ydata))
+            xdata = list(range(0, len(ydata)))
         output = Line2D(
             xdata=xdata,
             ydata=ydata,
@@ -1256,7 +1256,7 @@ class PyLabPolar(Plotting, PlotxyInterface):
         #self.axes()
 
         kwds = {}
-        for key, value in self.get_input('kwargs(line2d)').iteritems():
+        for key, value in self.get_input('kwargs(line2d)').items():
             kwds[key] = value
         try:
             del kwds['facecolor']
@@ -1358,7 +1358,7 @@ class PyLabPie(Plotting):
         #hold is not valid when calling axe.pie but is valid is calling pylab.pie
         #kwds['hold'] = self.get_input('hold')
 
-        print kwds
+        print(kwds)
         res = self.axe.pie(self.get_input('x'), **kwds)
 
         self.update_figure()
@@ -1401,7 +1401,7 @@ class PyLabBar(Plotting):
         else:
             c = enumerate(tools.colors)
             for x,y in zip(left, height):
-                color = c.next()
+                color = next(c)
                 #width = x[1]-x[0]
                 width=0.1
                 res = bar(x[1:],y, width=width, color=color[1], alpha=0.5)
@@ -1472,8 +1472,8 @@ class PyLabCohere(Plotting):
             {'name':'NFFT',         'interface':IInt,   'value':256},
             {'name':'Fs',           'interface':IFloat, 'value':2.},
             {'name':'Fc',           'interface':IFloat, 'value':0},
-            {'name':'detrend',      'interface':IEnumStr(tools.detrends.keys()), 'value':'none'},
-            {'name':'window',       'interface':IEnumStr(tools.windows.keys()), 'value':'hanning'},
+            {'name':'detrend',      'interface':IEnumStr(list(tools.detrends.keys())), 'value':'none'},
+            {'name':'window',       'interface':IEnumStr(list(tools.windows.keys())), 'value':'hanning'},
             {'name':'noverlap',     'interface':IInt,   'value':0},
             {'name':'pad_to',       'interface':IInt,   'value':None},
             {'name':'sides',        'interface':IEnumStr(tools.sides), 'value':'default'},
@@ -1495,7 +1495,7 @@ class PyLabCohere(Plotting):
         if type(line2d)==Line2D:
             kwds = line2d.properties()
         else:
-            for key,value in self.get_input('kwargs(line2d)').iteritems():
+            for key,value in self.get_input('kwargs(line2d)').items():
                 kwds[key] = value
         for x in ['children',  'path','xydata','transformed_clip_path_and_affine' ]:
             try:
@@ -1613,15 +1613,15 @@ class PyLabHexBin(Plotting):
             {'name':"C", 'interface':None, 'value':None},
             {'name':"gridsize", 'interface':IInt, 'value':100},
             {'name':"bins", 'interface':IInt, 'value':None},
-            {'name':"xscale", 'interface':IEnumStr(tools.scale.keys()), 'value':'linear'},
-            {'name':"yscale", 'interface':IEnumStr(tools.scale.keys()), 'value':'linear'},
-            {'name':"cmap", 'interface':IEnumStr(tools.cmaps.keys()), 'value':'jet'},
+            {'name':"xscale", 'interface':IEnumStr(list(tools.scale.keys())), 'value':'linear'},
+            {'name':"yscale", 'interface':IEnumStr(list(tools.scale.keys())), 'value':'linear'},
+            {'name':"cmap", 'interface':IEnumStr(list(tools.cmaps.keys())), 'value':'jet'},
             {'name':"norm", 'interface':None, 'value':None},
             {'name':"vmin", 'interface':IFloat, 'value':None},
             {'name':"vmax", 'interface':IFloat, 'value':None},
             {'name':"alpha", 'interface':IFloat(0,1,0.1), 'value':1.0},
             {'name':"linewidths", 'interface':IFloat(0,10,1), 'value':None},
-            {'name':"edgecolors", 'interface':IEnumStr(tools.colors.keys()), 'value':'None'},
+            {'name':"edgecolors", 'interface':IEnumStr(list(tools.colors.keys())), 'value':'None'},
             {'name':"reduce_C_function", 'interface':None, 'value':np.mean},
             {'name':"mincnt", 'interface':IInt, 'value':None},
             {'name':"marginals", 'interface':IBool, 'value':True},
@@ -1689,7 +1689,7 @@ class PyLabCLabel(Node):
         self.add_input(name='CS')
         self.add_input(name='v')
         self.add_input(name='fontsize', interface=IInt, value=10)
-        self.add_input(name='colors', interface=IEnumStr(tools.colors.keys()), value='None')
+        self.add_input(name='colors', interface=IEnumStr(list(tools.colors.keys())), value='None')
         self.add_input(name='inline', interface=IBool, value=True)
         self.add_input(name='inline_spacing', interface=IInt, value=5)
         self.add_input(name='fmt', interface=IStr, value='%1.3f')
@@ -1774,12 +1774,12 @@ class PyLabPcolor(Plotting):
             {'name':"X"},
             {'name':"Y"},
             {'name':"Z"},
-            {'name':'cmap', 'interface':IEnumStr(tools.cmaps.keys()), 'value':'jet'},
+            {'name':'cmap', 'interface':IEnumStr(list(tools.cmaps.keys())), 'value':'jet'},
             {'name':"norm", 'interface':None, 'value':None},
             {'name':"vmin",   'interface':IFloat, 'value' : None},
             {'name':"vmax",   'interface':IFloat, 'value' : None},
             {'name':"alpha", 'interface':IFloat(0,1,0.1), 'value':1.0},
-            {'name':"shading",   'interface':IEnumStr(tools.shadings.keys()), 'value' : 'flat'},
+            {'name':"shading",   'interface':IEnumStr(list(tools.shadings.keys())), 'value' : 'flat'},
             {'name':"kwargs(polycollection)",    'interface':IDict,     'value' : {}},
         ]
 
@@ -1802,7 +1802,7 @@ class PyLabPcolor(Plotting):
         alpha = self.get_input('alpha')
         shading = self.get_input('shading')
         kwds = {}
-        for key, value in self.get_input('kwargs(polycollection)').iteritems():
+        for key, value in self.get_input('kwargs(polycollection)').items():
             kwds[key] = value
 
         if X is not None and Y is not None:
@@ -1881,16 +1881,16 @@ class PyLabContour(Plotting):
             {'name':"N or V"},
             # specific to contour
             {'name':"linewidths", 'interface':IFloat, 'value':None},
-            {'name':"linestyles", 'interface':IEnumStr(tools.linestyles.keys()), 'value':'solid'},
-            {'name':"colors", 'interface':IEnumStr(tools.colors.keys()), 'value':'None'},
+            {'name':"linestyles", 'interface':IEnumStr(list(tools.linestyles.keys())), 'value':'solid'},
+            {'name':"colors", 'interface':IEnumStr(list(tools.colors.keys())), 'value':'None'},
             {'name':"alpha", 'interface':IFloat(0,1,0.1), 'value':1.0},
             {'name':"cmap", 'interface':None, 'value':None},
             {'name':"norm", 'interface':None, 'value':None},
             {'name':"levels", 'interface':ISequence, 'value':[]},
-            {'name':"origin", 'interface':IEnumStr(tools.origins.keys()), 'value':'None'},
+            {'name':"origin", 'interface':IEnumStr(list(tools.origins.keys())), 'value':'None'},
             {'name':"extent", 'interface':None, 'value':None},
             {'name':"locator", 'interface':None, 'value':None},
-            {'name':"extend", 'interface':IEnumStr(tools.extends.keys()), 'value':'neither'},
+            {'name':"extend", 'interface':IEnumStr(list(tools.extends.keys())), 'value':'neither'},
             {'name':"xunits", 'interface':None, 'value':None},
             {'name':"yunits", 'interface':None, 'value':None},
             {'name':"filled", 'interface':IBool, 'value':False},
@@ -2033,8 +2033,8 @@ class PyLabPsd(Plotting):
             {'name':'NFFT',         'interface':IInt,   'value':256},
             {'name':'Fs',           'interface':IFloat, 'value':2.},
             {'name':'Fc',           'interface':IFloat, 'value':0},
-            {'name':'detrend',      'interface':IEnumStr(tools.detrends.keys()), 'value':'none'},
-            {'name':'window',       'interface':IEnumStr(tools.windows.keys()), 'value':'hanning'},
+            {'name':'detrend',      'interface':IEnumStr(list(tools.detrends.keys())), 'value':'none'},
+            {'name':'window',       'interface':IEnumStr(list(tools.windows.keys())), 'value':'hanning'},
             {'name':'noverlap',     'interface':IInt,   'value':0},
             {'name':'pad_to',       'interface':IInt,   'value':None},
             {'name':'sides',        'interface':IEnumStr(tools.sides), 'value':'default'},
@@ -2056,7 +2056,7 @@ class PyLabPsd(Plotting):
         if type(line2d)==Line2D:
             kwds = line2d.properties()
         else:
-            for key,value in self.get_input('kwargs(line2d)').iteritems():
+            for key,value in self.get_input('kwargs(line2d)').items():
                 kwds[key] = value
         for this in ['axes', 'children', 'path','data','ydata','xdata',
                      'xydata','transformed_clip_path_and_affine', 'transform' ]:
@@ -2145,8 +2145,8 @@ class PyLabCsd(Plotting):
             {'name':'NFFT',         'interface':IInt,   'value':256},
             {'name':'Fs',           'interface':IFloat, 'value':2.},
             {'name':'Fc',           'interface':IFloat, 'value':0},
-            {'name':'detrend',      'interface':IEnumStr(tools.detrends.keys()), 'value':'none'},
-            {'name':'window',       'interface':IEnumStr(tools.windows.keys()), 'value':'hanning'},
+            {'name':'detrend',      'interface':IEnumStr(list(tools.detrends.keys())), 'value':'none'},
+            {'name':'window',       'interface':IEnumStr(list(tools.windows.keys())), 'value':'hanning'},
             {'name':'noverlap',     'interface':IInt,   'value':0},
             {'name':'pad_to',       'interface':IInt,   'value':None},
             {'name':'sides',        'interface':IEnumStr(tools.sides), 'value':'default'},
@@ -2169,7 +2169,7 @@ class PyLabCsd(Plotting):
         if type(line2d)==Line2D:
             kwds = line2d.properties()
         else:
-            for key,value in self.get_input('kwargs(line2d)').iteritems():
+            for key,value in self.get_input('kwargs(line2d)').items():
                 kwds[key] = value
         for this in ['axes', 'children', 'path','data','ydata','xdata',
                      'xydata','transformed_clip_path_and_affine', 'transform' ]:
@@ -2261,11 +2261,11 @@ class PyLabSpecgram(Plotting):
             {'name':'NFFT',         'interface':IInt,   'value':256},
             {'name':'Fs',           'interface':IFloat, 'value':2.},
             {'name':'Fc',           'interface':IFloat, 'value':0},
-            {'name':'detrend',      'interface':IEnumStr(tools.detrends.keys()), 'value':'none'},
-            {'name':'window',       'interface':IEnumStr(tools.windows.keys()), 'value':'hanning'},
+            {'name':'detrend',      'interface':IEnumStr(list(tools.detrends.keys())), 'value':'none'},
+            {'name':'window',       'interface':IEnumStr(list(tools.windows.keys())), 'value':'hanning'},
             {'name':'noverlap',     'interface':IInt,   'value':128},
             {'name':'xextent',     'interface':IInt,   'value':None},
-            {'name':'cmap',     'interface':IEnumStr(tools.cmaps.keys()),   'value':'jet'},
+            {'name':'cmap',     'interface':IEnumStr(list(tools.cmaps.keys())),   'value':'jet'},
             {'name':'pad_to',       'interface':IInt,   'value':None},
             {'name':'sides',        'interface':IEnumStr(tools.sides), 'value':'default'},
             {'name':'scale_by_freq','interface':IBool,  'value':True},
@@ -2285,7 +2285,7 @@ class PyLabSpecgram(Plotting):
         if type(line2d)==Line2D:
             kwds = line2d.properties()
         else:
-            for key,value in self.get_input('kwargs(line2d)').iteritems():
+            for key,value in self.get_input('kwargs(line2d)').items():
                 kwds[key] = value
         for x in ['children',  'path','data','ydata','xdata','xydata','transformed_clip_path_and_affine' ]:
             try:
@@ -2359,12 +2359,12 @@ class PyLabStem(Plotting, PlotxyInterface):
         inputs = [
             {'name': 'x'},
             {'name': 'y'},
-            {'name':'marker_color', 'interface':IEnumStr(tools.colors.keys()), 'value':'blue'},
-            {'name':'line_color', 'interface':IEnumStr(tools.colors.keys()), 'value':'blue'},
-            {'name':'base_color', 'interface':IEnumStr(tools.colors.keys()), 'value':'red'},
-            {'name':'marker_style', 'interface':IEnumStr(tools.markers.keys()), 'value':'circle'},
-            {'name':'line_style', 'interface':IEnumStr(tools.linestyles.keys()), 'value':'solid'},
-            {'name':'base_style', 'interface':IEnumStr(tools.linestyles.keys()), 'value':'solid'},
+            {'name':'marker_color', 'interface':IEnumStr(list(tools.colors.keys())), 'value':'blue'},
+            {'name':'line_color', 'interface':IEnumStr(list(tools.colors.keys())), 'value':'blue'},
+            {'name':'base_color', 'interface':IEnumStr(list(tools.colors.keys())), 'value':'red'},
+            {'name':'marker_style', 'interface':IEnumStr(list(tools.markers.keys())), 'value':'circle'},
+            {'name':'line_style', 'interface':IEnumStr(list(tools.linestyles.keys())), 'value':'solid'},
+            {'name':'base_style', 'interface':IEnumStr(list(tools.linestyles.keys())), 'value':'solid'},
         ]
         Plotting.__init__(self, inputs)
         self.add_output(name='output')
@@ -2426,9 +2426,9 @@ class PyLabStep(Plotting, PlotxyInterface):
                     {'name':'x', 'interface':None, 'value':None},
                     {'name':'y', 'interface':None, 'value':None},
                     {'name':'where', 'interface':IEnumStr(['post','pre','mid']), 'value':'pre'},
-                    {'name':'marker', 'interface':IEnumStr(tools.markers.keys()), 'value':'circle'},
+                    {'name':'marker', 'interface':IEnumStr(list(tools.markers.keys())), 'value':'circle'},
                     {'name':'markersize', 'interface':IFloat, 'value':10},
-                    {'name':'color', 'interface':IEnumStr(tools.colors.keys()), 'value':'blue'},
+                    {'name':'color', 'interface':IEnumStr(list(tools.colors.keys())), 'value':'blue'},
                     {'name':'kwargs', 'interface':IDict, 'value':{}}
         ]
         Plotting.__init__(self, inputs)
@@ -2525,7 +2525,7 @@ class PyLabQuiver(Plotting):
                     {'name':'minshaft',     'interface':IFloat,                         'value':1},
                     {'name':'minlength',    'interface':IFloat,                         'value':1},
                     {'name':'pivot',        'interface':IEnumStr(tools.pivots),               'value':'tail'},
-                    {'name':'color',        'interface':IEnumStr(tools.colors.keys()),        'value':'None'},
+                    {'name':'color',        'interface':IEnumStr(list(tools.colors.keys())),        'value':'None'},
                     {'name':'polycollection', 'interface':IDict,        'value':{}},
         ]
         Plotting.__init__(self, inputs)
@@ -2549,7 +2549,7 @@ class PyLabQuiver(Plotting):
             kwds[key]=self.get_input(key)
         if self.get_input('color')!='None':
             kwds['color']=tools.colors[self.get_input('color')]
-        for key, value in self.get_input('polycollection').iteritems():
+        for key, value in self.get_input('polycollection').items():
             kwds[key]=value
 
         if X is None and Y is None and C is None and U is not None and V is not None:
@@ -2605,7 +2605,7 @@ class PyLabFill(Plotting, PlotxyInterface):
                     {'name':'x'},
                     {'name':'y'},
                     {'name':'linewidth', 'interface':IFloat, 'value':1},
-                    {'name':'facecolor', 'interface':IEnumStr(tools.colors.keys()), 'value':'blue'},
+                    {'name':'facecolor', 'interface':IEnumStr(list(tools.colors.keys())), 'value':'blue'},
                     {'name':'kwargs (Patch)','interface':IDict, 'value':{}},
         ]
         Plotting.__init__(self, inputs)
@@ -2762,8 +2762,8 @@ class PyLabErrorBar(Plotting, PlotxyInterface):
                     {'name':'y'},
                     {'name':'xerr', 'value':None},
                     {'name':'yerr', 'value':None},
-                    {'name':'fmt', 'interface':IEnumStr(tools.linestyles.keys()), 'value':'solid'},
-                    {'name':'ecolor', 'interface':IEnumStr(tools.colors.keys()), 'value':'blue'},
+                    {'name':'fmt', 'interface':IEnumStr(list(tools.linestyles.keys())), 'value':'solid'},
+                    {'name':'ecolor', 'interface':IEnumStr(list(tools.colors.keys())), 'value':'blue'},
                     {'name':'elinewidth', 'interface':IFloat, 'value':None},
                     {'name':'capsize', 'interface':IInt, 'value':3},
                     {'name':'barsabove', 'interface':IBool, 'value':False},
@@ -2892,9 +2892,9 @@ class PyLabImshow(Plotting):
     def __init__(self):
         inputs = [
                     {'name':'X', 'interface':None},
-                    {'name':"cmap", 'interface':IEnumStr(tools.cmaps.keys()), 'value':'jet'},
-                    {'name':"interpolation", 'interface':IEnumStr(tools.interpolations.keys()), 'value':'None'},
-                    {'name':"aspect", 'interface':IEnumStr(tools.aspects.keys()), 'value':'None'},
+                    {'name':"cmap", 'interface':IEnumStr(list(tools.cmaps.keys())), 'value':'jet'},
+                    {'name':"interpolation", 'interface':IEnumStr(list(tools.interpolations.keys())), 'value':'None'},
+                    {'name':"aspect", 'interface':IEnumStr(list(tools.aspects.keys())), 'value':'None'},
                     {'name':"alpha", 'interface':IFloat(0., 1., 0.01), 'value':1},
                     {'name':"vmin", 'interface':IFloat, 'value':None},
                     {'name':"vmax", 'interface':IFloat, 'value':None},
@@ -3027,17 +3027,17 @@ class PyLabColorBar(Node):
         Node.__init__(self)
         self.add_input(name='ax')
         self.add_input(name='cax')
-        self.add_input(name='orientation', interface=IEnumStr(tools.orientations.keys()), value='vertical')
+        self.add_input(name='orientation', interface=IEnumStr(list(tools.orientations.keys())), value='vertical')
         self.add_input(name='fraction', interface=IFloat(0.,1,0.01), value=0.15)
         self.add_input(name='pad', interface=IFloat(0.,1,0.01), value=0.05)
         self.add_input(name='shrink', interface=IFloat(0.,1,0.01), value=1)
         self.add_input(name='aspect', interface=IFloat(1,100,1), value=20)
-        self.add_input(name='extend', interface=IEnumStr(tools.extends.keys()), value='neither')
-        self.add_input(name='spacing', interface=IEnumStr(tools.spacings.keys()), value='uniform')
+        self.add_input(name='extend', interface=IEnumStr(list(tools.extends.keys())), value='neither')
+        self.add_input(name='spacing', interface=IEnumStr(list(tools.spacings.keys())), value='uniform')
         self.add_input(name='ticks', interface=None, value=None)
         self.add_input(name='format', interface=IStr, value=None)
         self.add_input(name='drawedges', interface=IBool, value=False)
-        self.add_input(name='cmap', interface=IEnumStr(tools.cmaps.keys()), value='jet')
+        self.add_input(name='cmap', interface=IEnumStr(list(tools.cmaps.keys())), value='jet')
         self.add_input(name='kwargs', interface=IDict, value={})
 
         self.add_output(name='axes')

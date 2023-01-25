@@ -57,8 +57,8 @@ class PyLabFancyArrowDict(Node):
 
         #self.get_input('axes')
 
-        self.add_input(name='arrowstyle', interface=IEnumStr(tools.arrowstyles.keys()), value='simple')
-        self.add_input(name='connectionstyle', interface=IEnumStr(tools.connectionstyles.keys()), value='arc3')
+        self.add_input(name='arrowstyle', interface=IEnumStr(list(tools.arrowstyles.keys())), value='simple')
+        self.add_input(name='connectionstyle', interface=IEnumStr(list(tools.connectionstyles.keys())), value='arc3')
         self.add_input(name='relpos', interface=ITuple, value=(0.5,0.5))
         self.add_input(name='patchA', interface=IDict, value=None)
         self.add_input(name='patchB', interface=IDict, value=None)
@@ -67,7 +67,7 @@ class PyLabFancyArrowDict(Node):
         self.add_input(name='mutation_scale', interface=IFloat, value=1)
         self.add_input(name='mutation_aspect', interface=IFloat, value=1)
         self.add_input(name='pathPatch', interface=IDict, value=None)
-        self.add_input(name='ec', interface=IEnumStr(tools.linestyles.keys()), value='solid')
+        self.add_input(name='ec', interface=IEnumStr(list(tools.linestyles.keys())), value='solid')
         self.add_input(name='kwargs', interface=IDict, value={})
         #todo for connection style, connectionstyle="angle,angleA=0,angleB=-90,rad=10"
         #todo for arrowstyle:head_length=0.4,head_width=0.2 tail_width=0.3,shrink_factor=0.5
@@ -85,10 +85,10 @@ class PyLabFancyArrowDict(Node):
         kwds['mutation_scale'] = self.get_input('mutation_scale')
         kwds['mutation_aspect'] = self.get_input('mutation_aspect')
         #kwds['ec'] = tools.linestyles[self.get_input('ec')]
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
 
-        print kwds
+        print(kwds)
 
         return (kwds,)
 
@@ -118,7 +118,7 @@ class PyLabYAArowDict(Node):
         self.add_input(name='headwidth', interface=IFloat(0,100,0.1), value=12)
         self.add_input(name='frac', interface=IFloat(0,1,0.05), value=0.1)
         self.add_input(name='alpha', interface=IFloat(0,1,0.05), value=1)
-        self.add_input(name='color', interface=IEnumStr(tools.colors.keys()), value='blue')
+        self.add_input(name='color', interface=IEnumStr(list(tools.colors.keys())), value='blue')
         self.add_input(name='kwargs', interface=IDict, value={})
         self.add_output(name='output', interface=IDict, value = {})
 
@@ -150,7 +150,7 @@ class PyLabBBox(Node):
     def __init__(self):
         Node.__init__(self)
 
-        self.add_input(name='boxstyle',interface=IEnumStr(tools.boxstyles.keys()), value='round')
+        self.add_input(name='boxstyle',interface=IEnumStr(list(tools.boxstyles.keys())), value='round')
         self.add_input(name='fc',interface=IFloat(0,1,0.1), value=0.8)
         self.add_input(name='pad',interface=IFloat(0,1,0.1), value=0.3)
         self.add_output(name='output', interface=IDict)
@@ -207,8 +207,8 @@ class PyLabAnnotate(Node):
         self.add_input(name='text', interface=IStr, value=None)
         self.add_input(name='xy', interface=ITuple, value=(0,0))
         self.add_input(name='xytext', interface=ITuple, value=(0,0))
-        self.add_input(name='xycoords', interface=IEnumStr(tools.xycoords.keys()), value='data')
-        self.add_input(name='textcoords', interface=IEnumStr(tools.xycoords.keys()), value='data')
+        self.add_input(name='xycoords', interface=IEnumStr(list(tools.xycoords.keys())), value='data')
+        self.add_input(name='textcoords', interface=IEnumStr(list(tools.xycoords.keys())), value='data')
         self.add_input(name='arrowprops', interface=IDict, value={'arrowstyle':'->', 'connectionstyle':'arc3'})
         self.add_input(name='bbox', interface=IDict, value=None)
         self.add_input(name='kwargs(text properties)', interface=IDict, value={})

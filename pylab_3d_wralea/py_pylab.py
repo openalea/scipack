@@ -74,10 +74,10 @@ class PyLabPlot3D(Plotting):
                     {'name':'x',            'interface':None,                           'value':None},
                     {'name':'y',            'interface':None,                           'value':None},
                     {'name':'z',            'interface':None,                           'value':None},
-                    {'name':'marker',       'interface':IEnumStr(tools.markers.keys()),       'value':'circle'},
+                    {'name':'marker',       'interface':IEnumStr(list(tools.markers.keys())),       'value':'circle'},
                     {'name':'markersize',   'interface':IFloat,                         'value':10},
-                    {'name':'linestyle',    'interface':IEnumStr(tools.linestyles.keys()),    'value':'solid'},
-                    {'name':'color',        'interface':IEnumStr(tools.colors.keys()),        'value':'blue'},
+                    {'name':'linestyle',    'interface':IEnumStr(list(tools.linestyles.keys())),    'value':'solid'},
+                    {'name':'color',        'interface':IEnumStr(list(tools.colors.keys())),        'value':'blue'},
                     {'name': 'kwargs', 'interface':IDict, 'value':{}},
         ]
         Plotting.__init__(self, inputs)
@@ -96,7 +96,7 @@ class PyLabPlot3D(Plotting):
         if type(line2d) == Line2D:
             kwds = self.get_input('kwargs').properties()
         else:
-            for key, value in self.get_input('kwargs').iteritems():
+            for key, value in self.get_input('kwargs').items():
                 kwds[key] = value
 
         for x in ['axes', 'children',  'path','xdata', 'ydata', 'data','transform',
@@ -166,7 +166,7 @@ class PyLabContour3D(Plotting):
         ax = Axes3D(self.fig)
         #ax.clear()
         kwds = {}
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
         x = self.get_input('x')
         y = self.get_input('y')
@@ -223,7 +223,7 @@ class PyLabContourf3D(Plotting):
         ax = Axes3D(self.fig)
         #ax.clear()
         kwds = {}
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
         x = self.get_input('x')
         y = self.get_input('y')

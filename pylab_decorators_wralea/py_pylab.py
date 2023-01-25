@@ -74,7 +74,7 @@ class PyLabLegend(Node, CustomizeAxes):
 
         self.add_input(name='axes')
         self.add_input(name="shadow", interface=IBool, value=False)
-        self.add_input(name="location", interface=IEnumStr(tools.locations.keys()), value=0)
+        self.add_input(name="location", interface=IEnumStr(list(tools.locations.keys())), value=0)
         self.add_input(name="numpoints", interface=IInt, value=2)
         self.add_input(name="markerscale", interface=IFloat(0.1,10,0.1), value=1)
         self.add_input(name="fancybox", interface=IBool, value=True)
@@ -149,8 +149,8 @@ class PyLabFigure(Node):
         self.add_input(name="num", interface=IInt, value=1)
         self.add_input(name="figsize", interface=ISequence, value=(8, 6))
         self.add_input(name="dpi", interface=IFloat, value=80.)
-        self.add_input(name="facecolor", interface=IEnumStr(tools.colors.keys()), value='white')
-        self.add_input(name="edgecolor", interface=IEnumStr(tools.colors.keys()), value='black')
+        self.add_input(name="facecolor", interface=IEnumStr(list(tools.colors.keys())), value='white')
+        self.add_input(name="edgecolor", interface=IEnumStr(list(tools.colors.keys())), value='black')
         self.add_input(name="frameon", interface=IBool, value=True)
         self.add_input(name="subplotpars", interface=ISequence, value=None)
         self.add_input(name="kwds", interface=IDict, value={})
@@ -202,8 +202,8 @@ class PyLabAxis(Node, CustomizeAxes):
         #self.add_input(name="fontdict", interface=IDict, value=None)
         self.add_input(name="fontsize", interface=IFloat, value=12.)
         self.add_input(name="alpha", interface=IFloat(0., 1., step=0.1), value=0.5)
-        self.add_input(name="color", interface=IEnumStr(tools.colors.keys()), value='blue')
-        self.add_input(name='backgroundcolor', interface=IEnumStr(tools.colors.keys()), value='white')
+        self.add_input(name="color", interface=IEnumStr(list(tools.colors.keys())), value='blue')
+        self.add_input(name='backgroundcolor', interface=IEnumStr(list(tools.colors.keys())), value='white')
         self.add_input(name='rotation', interface=IFloat, value='horizontal')
         #self.add_input(name="withdash", interface=IBool, value=False)
         self.add_input(name="kwargs", interface=IDict, value={})
@@ -223,11 +223,11 @@ class PyLabAxis(Node, CustomizeAxes):
         kwds['backgroundcolor'] = self.get_input('backgroundcolor')
         kwds['rotation'] = self.get_input('rotation')
         kwds['fontproperties'] = FP(**self.get_input('fontproperties'))
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             try:
                 kwds[key] = value
             except:
-                print 'key already defined. skip it'
+                print('key already defined. skip it')
                 pass
 
         #res = text(0,0, self.get_input('text'), **kwds)
@@ -273,9 +273,9 @@ class PyLabXLabel(Node, CustomizeAxes):
         self.add_input(name="text", interface=IStr, value=None)
         self.add_input(name="fontsize", interface=IFloat, value=12.)
         self.add_input(name="labelpad", interface=IInt, value=None)
-        self.add_input(name="verticalalignment", interface=IEnumStr(tools.verticalalignment.keys()),
+        self.add_input(name="verticalalignment", interface=IEnumStr(list(tools.verticalalignment.keys())),
             value='top')
-        self.add_input(name="horizontalalignment", interface=IEnumStr(tools.horizontalalignment.keys()),
+        self.add_input(name="horizontalalignment", interface=IEnumStr(list(tools.horizontalalignment.keys())),
             value='center')
         self.add_input(name="text properties", interface=IDict, value={})
         self.add_input(name='kwargs', interface=IDict, value={})
@@ -284,10 +284,10 @@ class PyLabXLabel(Node, CustomizeAxes):
 
     def __call__(self, inputs):
         kwds = {}
-        for key, value in self.get_input('text properties').iteritems():
+        for key, value in self.get_input('text properties').items():
             kwds[key]=value
 
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
 
         #input text and fontproperties are overwritten
@@ -325,9 +325,9 @@ class PyLabYLabel(Node, CustomizeAxes):
         self.add_input(name="text", interface=IStr, value=None)
         self.add_input(name="fontsize", interface=IFloat, value=12.)
         self.add_input(name="labelpad", interface=IInt, value=None)
-        self.add_input(name="verticalalignment", interface=IEnumStr(tools.verticalalignment.keys()), 
+        self.add_input(name="verticalalignment", interface=IEnumStr(list(tools.verticalalignment.keys())), 
             value='center')
-        self.add_input(name="horizontalalignment", interface=IEnumStr(tools.horizontalalignment.keys()), 
+        self.add_input(name="horizontalalignment", interface=IEnumStr(list(tools.horizontalalignment.keys())), 
             value='right')
         self.add_input(name="text properties", interface=IDict, value={})
         self.add_input(name='kwargs', interface=IDict, value={'rotation':'vertical'})
@@ -337,11 +337,11 @@ class PyLabYLabel(Node, CustomizeAxes):
     def __call__(self, inputs):
         kwds = {}
 
-        for key, value in self.get_input('text properties').iteritems():
-            print key, value
+        for key, value in self.get_input('text properties').items():
+            print(key, value)
             kwds[key]=value
 
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
 
         kwds['fontsize'] = self.get_input('fontsize')
@@ -391,7 +391,7 @@ class PyLabTitle(Node, CustomizeAxes):
         self.add_input(name="axes")
         self.add_input(name="text", interface=IStr, value=None)
         self.add_input(name="fontsize", interface=IFloat, value=12)
-        self.add_input(name="color", interface=IEnumStr(tools.colors.keys()), value='black')
+        self.add_input(name="color", interface=IEnumStr(list(tools.colors.keys())), value='black')
         self.add_input(name='kwargs', interface=IDict, value={})
 
         self.add_output(name='axes')
@@ -400,7 +400,7 @@ class PyLabTitle(Node, CustomizeAxes):
         kwds = {}
         kwds['fontsize'] = self.get_input('fontsize')
         kwds['color'] = self.get_input('color')
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key]=value
 
         text = self.get_input('text')
@@ -422,13 +422,13 @@ class PyLabTextProperties(Node):
     def __init__(self):
         Node.__init__(self)
         self.add_input(name='alpha',    interface=IFloat(0,1,0.1), value=1)
-        self.add_input(name='color',    interface=IEnumStr(tools.colors.keys()), value='k')
+        self.add_input(name='color',    interface=IEnumStr(list(tools.colors.keys())), value='k')
         self.add_input(name='fontproperties', interface=IDict, value={'family':'sans-serif',
             'size':12, 'stretch':'normal', 'style':'normal', 'weight':'normal',
             'variant':'normal'})
-        self.add_input(name='horizontalalignment', interface=IEnumStr(tools.horizontalalignment.keys()), value='left')
+        self.add_input(name='horizontalalignment', interface=IEnumStr(list(tools.horizontalalignment.keys())), value='left')
         self.add_input(name='rotation', interface=IFloat(-180,180,10), value=0)
-        self.add_input(name='verticalalignment', interface=IEnumStr(tools.verticalalignment.keys()), value='baseline')
+        self.add_input(name='verticalalignment', interface=IEnumStr(list(tools.verticalalignment.keys())), value='baseline')
         self.add_input(name='kwargs',   interface=IDict, value = {
             #'agg_filter': None,
 #            'animated': False,
@@ -460,7 +460,7 @@ class PyLabTextProperties(Node):
                 kwds[input['name']] = self.get_input(input['name'])
             else:
                 # the kwargs
-                for k,v in self.get_input('kwargs').iteritems():
+                for k,v in self.get_input('kwargs').items():
                     kwds[k] = v
 
         # finally clear up the fontproperties dictionary and replace it by an instance of font properties.
@@ -497,12 +497,12 @@ class PyLabFontProperties(Node):
 
     def __init__(self):
         Node.__init__(self)
-        self.add_input(name='family', interface=IEnumStr(tools.families.keys()), value='serif')
-        self.add_input(name='style', interface=IEnumStr(tools.styles.keys()), value='normal')
-        self.add_input(name='variant', interface=IEnumStr(tools.variants.keys()), value='normal')
-        self.add_input(name='weight', interface=IEnumStr(tools.weights.keys()), value='normal')
-        self.add_input(name='stretch', interface=IEnumStr(tools.streches.keys()), value='normal')
-        self.add_input(name='size', interface=IEnumStr(tools.sizes.keys()), value='medium')
+        self.add_input(name='family', interface=IEnumStr(list(tools.families.keys())), value='serif')
+        self.add_input(name='style', interface=IEnumStr(list(tools.styles.keys())), value='normal')
+        self.add_input(name='variant', interface=IEnumStr(list(tools.variants.keys())), value='normal')
+        self.add_input(name='weight', interface=IEnumStr(list(tools.weights.keys())), value='normal')
+        self.add_input(name='stretch', interface=IEnumStr(list(tools.streches.keys())), value='normal')
+        self.add_input(name='size', interface=IEnumStr(list(tools.sizes.keys())), value='medium')
         self.add_input(name='fname', interface=IStr, value=None)
         self.add_input(name='kwargs', interface=IDict, value={})
         #self.add_input(name='_init', _init=None)
@@ -520,7 +520,7 @@ class PyLabFontProperties(Node):
         kwds['variant'] = self.get_input('variant')
         kwds['weight'] = self.get_input('weight')
         kwds['stretch'] = self.get_input('stretch')
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
 
         return kwds
@@ -541,11 +541,11 @@ class PyLabSaveFig(Node):
         self.add_input(name='fname',        interface=IStr, value=None)
         self.add_input(name='transparent',  interface=IBool, value=False)
         self.add_input(name='dpi',          interface=IInt(40,200,1), value=rcParams['figure.dpi'])
-        self.add_input(name='facecolor',    interface=IEnumStr(tools.colors.keys()), value='white')
-        self.add_input(name='edgecolor',    interface=IEnumStr(tools.colors.keys()), value='w')
-        self.add_input(name='orientation',  interface=IEnumStr(tools.orientation_fig.keys()), value='portrait')
-        self.add_input(name='papertype',    interface=IEnumStr(tools.papertypes.keys()), value=None)
-        self.add_input(name='format',       interface=IEnumStr(tools.extensions.keys()), value='png')
+        self.add_input(name='facecolor',    interface=IEnumStr(list(tools.colors.keys())), value='white')
+        self.add_input(name='edgecolor',    interface=IEnumStr(list(tools.colors.keys())), value='w')
+        self.add_input(name='orientation',  interface=IEnumStr(list(tools.orientation_fig.keys())), value='portrait')
+        self.add_input(name='papertype',    interface=IEnumStr(list(tools.papertypes.keys())), value=None)
+        self.add_input(name='format',       interface=IEnumStr(list(tools.extensions.keys())), value='png')
         self.add_input(name='kwargs',       interface=IDict, value={})
 
     def __call__(self, inputs):
@@ -588,7 +588,7 @@ class PyLabColorMap(Node):
     """
     def __init__(self):
         Node.__init__(self)
-        self.add_input(name='colormap', interface=IEnumStr(tools.cmaps.keys()), value='jet')
+        self.add_input(name='colormap', interface=IEnumStr(list(tools.cmaps.keys())), value='jet')
         self.add_input(name='show', interface=IBool, value=False)
         self.add_input(name='showall', interface=IBool, value=False)
         self.add_output(name='output')
@@ -667,7 +667,7 @@ class PyLabXTicks(Node, CustomizeAxes):
 
     def __call__(self, inputs):
         kwds = {}
-        for key, value in self.get_input('kwargs(text properties)').iteritems():
+        for key, value in self.get_input('kwargs(text properties)').items():
             kwds[key] = value
         kwds['rotation'] = self.get_input('rotation')
 
@@ -731,15 +731,15 @@ class PyLabTickParams(Node, CustomizeAxes):
         Node.__init__(self)
         CustomizeAxes.__init__(self)
         self.add_input(name='axes')
-        self.add_input(name='axis', interface=IEnumStr(self.daxis.keys()), value='both')
+        self.add_input(name='axis', interface=IEnumStr(list(self.daxis.keys())), value='both')
         self.add_input(name='reset', interface=IBool, value=False)
-        self.add_input(name='direction', interface=IEnumStr(self.ddirection.keys()), value='in')
+        self.add_input(name='direction', interface=IEnumStr(list(self.ddirection.keys())), value='in')
         self.add_input(name='length', interface=IInt, value=4)
         self.add_input(name='width', interface=IInt, value=1)
-        self.add_input(name='color', interface=IEnumStr(tools.colors.keys()), value='black')
+        self.add_input(name='color', interface=IEnumStr(list(tools.colors.keys())), value='black')
         self.add_input(name='pad', interface=IInt, value=1)
         self.add_input(name='labelsize', interface=IInt, value=12)
-        self.add_input(name='labelcolor', interface=IEnumStr(tools.colors.keys()), value='black')
+        self.add_input(name='labelcolor', interface=IEnumStr(list(tools.colors.keys())), value='black')
         self.add_input(name='zorder', interface=IInt, value=0)
         self.add_input(name='bottom', interface=IBool, value=False)
         self.add_input(name='top', interface=IBool, value=False)
@@ -810,7 +810,7 @@ class PyLabYTicks(Node, CustomizeAxes):
 
     def __call__(self, inputs):
         kwds = {}
-        for key, value in self.get_input('kwargs(text properties)').iteritems():
+        for key, value in self.get_input('kwargs(text properties)').items():
             kwds[key] = value
         kwds['rotation'] = self.get_input('rotation')
 
@@ -869,7 +869,7 @@ class PyLabXLim(Node, CustomizeAxes):
 
     def __call__(self, inputs):
         kwds = {}
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
         axes = self.get_axes()
         xmin = self.get_input('xmin')
@@ -911,7 +911,7 @@ class PyLabYLim(Node, CustomizeAxes):
 
     def __call__(self, inputs):
         kwds = {}
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
         axes = self.get_axes()
         ymin = self.get_input('ymin')
@@ -961,9 +961,9 @@ class PyLabGrid(Node, CustomizeAxes):
 
         self.add_input(name='axes')
         self.add_input(name='b', interface=IBool, value=True)
-        self.add_input(name='which', interface=IEnumStr(tools.which.keys()), value='major')
-        self.add_input(name='linestyle', interface=IEnumStr(tools.linestyles.keys()),   value='dotted')
-        self.add_input(name='color', interface=IEnumStr(tools.colors.keys()),   value='black')
+        self.add_input(name='which', interface=IEnumStr(list(tools.which.keys())), value='major')
+        self.add_input(name='linestyle', interface=IEnumStr(list(tools.linestyles.keys())),   value='dotted')
+        self.add_input(name='color', interface=IEnumStr(list(tools.colors.keys())),   value='black')
         self.add_input(name='linewidth', interface=IFloat, value=1.0)
         self.add_input(name='kwargs', interface=IDict, value={})
 
@@ -971,7 +971,7 @@ class PyLabGrid(Node, CustomizeAxes):
 
     def __call__(self, inputs):
         kwds = {}
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
         kwds['linestyle']=tools.linestyles[self.get_input("linestyle")]
         kwds['color']=tools.colors[self.get_input("color")]
@@ -1053,13 +1053,13 @@ class PyLabAxes(Node):
         self.add_input(name='bottom',   interface=IFloat(0, 1, 0.01), value=0.12)
         self.add_input(name='width',    interface=IFloat(0, 1, 0.01), value=0.78)
         self.add_input(name='height',   interface=IFloat(0, 1, 0.01), value=0.78)
-        self.add_input(name='axisbg',   interface=IEnumStr(tools.colors.keys()), value='white')
+        self.add_input(name='axisbg',   interface=IEnumStr(list(tools.colors.keys())), value='white')
         self.add_input(name='frameon',  interface=IBool, value=True)
         self.add_input(name='polar',    interface=IBool, value=False)
-        self.add_input(name='xscale',    interface=IEnumStr(tools.scale.keys()), value='linear')
-        self.add_input(name='yscale',    interface=IEnumStr(tools.scale.keys()), value='linear')
-        self.add_input(name='xticks',    interface=IEnumStr(tools.ticks.keys()), value='auto')
-        self.add_input(name='yticks',    interface=IEnumStr(tools.ticks.keys()), value='auto')
+        self.add_input(name='xscale',    interface=IEnumStr(list(tools.scale.keys())), value='linear')
+        self.add_input(name='yscale',    interface=IEnumStr(list(tools.scale.keys())), value='linear')
+        self.add_input(name='xticks',    interface=IEnumStr(list(tools.ticks.keys())), value='auto')
+        self.add_input(name='yticks',    interface=IEnumStr(list(tools.ticks.keys())), value='auto')
         self.add_input(name='kwargs',    interface=IDict, value={})
         self.add_output(name='axes', interface=IDict, value={})
 
