@@ -169,7 +169,7 @@ class FrameAnimator (QtWidgets.QMainWindow) :
 		:Parameters:
 		 - `frame` (str or QPixmap) - filename or pixmap
 		"""
-		self._pix.append(QPixmap(frame) )
+		self._pix.append(QtGui.QPixmap(frame) )
 		self.nb_frame_changed()
 
 	def update_pix (self) :

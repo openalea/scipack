@@ -81,9 +81,7 @@ class PointSelection (QtWidgets.QMainWindow) :
 
         # Import Points
         self._load_points = self.menu_file.addAction('Import Points')
-        QObject.connect(self._load_points,
-                        SIGNAL("triggered(bool)"),
-                        self.load_points)
+        self._load_points.triggered.connect(self.load_points)
 
         # Save points
         self._save_points = self.menu_file.addAction('Save Points')
