@@ -29,7 +29,9 @@ class PointSelectionWidget(NodeWidget,PointSelection) :
 
         self.notify(node, ('input_modified',))
 
-        self.pointsChanged.connect(self.on_pointsChanged)
+        # self.connect(self, QtCore.SIGNAL("points_changed"), \
+        #              self.pointsChanged)
+        self.points_changed.connect(self.on_pointsChanged)
 
         self.window().setWindowTitle(node.get_caption())
 

@@ -39,7 +39,7 @@ except ImportError:
 
 
 class PointSelection (QtWidgets.QMainWindow) :
-
+    points_changed = QtCore.pyqtSignal()
     def __init__ (self) :
         QtWidgets.QMainWindow.__init__(self)
 
@@ -375,7 +375,8 @@ class PointSelection (QtWidgets.QMainWindow) :
             else :
                 self._points.append( (pid,item,i,j,k,textid) )
             self.update_pix()
-            self.emit(QtCore.pyqtSignal("points_changed"),self)
+            # self.emit(QtCore.pyqtSignal("points_changed"),self)
+            self.points_changed.emit()
             return pid,(i,j,k)
 
     def del_point (self, pos, my_pid = None) :
@@ -402,7 +403,8 @@ class PointSelection (QtWidgets.QMainWindow) :
                         self._scene.removeItem(item)
                         self._points[pid] = None
         self.update_pix()
-        self.emit(QtCore.pyqtSignal("points_changed"),self)
+        # self.emit(QtCore.pyqtSignal("points_changed"),self)
+        self.points_changed.emit()
         return ind
 
     def set_points (self, points) :
@@ -438,7 +440,8 @@ class PointSelection (QtWidgets.QMainWindow) :
                 textid.setPen(QtGui.QPen(col))
                 self._points.append( (pid,item,x,y,z,textid) )
             self.update_pix()
-            self.emit(QtCore.pyqtSignal("points_changed"),self)
+            # self.emit(QtCore.pyqtSignal("points_changed"),self)
+            self.points_changed.emit()
 
 def point_selection (image, palette_name = "grayscale", color_index_max = None) :
     
