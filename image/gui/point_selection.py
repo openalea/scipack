@@ -310,7 +310,7 @@ class PointSelection (QtWidgets.QMainWindow) :
     ##############################################
 
     def on_mouse_pressed (self):
-        pos = self._widget.to_inheritance_event.pos
+        pos = self._widget.to_inheritance_event.pos()
         if pos is not None :
             sc_coords = self._widget.mapToScene(pos)
             if self._action_add.isChecked() :
