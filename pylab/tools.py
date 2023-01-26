@@ -493,7 +493,7 @@ def get_kwds_from_line2d(line2d=None, input_kwds={}, type=None):
             pass
         
     if type=='specgram':
-        for x in s['facecolor','color','linewidth',
+        for x in ['facecolor','color','linewidth',
                    'linestyle','marker','markersize','markeredgewidth',
                    'fillstyle','markeredgecolor']:
             try:
