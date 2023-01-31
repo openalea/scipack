@@ -23,9 +23,7 @@ class GetDataBrowser(NodeWidget, QtWidgets.QDialog, metaclass=make_metaclass()):
         
         self.package_lineedit = QtWidgets.QLineEdit(self)
         self.gridlayout.addWidget(self.package_lineedit, 0, 1, 1, 3)
-        self.connect(self.package_lineedit, 
-                     QtCore.SIGNAL("textChanged()"), 
-                     self.package_changed)
+        self.package_lineedit.textChanged.connect(self.package_changed)
 
         self.metadata_textedit = QtWidgets.QTextEdit('', self)
         self.metadata_textedit.setReadOnly(True)
@@ -37,17 +35,13 @@ class GetDataBrowser(NodeWidget, QtWidgets.QDialog, metaclass=make_metaclass()):
 
         self.glob_lineedit = QtWidgets.QLineEdit(self)
         self.gridlayout.addWidget(self.glob_lineedit, 2, 1, 1, 2)
-        self.connect(self.glob_lineedit, 
-                     QtCore.SIGNAL("textChanged()"), 
-                     self.glob_changed)
+        self.glob_lineedit.textChanged.connect(self.glob_changed)
 
         self.filenames_combobox_label = QtWidgets.QLabel('3. Select the data file:', self)
         self.gridlayout.addWidget(self.filenames_combobox_label, 3, 0)
 
         self.filenames_combobox = QtWidgets.QComboBox(self)
-        self.connect(self.filenames_combobox,
-                     QtCore.SIGNAL("activated()"), 
-                     self.filename_changed)
+        self.filenames_combobox.activated.connect(self.filename_changed)
         self.gridlayout.addWidget(self.filenames_combobox, 3, 1, 1, 3)
 
         self.setWindowTitle("GetDatabrowser")
