@@ -24,12 +24,12 @@ from openalea.core.interface import *
 
 __name__ = "openalea.numpy.random"
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 __license__ = 'CECILL-C'
 __authors__ = 'OpenAlea Consortium'
 __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Numpy wrapping and utils module.'
-__url__ = 'http://openalea.gforge.inria.fr'
+__url__ = 'http://openalea.rtfd.io'
 __icon__ = 'icon.png'
 
 __all__ = []
