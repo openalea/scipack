@@ -40,7 +40,7 @@ rand = Factory(name = "rand",
     category = "numpy",
     inputs = (dict(name='d', interface=IInt),),
     outputs = (dict(name='array', interface= None),),
-    nodemodule = "numpy_wralea.random.vnumpy",
+    nodemodule = "openalea.numpy_wralea.random.vnumpy",
     nodeclass = "wra_rand",
     )
 
@@ -52,7 +52,7 @@ randn = Factory(name = "randn",
     category = "numpy",
     inputs = (dict(name='n', interface=IInt),),
     outputs = (dict(name='array', interface= None),),
-    nodemodule = "numpy_wralea.random.vnumpy",
+    nodemodule = "openalea.numpy_wralea.random.vnumpy",
     nodeclass = "wra_randn",
     )
 
@@ -64,7 +64,7 @@ random = Factory(name = "random",
     category = "numpy",
     inputs = (dict(name='size', interface=ITuple),),
     outputs = (dict(name='array', interface= None),),
-    nodemodule = "numpy_wralea.random.vnumpy",
+    nodemodule = "openalea.numpy_wralea.random.vnumpy",
     nodeclass = "wra_random",
     )
 
@@ -76,7 +76,7 @@ standard_normal = Factory(name = "standard_normal",
     category = "numpy",
     inputs = (dict(name='size', interface=ITuple),),
     outputs = (dict(name='array', interface= None),),
-    nodemodule = "numpy_wralea.random.vnumpy",
+    nodemodule = "openalea.numpy_wralea.random.vnumpy",
     nodeclass = "wra_standard_normal",
     )
 
@@ -91,7 +91,7 @@ uniform = Factory(name = "uniform",
             dict(name='high', interface=IFloat, value=1.0),
             dict(name='size', interface=IInt, value=1)),
     outputs = (dict(name='ndarray', interface= None),),
-    nodemodule = "numpy_wralea.random.vnumpy",
+    nodemodule = "openalea.numpy_wralea.random.vnumpy",
     nodeclass = "wra_uniform",
     )
 

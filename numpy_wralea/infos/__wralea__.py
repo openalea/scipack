@@ -76,7 +76,7 @@ dtype = Factory(name = "dtype",
 		category = "numpy",
 		inputs = (dict(name='array', interface=None),),
 		outputs = (dict(name='dtype', interface= None),),
-        nodemodule = "numpy_wralea.infos",   
+        nodemodule = "openalea.numpy_wralea.infos",   
 		nodeclass = "wra_dtype",
 		)
 
@@ -88,7 +88,7 @@ itemsize = Factory(name = "itemsize",
 		category = "numpy",
 		inputs = (dict(name='array', interface=None),),
 		outputs = (dict(name='itemsize', interface= IInt),),
-                nodemodule = "numpy_wralea.infos",
+                nodemodule = "openalea.numpy_wralea.infos",
 		nodeclass = "wra_itemsize",
 		)
 
