@@ -152,7 +152,7 @@ def test_eval():
 def test_zip():
     """ Test of node zip """
     res = run(('openalea.python method', 'zip'),
-        inputs={'s1': list(range(10)), 's2': list(range(10))}, pm=pm)
+        inputs={'in1': list(range(10)), 'in2': list(range(10))}, pm=pm)
     assert res[0] == [(i, i) for i in range(10)]
 
 
