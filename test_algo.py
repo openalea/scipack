@@ -21,7 +21,7 @@ __license__= "Cecill-C"
 __revision__ = " $Id: __init__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
 from numpy import array, random, zeros
-from openalea.vpltk.qt import QtWidgets
+from qtpy import QtWidgets
 from openalea.image.all import (rainbow,grayscale,bw,
 				apply_mask,saturate,high_level,color_select, to_pix)
 

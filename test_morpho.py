@@ -14,7 +14,7 @@
 #
 
 import numpy as np
-from openalea.vpltk.qt import QtWidgets
+from qtpy import QtWidgets
 import matplotlib.pyplot as plt
 
 from openalea.image.all import component_labeling

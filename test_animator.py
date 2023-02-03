@@ -20,7 +20,7 @@ Test frame manipulator
 __license__= "Cecill-C"
 __revision__ = " $Id: __init__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
-from openalea.vpltk.qt import QtGui, QtWidgets
+from qtpy import QtGui, QtWidgets
 from openalea.image.all import rainbow, FrameAnimator
 
 qapp = QtWidgets.QApplication.instance()

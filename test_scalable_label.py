@@ -20,7 +20,7 @@ Test frame manipulator
 __license__= "Cecill-C"
 __revision__ = " $Id: __init__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
-from openalea.vpltk.qt import QtWidgets
+from qtpy import QtWidgets
 from openalea.image.all import imread, to_pix,ScalableLabel
 from numpy import zeros,uint32
 

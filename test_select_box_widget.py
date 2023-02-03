@@ -1,4 +1,4 @@
-from openalea.vpltk.qt import QtWidgets
+from qtpy import QtWidgets
 from openalea.image_wralea.gui.select_box_widget import SelectBoxWidget
 
 

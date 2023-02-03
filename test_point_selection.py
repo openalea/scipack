@@ -18,7 +18,7 @@ Test point selection
 __license__= "Cecill-C"
 __revision__ = " $Id: $ "
 
-from openalea.vpltk.qt import QtWidgets
+from qtpy import QtWidgets
 from openalea.image.all import point_selection, SpatialImage
 from square import square
 from scipy.ndimage import rotate
