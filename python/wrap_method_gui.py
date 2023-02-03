@@ -23,7 +23,7 @@ from inspect import getmembers, ismethod, isfunction, isbuiltin
 from openalea.visualea.node_widget import NodeWidget, DefaultNodeWidget
 from openalea.core.observer import lock_notify
 
-from openalea.vpltk.qt import QtGui, QtCore, QtWidgets
+from qtpy import QtGui, QtCore, QtWidgets
 
 class SelectCallable(QtWidgets.QWidget, NodeWidget):
     def __init__(self, node, parent):

@@ -1,4 +1,4 @@
-from openalea.vpltk.qt import QtCore, QtWidgets
+from qtpy import QtCore, QtWidgets
 
 from openalea.core.interface import make_metaclass
 from openalea.core.system import systemnodes

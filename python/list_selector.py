@@ -13,7 +13,7 @@
 ################################################################################
 # Widgets
 
-from openalea.vpltk.qt import QtGui, QtCore, QtWidgets
+from qtpy import QtGui, QtCore, QtWidgets
 
 from openalea.core.observer import lock_notify
 from openalea.visualea.node_widget import NodeWidget

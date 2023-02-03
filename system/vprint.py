@@ -6,7 +6,7 @@ __license__ = "Cecill-C"
 from openalea.core.node import AbstractNode, Node
 
 try:
-    from openalea.vpltk.qt import QtCore, QtWidgets
+    from qtpy import QtCore, QtWidgets
     __visual_print_enabled = True
     from .ui_vprint import Ui_Dialog
     
