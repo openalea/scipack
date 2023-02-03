@@ -17,7 +17,7 @@
 
 from openalea.image.pil import Image
 
-from openalea.vpltk.qt.QtGui import QImage, qRgb
+from qtpy.QtGui import QImage, qRgb
 
 ##
 # (Internal) Turns an RGB color into a Qt compatible color integer.

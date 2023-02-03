@@ -22,7 +22,7 @@
 import weakref
 import numpy as np
 
-from openalea.vpltk.qt import QtWidgets, QtCore
+from qtpy import QtWidgets, QtCore
 
 from openalea.image.spatial_image import SpatialImage
 
@@ -65,7 +65,7 @@ def connect(widget, signal, method):
         if hasattr(signal, 'connect') and hasattr(signal, 'disconnect'):
             signal.connect(method)
         elif isinstance(signal, str):
-            widget.connect(widget, QtCore.pyqtSignal(signal), method)
+            widget.connect(widget, QtCore.Signal(signal), method)
         else:
             raise NotImplementedError('Signal %s support is not implemented' % signal)
 
@@ -78,7 +78,7 @@ def disconnect(widget, signal, method):
             pass
         else:
             raise NotImplementedError('Signal %s support is not implemented' % signal)
-        widget.disconnect(widget, QtCore.pyqtSignal(signal), method)
+        widget.disconnect(widget, QtCore.Signal(signal), method)
 
 
 class ImageStackViewerPanel(QtWidgets.QWidget):

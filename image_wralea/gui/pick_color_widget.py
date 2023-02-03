@@ -17,7 +17,7 @@ Expose the animator as a visualea node
 
 __revision__ = " $$ "
 
-from openalea.vpltk.qt import QtGui, QtCore, QtWidgets
+from qtpy import QtGui, QtCore, QtWidgets
 
 from openalea.core import Node
 from openalea.visualea.node_widget import NodeWidget
@@ -39,7 +39,7 @@ class InteractiveScalableLabel(ScalableLabel) :
 
 	def mouseDoubleClickEvent (self, event) :
 		self._last_mouse_pos = None
-		self.emit(QtCore.pyqtSignal("mouse_double_click"),event)
+		self.emit(QtCore.Signal("mouse_double_click"),event)
 
 	def mousePressEvent (self, event) :
 		self._last_mouse_pos = event.pos()
@@ -47,13 +47,13 @@ class InteractiveScalableLabel(ScalableLabel) :
 	def mouseReleaseEvent (self, event) :
 		if self._last_mouse_pos is not None :
 			if self._last_mouse_pos == event.pos() :
-				self.emit(QtCore.pyqtSignal("mouse_click"),event)
+				self.emit(QtCore.Signal("mouse_click"),event)
 
 			self._last_mouse_pos = None
 
 	def mouseMoveEvent (self, event) :
 		if self._last_mouse_pos is None :
-			self.emit(QtCore.pyqtSignal("mouse_move"),event)
+			self.emit(QtCore.Signal("mouse_move"),event)
 
 
 class PickColorWidget(NodeWidget, QtWidgets.QWidget) :

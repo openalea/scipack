@@ -18,7 +18,7 @@
 #
 ###############################################################################
 
-from openalea.vpltk.qt import QtGui, QtCore, QtWidgets
+from qtpy import QtGui, QtCore, QtWidgets
 from openalea.image.gui.slide_viewer_widget import ImageStackViewerWidget, to_image
 from openalea.oalab.control.widget import AbstractQtControlWidget
 from openalea.oalab.painter import AbstractPainter

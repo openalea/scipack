@@ -21,7 +21,7 @@ This module defines functions to transform images into QPixmaps
 __license__= "Cecill-C"
 __revision__ = " $Id: __init__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
-from openalea.vpltk.qt import QtGui
+from qtpy import QtGui
 from numpy import array, zeros, uint32, uint8
 
 from openalea.image.spatial_image import SpatialImage

@@ -26,7 +26,7 @@ __revision__=" $Id: $ "
 __all__ = ["display","SlideViewer"]
 
 import numpy as np
-from openalea.vpltk.qt import QtCore, QtGui, QtWidgets
+from qtpy import QtCore, QtGui, QtWidgets
 
 from openalea.image.spatial_image import SpatialImage
 

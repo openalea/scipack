@@ -20,7 +20,7 @@ This module defines a widget to animate a sequence of images
 __license__= "Cecill-C"
 __revision__ = " $Id: __wralea__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
-from openalea.vpltk.qt import QtCore, QtGui, QtWidgets
+from qtpy import QtCore, QtGui, QtWidgets
 
 from . import icons_rc
 

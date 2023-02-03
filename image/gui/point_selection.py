@@ -22,7 +22,7 @@ __revision__=" $Id$ "
 __all__ = ["PointSelection","point_selection"]
 
 
-from openalea.vpltk.qt import QtGui, QtCore, QtWidgets
+from qtpy import QtGui, QtCore, QtWidgets
 
 import numpy as np
 from . import icons_rc
@@ -39,7 +39,7 @@ except ImportError:
 
 
 class PointSelection (QtWidgets.QMainWindow) :
-    points_changed = QtCore.pyqtSignal()
+    points_changed = QtCore.Signal()
     def __init__ (self) :
         QtWidgets.QMainWindow.__init__(self)
 
@@ -325,7 +325,7 @@ class PointSelection (QtWidgets.QMainWindow) :
         img = self._view.image()
         if img is not None :
             i,j,k = self._view.data_coordinates(item_coords.x(),item_coords.y())
-            self.emit(QtCore.pyqtSignal("mouse_moved"), (i,j,k))
+            self.emit(QtCore.Signal("mouse_moved"), (i,j,k))
 
     def slice_changed (self, ind) :
         self._last_slice = ind

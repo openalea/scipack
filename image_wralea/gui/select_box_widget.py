@@ -17,7 +17,7 @@ Expose the animator as a visualea node
 
 __revision__ = " $$ "
 
-from openalea.vpltk.qt import QtGui, QtCore, QtWidgets
+from qtpy import QtGui, QtCore, QtWidgets
 
 from openalea.core import Node
 from openalea.visualea.node_widget import NodeWidget

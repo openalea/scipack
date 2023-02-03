@@ -18,7 +18,7 @@
 #
 ###############################################################################
 
-from openalea.vpltk.qt import QtWidgets, QtCore
+from qtpy import QtWidgets, QtCore
 from openalea.image.gui.slide_viewer_widget import ImageStackViewerWidget, ImageStackViewerPanel, connect, disconnect
 from openalea.core.observer import AbstractListener
 from openalea.core.world import World

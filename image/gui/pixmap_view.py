@@ -25,7 +25,7 @@ __all__ = ["PixmapView","PixmapStackView",
            "ScalableLabel","ScalableGraphicsView"]
 
 from numpy import array,uint32, uint8
-from openalea.vpltk.qt import QtCore, QtGui, QtWidgets
+from qtpy import QtCore, QtGui, QtWidgets
                          
 from .pixmap import to_img, to_pix
 from openalea.image.spatial_image import SpatialImage
@@ -386,8 +386,8 @@ class ScalableLabel (QtWidgets.QLabel) :
     """Scalable label that respect the ratio of the pixmap it display
     """
 
-    mouse_move = QtCore.pyqtSignal()
-    mouse_press = QtCore.pyqtSignal()
+    mouse_move = QtCore.Signal()
+    mouse_press = QtCore.Signal()
 
     def __init__ (self, parent = None) :
         QtWidgets.QLabel.__init__(self,parent)
@@ -465,8 +465,8 @@ class ScalableGraphicsView (QtWidgets.QGraphicsView) :
     """Graphics View that always zoom to fit it's content
     """
 
-    mouse_move = QtCore.pyqtSignal()
-    mouse_press = QtCore.pyqtSignal()
+    mouse_move = QtCore.Signal()
+    mouse_press = QtCore.Signal()
 
     def __init__ (self, *args, **kwargs) :
         QtWidgets.QGraphicsView.__init__(self,*args,**kwargs)
