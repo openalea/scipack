@@ -24,15 +24,18 @@ class PyArray(Node):
     """
     Python array
     """
-    typecodes = ['c', 'b', 'B', 'u', 'i', 'I', 'l', 'L', 'f', 'd']
-    codename = ['character',
-                'signed integer (1)', 
+    typecodes = ['b', 'B', 'u', 'h', 'H', 'i', 'I', 'l', 'L', 'q', 'Q', 'f', 'd']
+    codename = ['signed integer (1)', 
                 'unsigned integer (1)',
                 'unicode character (2)',
+                'signed short (2)',
+                'unsigned short (2)',
                 'signed integer (2)', 
                 'unsigned integer (2)',
                 'signed integer (4)', 
                 'unsigned integer (4)',
+                'signed long long (8)',
+                'unsigned long long (8)',
                 'floating point (4)',
                 'floating point (8)',
                 ]
