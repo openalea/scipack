@@ -291,7 +291,7 @@ class PyLabXLabel(Node, CustomizeAxes):
             kwds[key] = value
 
         #input text and fontproperties are overwritten
-        kwds['fontsize'] = self.get_input('fontsize')
+#        kwds['fontsize'] = self.get_input('fontsize')
         kwds['labelpad'] = self.get_input('labelpad')
         kwds['verticalalignment'] = self.get_input('verticalalignment')
         kwds['horizontalalignment'] = self.get_input('horizontalalignment')
@@ -344,7 +344,7 @@ class PyLabYLabel(Node, CustomizeAxes):
         for key, value in self.get_input('kwargs').items():
             kwds[key] = value
 
-        kwds['fontsize'] = self.get_input('fontsize')
+#        kwds['fontsize'] = self.get_input('fontsize')
         kwds['labelpad'] = self.get_input('labelpad')
         kwds['verticalalignment'] = self.get_input('verticalalignment')
         kwds['horizontalalignment'] = self.get_input('horizontalalignment')

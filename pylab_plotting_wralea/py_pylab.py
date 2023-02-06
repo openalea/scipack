@@ -66,12 +66,15 @@ class Plotting(Node):
 
          """
         from pylab import figure
-        assert type(self.get_input('figure')) == int
+        if type(self.get_input('figure')) != int:  # if not set, we set to default value of 1
+            fig_ind = 1
+        else: 
+            fig_ind = self.get_input('figure')
         if self.fig == None:
-            fig = figure(self.get_input('figure'))
+            fig = figure(fig_ind)
             self.fig = fig
         else:
-            fig = figure(self.get_input('figure'))
+            fig = figure(fig_ind)
             if fig == self.fig:
                 #print 'figure exist already, nothing to do'
                 pass
@@ -216,16 +219,17 @@ class PlotxyInterface():
             yinputs = self.get_input("r")
 
         # convert x and y inputs into lists
-        if xinputs == None:
+        if xinputs is None:
             raise ValueError(self.ERROR_NOXDATA)
-        if type(xinputs)!=list:
-            xinputs = [xinputs]
-        if type(yinputs)!=list:
-            yinputs = [yinputs]
+        else:
+            if type(xinputs)!=list:
+                xinputs = [xinputs]
+            if type(yinputs)!=list:
+                yinputs = [yinputs]
 
         output = None
         # case of an x input without y input. line2D are all manage in this if statement
-        if yinputs[0]==None:
+        if yinputs[0] is None:
             #plot(line2D) and plot([line2D, line2D])
             if type(xinputs[0])==Line2D:
                 for x in xinputs:
@@ -242,7 +246,6 @@ class PlotxyInterface():
                             #print kwds
                             #print line2dkwds
                             pass
-                    #hold(True)
             #plot([x1,None,x2,None, ...) and plot(x1)
             else:
                 c = enumerate(tools.colors)
@@ -256,7 +259,6 @@ class PlotxyInterface():
                         output = plot(x, **kwds)
                     except:
                         raise ValueError("plot failed")
-                    #hold(True)
 
         else:
             if len(xinputs)==1 and len(yinputs)!=1:
@@ -272,7 +274,6 @@ class PlotxyInterface():
                         output = plot(xinputs[0], y, **kwds)
                     except:
                         raise ValueError("plot failed")
-                    #hold(True)
             else:
                 if len(xinputs)!=len(yinputs):
                     print('warning more x inputs than y inputs. correct the connectors')
@@ -932,7 +933,6 @@ class PyLabXcorr(Plotting):
         #returns the processed data ?
         for x, y in zip(xinputs,yinputs):
             res =  xcorr(x, y, **kwds)
-            #hold(True)
         self.update_figure()
 
 
@@ -1122,7 +1122,6 @@ class PyLabBoxPlot(Plotting):
                 whis=self.get_input("whis"),
                 positions=self.get_input('positions'),
                 widths=self.get_input('widths'),
-                hold =self.get_input('hold'),
                 )
 
         self.update_figure()
@@ -1328,7 +1327,6 @@ class PyLabPie(Plotting):
             {'name':'labeldistance','interface':IFloat, 'value':1.1},
             {'name':'shadow',       'interface':IBool,  'value':False},
             {'name':'autopct',      'interface':IStr,   'value':None} #,
-            #{'name':'hold',      'interface':IBool,   'value':True}
         ]
         Plotting.__init__(self, inputs)
         self.add_output(name='output')
@@ -1346,8 +1344,6 @@ class PyLabPie(Plotting):
         kwds['labeldistance'] = self.get_input('labeldistance')
         kwds['shadow'] = self.get_input('shadow')
         kwds['autopct'] = self.get_input('autopct')
-        #hold is not valid when calling axe.pie but is valid is calling pylab.pie
-        #kwds['hold'] = self.get_input('hold')
 
         print(kwds)
         res = self.axe.pie(self.get_input('x'), **kwds)
@@ -1396,7 +1392,6 @@ class PyLabBar(Plotting):
                 #width = x[1]-x[0]
                 width=0.1
                 res = bar(x[1:],y, width=width, color=color[1], alpha=0.5)
-                #hold(True)
         self.update_figure()
 
         return self.axe, res
@@ -1534,7 +1529,6 @@ class PyLabCohere(Plotting):
                                        NFFT=NFFT, Fs=Fs, Fc=Fc, detrend=detrend,
                                window=window, noverlap=noverlap, pad_to=pad_to,
                                sides=sides, **line2dkwds)
-                    #hold(True)
 
         self.update_figure()
         return self.get_input('axes'), (cxy, freq)
@@ -1931,7 +1925,6 @@ class PyLabContour(Plotting):
                     c = kwds['colors']
                     kwds['colors'] = None
                     contourf(Z, **kwds)
-                    #hold(True)
                     kwds['colors'] = c
                     CS = contour(Z, **kwds)
                 else:
@@ -1941,7 +1934,6 @@ class PyLabContour(Plotting):
                     c = kwds['colors']
                     kwds['colors'] = None
                     contourf(Z, NV, **kwds)
-                    #hold(True)
                     kwds['colors'] = c
                     CS = contour(Z, NV, **kwds)
                 else:
@@ -1952,7 +1944,6 @@ class PyLabContour(Plotting):
                     c = kwds['colors']
                     kwds['colors'] = None
                     contourf(X, Y, Z, **kwds)
-                    #hold(True)
                     kwds['colors'] = c
                     CS = contour(X, Y, Z, **kwds)
                 else:
@@ -1962,7 +1953,6 @@ class PyLabContour(Plotting):
                     c = kwds['colors']
                     kwds['colors'] = None
                     contourf(X, Y, Z, NV,  **kwds)
-                    #hold(True)
                     kwds['colors'] = c
                     CS = contour(X, Y, Z, NV, **kwds)
                 else:
@@ -2762,7 +2752,6 @@ class PyLabErrorBar(Plotting, PlotxyInterface):
                     {'name':'uplims', 'interface':IBool, 'value':False},
                     {'name':'xuplims', 'interface':IBool, 'value':False},
                     {'name':'xlolims', 'interface':IBool, 'value':False},
-                    #{'name':'hold', 'interface':IBool, 'value':None},
                     {'name':'kwargs(line2d)','interface':IDict, 'value':{}},
 
         ]
