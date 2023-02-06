@@ -1083,7 +1083,7 @@ class PyLabAxes(Node):
             input_axes = axes(position, polar=self.get_input('polar'))
             if self.get_input('clear')==True:
                 input_axes.clear()
-            input_axes.set_axis_bgcolor(self.get_input('axisbg'))
+            input_axes.set_facecolor(self.get_input('axisbg'))
             input_axes.set_frame_on(self.get_input('frameon'))
             input_axes.set_xscale(self.get_input('xscale'))
             input_axes.set_yscale(self.get_input('yscale'))
@@ -1096,7 +1096,7 @@ class PyLabAxes(Node):
 
         for axe in input_axes:
             axe.set_position(position)
-            axe.set_axis_bgcolor(self.get_input('axisbg'))
+            axe.set_facecolor(self.get_input('axisbg'))
             axe.set_frame_on(self.get_input('frameon'))
             axe.set_xscale(self.get_input('xscale'))
             axe.set_yscale(self.get_input('yscale'))

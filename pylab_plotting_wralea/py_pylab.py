@@ -101,9 +101,9 @@ class Plotting(Node):
             print('Input axes found. Using it (%s)'  % self.get_input('axes'))
             axes = self.get_input('axes')
             import matplotlib
-            assert axes.__module__ in [matplotlib.axes.__name__,matplotlib.projections.polar.__name__], 'input must be a valid axes from matplotlib.axes %s given for %s' % (type(axes), axes)
+            if not axes.__module__ in [matplotlib.axes._axes.__name__,matplotlib.projections.polar.__name__]:
+                print('input must be a valid axes from matplotlib.axes %s given for %s' % (type(axes), axes))
             self.axe = axes
-            self.axe.hold(True)
             return
         #if an axe already exist, no need to create a new one: we simply clean it
         if self.axe:
@@ -182,7 +182,7 @@ class PlotxyInterface():
 
         if several x are provided, different colors will be used for the markers cycling over the available :class:`Colors`
         """
-        from pylab import hold, Line2D
+        from pylab import Line2D
         if plottype=='plot':
             from pylab import plot as plot
         elif plottype=='loglog':
@@ -242,7 +242,7 @@ class PlotxyInterface():
                             #print kwds
                             #print line2dkwds
                             pass
-                    hold(True)
+                    #hold(True)
             #plot([x1,None,x2,None, ...) and plot(x1)
             else:
                 c = enumerate(tools.colors)
@@ -256,7 +256,7 @@ class PlotxyInterface():
                         output = plot(x, **kwds)
                     except:
                         raise ValueError("plot failed")
-                    hold(True)
+                    #hold(True)
 
         else:
             if len(xinputs)==1 and len(yinputs)!=1:
@@ -272,7 +272,7 @@ class PlotxyInterface():
                         output = plot(xinputs[0], y, **kwds)
                     except:
                         raise ValueError("plot failed")
-                    hold(True)
+                    #hold(True)
             else:
                 if len(xinputs)!=len(yinputs):
                     print('warning more x inputs than y inputs. correct the connectors')
@@ -655,7 +655,7 @@ class PyLabHist(Plotting):
             {'name':'x'},
             {'name':'bins',         'interface':IInt, 'value':10},
             {'name':'facecolor',    'interface':IEnumStr(list(tools.colors.keys())), 'value':'blue'},
-            {'name':'normed',       'interface':IBool, 'value':False},
+            {'name':'density',      'interface':IBool, 'value':False},
             {'name':'cumulative',   'interface':IBool, 'value':False},
             {'name':'histtype',     'interface':IEnumStr(list(tools.histtype.keys())), 'value':'bar'},
             {'name':'align',        'interface':IEnumStr(list(tools.align.keys())), 'value':'mid'},
@@ -672,18 +672,18 @@ class PyLabHist(Plotting):
         self.add_output(name="counts")
 
     def __call__(self, inputs):
-        from pylab import cla, hold, hist, Line2D
+        from pylab import cla, hist, Line2D
         self.figure()
         self.axes()
         #cla()
         kwds={}
         kwds['bins']=self.get_input("bins")
-        kwds['normed']=self.get_input("normed")
+        kwds['density']=self.get_input("density")
         kwds['facecolor']=tools.get_valid_color(self.get_input("facecolor"))
         kwds['label']=self.get_input("label")
         kwds['log']=self.get_input("log")
         kwds['orientation']=tools.orientations[self.get_input("orientation")]
-        kwds['figure']=self.get_input("figure")
+        #kwds['figure']=self.get_input("figure")
         kwds['histtype']=tools.histtype[self.get_input("histtype")]
         kwds['align']=tools.align[self.get_input("align")]
         kwds['cumulative']=self.get_input("cumulative")
@@ -701,13 +701,11 @@ class PyLabHist(Plotting):
                     res = self.axe.hist(x.get_ydata(orig=False),**line2dkwds)
                 else:
                     res = self.axe.hist(x,**kwds)
-            hold(True)
         except ValueError as e:
             res = (None, None)
             print(e)
             raise ValueError('tttt')
 
-        hold(False)
         self.update_figure()
         return (self.axe,res, res[1],res[0])
 
@@ -719,7 +717,8 @@ class PyLabAcorr(Plotting):
     :param array x: an input array
     :param int maxlags: a positive integer detailing the number of lags to show.
         (default None means :math:`2 \times \mathrm{len}(x) - 1` lags).
-    :param bool normed: if *True*, normalize the data by the autocorrelation at 0-th lag.
+    :param bool density: if *True*, draw and return a probability density: each bin 
+        will display the bin's raw count divided by the total number of counts and the bin width.
     :param bool usevlines: If *True*, :meth:`~matplotlib.axes.Axes.vlines`
         rather than :meth:`~matplotlib.axes.Axes.plot` is used to draw
         vertical lines from the origin to the acorr.  Otherwise, the
@@ -770,7 +769,7 @@ class PyLabAcorr(Plotting):
         Plotting.__init__(self, inputs)
         self.add_output(name='output', interface=ITuple, value=())
     def __call__(self, inputs):
-        from pylab import clf, hold, acorr, Line2D, gca
+        from pylab import clf, acorr, Line2D, gca
         import pylab
         self.figure()
         self.axes()
@@ -780,14 +779,14 @@ class PyLabAcorr(Plotting):
         if type(line2d)==Line2D:
             kwds = line2d.properties()
             if self.get_input("usevlines") is False:
-                for x in ['axes', 'children',  'path','xdata', 'ydata', 'data','transform',
+                for x in ['axes', 'children', 'bbox', 'path','xdata', 'ydata', 'data','transform',
                           'xydata','transformed_clip_path_and_affine',
                           ]:
 
-                    del kwds[x]
+                    kwds.pop(x, None)
             else:
                 for x in ['axes', 'markerfacecoloralt','marker',
-                          'children', 'markeredgecolor',
+                          'children', 'bbox', 'markeredgecolor',
                           'dash_capstyle','solid_joinstyle','markeredgewidth',
                           'markerfacecolor','markevery','path',
                           'fillstyle','solid_capstyle',
@@ -795,7 +794,7 @@ class PyLabAcorr(Plotting):
                           'data','drawstyle','dash_joinstyle',
                           'xydata','transformed_clip_path_and_affine',
                           'transform']:
-                    del kwds[x]
+                    kwds.pop(x, None)
 
 
         else:
@@ -817,7 +816,6 @@ class PyLabAcorr(Plotting):
         #returns the processed data ?
         for x in xinputs:
             res =  acorr(x, **kwds)
-            hold(True)
         self.update_figure()
 
 
@@ -884,7 +882,7 @@ class PyLabXcorr(Plotting):
         Plotting.__init__(self, inputs)
         self.add_output(name='output', interface=ITuple, value=())
     def __call__(self, inputs):
-        from pylab import clf, hold, xcorr, Line2D, gca
+        from pylab import clf, xcorr, Line2D, gca
         import pylab
         self.figure()
         self.axes()
@@ -934,7 +932,7 @@ class PyLabXcorr(Plotting):
         #returns the processed data ?
         for x, y in zip(xinputs,yinputs):
             res =  xcorr(x, y, **kwds)
-            hold(True)
+            #hold(True)
         self.update_figure()
 
 
@@ -960,9 +958,7 @@ class PyLabScatter(Plotting):
     :param float vmax: used in conjunction with *norm* to normalize luminance data.
         If either *vmin* or *vmax* are *None*, the min and max of the color array *C* is used.
     :param float alpha: The alpha blending value. (default is 1.0)
-    :param bool faceted:
     :param float linewidth: width of a line in points (default is 1)
-    :param bool verts:
     :param int figure: figure id
 
     :returns:
@@ -999,9 +995,7 @@ class PyLabScatter(Plotting):
             {'name':"vmin",   'interface':IFloat, 'value' : None},
             {'name':"vmax",   'interface':IFloat, 'value' : None},
             {'name':"alpha", 'interface':IFloat(0,1,0.1), 'value':1.0},
-            {'name':"faceted",   'interface':IBool, 'value' : True},
             {'name':"linewidths",    'interface':None,     'value' : None},
-            {'name':"verts",    'interface':None,     'value' : None},
             {'name':"kwargs",    'interface':IDict,     'value' : {'edgecolors':'none', 'facecolors':'none'}},
         ]
 
@@ -1026,23 +1020,21 @@ class PyLabScatter(Plotting):
             vmin = None
             vmax = None
         alpha = self.get_input('alpha')
-        faceted = self.get_input('faceted')
 
         linewidths = self.get_input('linewidths')
-        verts = self.get_input('verts')
 
         kwds = {}
-        for key, value in self.get_input('kwargs').items():
-            kwds[key] = value
+        if self.get_input('kwargs'): 
+            for key, value in self.get_input('kwargs').items():
+                kwds[key] = value
 
         self.figure()
         self.axes()
 
         res = scatter(x,y, s=sizes,c=color,
                 marker=marker,norm=norm, vmin=vmin,vmax=vmax,
-                alpha=alpha, cmap=cmap, #faceted=faceted, # obsolete
-                linewidths=linewidths,
-                verts=verts)
+                alpha=alpha, cmap=cmap,
+                linewidths=linewidths, **kwds)
         self.update_figure()
 
 
@@ -1103,7 +1095,6 @@ class PyLabBoxPlot(Plotting):
             {'name':"whis",     'interface':IFloat,  'value':1.5},
             {'name':"positions",'interface':ISequence,  'value':None},
             {'name':"widths",   'interface':IFloat,     'value':None},
-            {'name':"hold",     "interface":IBool,      'value':True},
             {'name':"bootstrap",     "interface":IInt,      'value':None},
             {'name':"patch_artist",     'interface':IBool,  'value':False},
         ]
@@ -1112,7 +1103,7 @@ class PyLabBoxPlot(Plotting):
         self.add_output(name='output')
 
     def __call__(self, inputs):
-        from pylab import boxplot, hold
+        from pylab import boxplot
 
         self.figure()
         self.axes()
@@ -1188,7 +1179,7 @@ class PyLabLine2D(Node):
         xdata=self.get_input('xdata')
         ydata=self.get_input('ydata')
         #why?
-        if ydata == None or len(ydata)==0:
+        if not any(ydata) or len(ydata)==0:
             ydata = xdata
             xdata = list(range(0, len(ydata)))
         output = Line2D(
@@ -1336,8 +1327,8 @@ class PyLabPie(Plotting):
             {'name':'pctdistance',  'interface':IFloat, 'value':0.6},
             {'name':'labeldistance','interface':IFloat, 'value':1.1},
             {'name':'shadow',       'interface':IBool,  'value':False},
-            {'name':'autopct',      'interface':IStr,   'value':None},
-            {'name':'hold',      'interface':IBool,   'value':True}
+            {'name':'autopct',      'interface':IStr,   'value':None} #,
+            #{'name':'hold',      'interface':IBool,   'value':True}
         ]
         Plotting.__init__(self, inputs)
         self.add_output(name='output')
@@ -1382,7 +1373,7 @@ class PyLabBar(Plotting):
 
 
     def __call__(self, inputs):
-        from pylab import bar, hold, cla
+        from pylab import bar, cla
 
         self.figure()
         self.axes()
@@ -1405,7 +1396,7 @@ class PyLabBar(Plotting):
                 #width = x[1]-x[0]
                 width=0.1
                 res = bar(x[1:],y, width=width, color=color[1], alpha=0.5)
-                hold(True)
+                #hold(True)
         self.update_figure()
 
         return self.axe, res
@@ -1484,7 +1475,7 @@ class PyLabCohere(Plotting):
         self.add_output(name='output')
 
     def __call__(self, inputs):
-        from pylab import cohere, hold, Line2D
+        from pylab import cohere, Line2D
         import pylab
 
         self.figure()
@@ -1543,7 +1534,7 @@ class PyLabCohere(Plotting):
                                        NFFT=NFFT, Fs=Fs, Fc=Fc, detrend=detrend,
                                window=window, noverlap=noverlap, pad_to=pad_to,
                                sides=sides, **line2dkwds)
-                    hold(True)
+                    #hold(True)
 
         self.update_figure()
         return self.get_input('axes'), (cxy, freq)
@@ -1899,7 +1890,7 @@ class PyLabContour(Plotting):
         self.add_output(name='output')
 
     def __call__(self, inputs):
-        from pylab import contour, contourf, hold
+        from pylab import contour, contourf
 
         kwds={}
         X = self.get_input('X')
@@ -1940,7 +1931,7 @@ class PyLabContour(Plotting):
                     c = kwds['colors']
                     kwds['colors'] = None
                     contourf(Z, **kwds)
-                    hold(True)
+                    #hold(True)
                     kwds['colors'] = c
                     CS = contour(Z, **kwds)
                 else:
@@ -1950,7 +1941,7 @@ class PyLabContour(Plotting):
                     c = kwds['colors']
                     kwds['colors'] = None
                     contourf(Z, NV, **kwds)
-                    hold(True)
+                    #hold(True)
                     kwds['colors'] = c
                     CS = contour(Z, NV, **kwds)
                 else:
@@ -1961,7 +1952,7 @@ class PyLabContour(Plotting):
                     c = kwds['colors']
                     kwds['colors'] = None
                     contourf(X, Y, Z, **kwds)
-                    hold(True)
+                    #hold(True)
                     kwds['colors'] = c
                     CS = contour(X, Y, Z, **kwds)
                 else:
@@ -1971,7 +1962,7 @@ class PyLabContour(Plotting):
                     c = kwds['colors']
                     kwds['colors'] = None
                     contourf(X, Y, Z, NV,  **kwds)
-                    hold(True)
+                    #hold(True)
                     kwds['colors'] = c
                     CS = contour(X, Y, Z, NV, **kwds)
                 else:
@@ -2771,7 +2762,7 @@ class PyLabErrorBar(Plotting, PlotxyInterface):
                     {'name':'uplims', 'interface':IBool, 'value':False},
                     {'name':'xuplims', 'interface':IBool, 'value':False},
                     {'name':'xlolims', 'interface':IBool, 'value':False},
-                    {'name':'hold', 'interface':IBool, 'value':None},
+                    #{'name':'hold', 'interface':IBool, 'value':None},
                     {'name':'kwargs(line2d)','interface':IDict, 'value':{}},
 
         ]
@@ -2912,7 +2903,7 @@ class PyLabImshow(Plotting):
 
 
     def __call__(self, inputs):
-        from pylab import imshow, hold, subplot, show
+        from pylab import imshow, subplot, show
 
         self.figure()
         #self.axes()
