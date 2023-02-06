@@ -43,5 +43,5 @@ def axis_rotation_matrix(axis, angle, min_space=None, max_space=None):
 
 
 if __name__=="__main__":
-    print axis_rotation_matrix("Z", 90., max_space=(145, 50, 40))
+    print(axis_rotation_matrix("Z", 90., max_space=(145, 50, 40)))
 

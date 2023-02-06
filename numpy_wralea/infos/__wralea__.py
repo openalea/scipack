@@ -72,25 +72,25 @@ __all__.append("size")
 
 
 dtype = Factory(name = "dtype",
-		description = "Create a data type object",
-		category = "numpy",
-		inputs = (dict(name='array', interface=None),),
-		outputs = (dict(name='dtype', interface= None),),
-        nodemodule = "openalea.numpy_wralea.infos",   
-		nodeclass = "wra_dtype",
-		)
+		            description = "Create a data type object",
+		            category = "numpy",
+		            inputs = (dict(name='array', interface=None),),
+		            outputs = (dict(name='dtype', interface= None),),
+                nodemodule = "openalea.numpy.infos",   
+		            nodeclass = "wra_dtype",
+		           )
 
 __all__.append("dtype")
 
 
 itemsize = Factory(name = "itemsize",
-		description = "The element size of this data-type object",
-		category = "numpy",
-		inputs = (dict(name='array', interface=None),),
-		outputs = (dict(name='itemsize', interface= IInt),),
-                nodemodule = "openalea.numpy_wralea.infos",
-		nodeclass = "wra_itemsize",
-		)
+		               description = "The element size of this data-type object",
+		               category = "numpy",
+		               inputs = (dict(name='array', interface=None),),
+		               outputs = (dict(name='itemsize', interface= IInt),),
+                   nodemodule = "openalea.numpy.infos",
+		               nodeclass = "wra_itemsize",
+		              )
 
 __all__.append("itemsize")
 

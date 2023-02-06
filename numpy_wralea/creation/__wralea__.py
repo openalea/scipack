@@ -52,7 +52,7 @@ array = Factory(name= "array",
         dict(name='ndmin', interface= IInt,
         value=0),),
         outputs = (dict(name='array', interface=None),),
-        nodemodule = "openalea.numpy_wralea.basics",
+        nodemodule = "openalea.numpy.creation",
         nodeclass = "wra_array",
             )
 
@@ -303,7 +303,7 @@ fromfunction = Factory(name= "fromfunction",
                            dict(name='shape', interface=ITuple),
                            dict(name='dtype', interface=IEnumStr(list_type), value='float64'),),
      	        outputs = (dict(name='array', interface=None),),
-           	nodemodule = "openalea.numpy_wralea.basics",
+           	nodemodule = "openalea.numpy_wralea.creation",
            	nodeclass = "wra_fromfunction",
             )
 

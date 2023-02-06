@@ -7,7 +7,7 @@ class window(Node):
 
     def __init__(self):
         Node.__init__(self)
-        self.add_input(name='window', interface=IEnumStr(self.windows), value='hanning')
+        self.add_input(name='window', interface=IEnumStr(list(self.windows)), value='hanning')
         self.add_input(name='n', interface=IInt, value=256)
         self.add_input(name='beta (kaiser only)', interface=IFloat(0.,100.,1), value=14.)
         self.add_output(name='array')
