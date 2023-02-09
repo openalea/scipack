@@ -283,7 +283,7 @@ class PointSelection (QtWidgets.QMainWindow) :
     def save_points(self):
         pts = self.get_points()
         # load file
-        filename = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File',
+        filename, _ = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File',
                             '/home');
 #X         fname = str(filename)
 #X         f = open(fname,'w')
