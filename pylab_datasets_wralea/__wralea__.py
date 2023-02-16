@@ -31,7 +31,7 @@ __all__ = [
 py_pylab_PyLabBivariateNormal = Factory(name='PyLabBivariateNormal',
                 description='pylab.fontproperties interface.',
                 category='visualization, data processing',
-                nodemodule='py_pylab',
+                nodemodule='openalea.pylab_datasets_wralea.py_pylab',
                 nodeclass='PyLabBivariateNormal',
                 inputs=None, outputs=None, widgetmodule=None, widgetclass=None, lazy=True
                 )
@@ -39,7 +39,7 @@ py_pylab_PyLabBivariateNormal = Factory(name='PyLabBivariateNormal',
 py_pylab_PyLabSinWave = Factory(name='PyLabSinWave',
                 description='A*sin(2 pi w t)',
                 category='visualization, data processing',
-                nodemodule='py_pylab',
+                nodemodule='openalea.pylab_datasets_wralea.py_pylab',
                 nodeclass='PyLabSinWave',
                 inputs=None, outputs=None, widgetmodule=None, widgetclass=None, lazy=True
                 )

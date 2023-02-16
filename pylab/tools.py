@@ -552,7 +552,7 @@ class CustomizeAxes(object):
             axes = [axes]
             for axe in axes:
                 import matplotlib
-                assert axe.__module__ in [matplotlib.axes._axes.__name__,matplotlib.projections.polar.__name__], 'input must be a valid axes from matplotlib.axes %s given for %s' % (type(axes), axes)
+                assert axe.__module__ in [matplotlib.axes._axes.__name__,matplotlib.axes._subplots.__name__,matplotlib.projections.polar.__name__], 'input must be a valid axes from matplotlib.axes %s given for %s' % (type(axes), axes)
             return axes
 
 

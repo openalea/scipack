@@ -36,7 +36,7 @@ __all__ = [
 py_pylab_PyLabPatchDictionary = Factory(name='PyLabPatchDictionary',
                 description='pylab.fontproperties interface.',
                 category='visualization, data processing',
-                nodemodule='py_pylab',
+                nodemodule='openalea.pylab_patches_wralea.py_pylab',
                 nodeclass='PyLabPatchDictionary',
                 inputs=None, outputs=None, widgetmodule=None, widgetclass=None, lazy=False
                )
@@ -44,7 +44,7 @@ py_pylab_PyLabPatchDictionary = Factory(name='PyLabPatchDictionary',
 py_pylab_PyLabCircle = Factory(name='PyLabCircle',
                 description='pylab.fontproperties interface.',
                 category='visualization, data processing',
-                nodemodule='py_pylab',
+                nodemodule='openalea.pylab_patches_wralea.py_pylab',
                 nodeclass='PyLabCircle',
                 inputs=None, outputs=None, widgetmodule=None, widgetclass=None, lazy=False
                 )
@@ -53,7 +53,7 @@ py_pylab_PyLabCircle = Factory(name='PyLabCircle',
 py_pylab_PyLabEllipse = Factory(name='PyLabEllipse',
                 description='pylab.fontproperties interface.',
                 category='visualization, data processing',
-                nodemodule='py_pylab',
+                nodemodule='openalea.pylab_patches_wralea.py_pylab',
                 nodeclass='PyLabEllipse',
                 inputs=None, outputs=None, widgetmodule=None, widgetclass=None, lazy=False
                 )
@@ -61,7 +61,7 @@ py_pylab_PyLabEllipse = Factory(name='PyLabEllipse',
 py_pylab_PyLabRectangle = Factory(name='PyLabRectangle',
                 description='pylab.fontproperties interface.',
                 category='visualization, data processing',
-                nodemodule='py_pylab',
+                nodemodule='openalea.pylab_patches_wralea.py_pylab',
                 nodeclass='PyLabRectangle',
                 inputs=None, outputs=None, widgetmodule=None, widgetclass=None, lazy=False
                 )
@@ -69,7 +69,7 @@ py_pylab_PyLabRectangle = Factory(name='PyLabRectangle',
 py_pylab_PyLabPolygon = Factory(name='PyLabPolygon',
                 description='pylab.fontproperties interface.',
                 category='visualization, data processing',
-                nodemodule='py_pylab',
+                nodemodule='openalea.pylab_patches_wralea.py_pylab',
                 nodeclass='PyLabPolygon',
                 inputs=None, outputs=None, widgetmodule=None, widgetclass=None, lazy=False
                 )
@@ -77,7 +77,7 @@ py_pylab_PyLabPolygon = Factory(name='PyLabPolygon',
 py_pylab_PyLabWedge = Factory(name='PyLabWedge',
                 description='pylab.fontproperties interface.',
                 category='visualization, data processing',
-                nodemodule='py_pylab',
+                nodemodule='openalea.pylab_patches_wralea.py_pylab',
                 nodeclass='PyLabWedge',
                 inputs=None, outputs=None, widgetmodule=None, widgetclass=None, lazy=False
                 )
