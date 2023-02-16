@@ -66,15 +66,12 @@ class Plotting(Node):
 
          """
         from pylab import figure
-        if type(self.get_input('figure')) != int:  # if not set, we set to default value of 1
-            fig_ind = 1
-        else: 
-            fig_ind = self.get_input('figure')
+        assert type(self.get_input('figure')) == int
         if self.fig == None:
-            fig = figure(fig_ind)
+            fig = figure(self.get_input('figure'))
             self.fig = fig
         else:
-            fig = figure(fig_ind)
+            fig = figure(self.get_input('figure'))
             if fig == self.fig:
                 #print 'figure exist already, nothing to do'
                 pass
@@ -781,7 +778,7 @@ class PyLabAcorr(Plotting):
             kwds = line2d.properties()
             if self.get_input("usevlines") is False:
                 for x in ['axes', 'children', 'bbox', 'path','xdata', 'ydata', 'data','transform',
-                          'xydata','transformed_clip_path_and_affine',
+                          'xydata','transformed_clip_path_and_affine', 'picker'
                           ]:
 
                     kwds.pop(x, None)
@@ -790,7 +787,7 @@ class PyLabAcorr(Plotting):
                           'children', 'bbox', 'markeredgecolor',
                           'dash_capstyle','solid_joinstyle','markeredgewidth',
                           'markerfacecolor','markevery','path',
-                          'fillstyle','solid_capstyle',
+                          'picker','fillstyle','solid_capstyle',
                           'xdata','ydata','markersize',
                           'data','drawstyle','dash_joinstyle',
                           'xydata','transformed_clip_path_and_affine',
@@ -893,22 +890,22 @@ class PyLabXcorr(Plotting):
         if type(line2d)==Line2D:
             kwds = line2d.properties()
             if self.get_input("usevlines") is False:
-                for x in ['axes', 'children',  'path','xdata', 'ydata', 'data','transform',
+                for x in ['axes', 'children', 'bbox', 'path', 'picker', 'xdata', 'ydata', 'data','transform',
                           'xydata','transformed_clip_path_and_affine',
                           ]:
 
-                    del kwds[x]
+                    kwds.pop(x,None)
             else:
                 for x in ['axes', 'markerfacecoloralt','marker',
-                          'children', 'markeredgecolor',
+                          'children', 'bbox', 'markeredgecolor',
                           'dash_capstyle','solid_joinstyle','markeredgewidth',
                           'markerfacecolor','markevery','path',
-                          'fillstyle','solid_capstyle',
+                          'fillstyle','solid_capstyle', 'picker',
                           'xdata','ydata','markersize',
                           'data','drawstyle','dash_joinstyle',
                           'xydata','transformed_clip_path_and_affine',
                           'transform']:
-                    del kwds[x]
+                    kwds.pop(x, None)
 
 
         else:
@@ -995,7 +992,9 @@ class PyLabScatter(Plotting):
             {'name':"vmin",   'interface':IFloat, 'value' : None},
             {'name':"vmax",   'interface':IFloat, 'value' : None},
             {'name':"alpha", 'interface':IFloat(0,1,0.1), 'value':1.0},
+            {'name':"faceted",   'interface':IBool, 'value' : True},
             {'name':"linewidths",    'interface':None,     'value' : None},
+            {'name':"verts",    'interface':None,     'value' : None},
             {'name':"kwargs",    'interface':IDict,     'value' : {'edgecolors':'none', 'facecolors':'none'}},
         ]
 
@@ -1020,8 +1019,10 @@ class PyLabScatter(Plotting):
             vmin = None
             vmax = None
         alpha = self.get_input('alpha')
+        faceted = self.get_input('faceted')
 
         linewidths = self.get_input('linewidths')
+        verts = self.get_input('verts')
 
         kwds = {}
         if self.get_input('kwargs'): 
@@ -1095,6 +1096,7 @@ class PyLabBoxPlot(Plotting):
             {'name':"whis",     'interface':IFloat,  'value':1.5},
             {'name':"positions",'interface':ISequence,  'value':None},
             {'name':"widths",   'interface':IFloat,     'value':None},
+            {'name':"hold",     "interface":IBool,      'value':True},
             {'name':"bootstrap",     "interface":IInt,      'value':None},
             {'name':"patch_artist",     'interface':IBool,  'value':False},
         ]
@@ -1326,7 +1328,8 @@ class PyLabPie(Plotting):
             {'name':'pctdistance',  'interface':IFloat, 'value':0.6},
             {'name':'labeldistance','interface':IFloat, 'value':1.1},
             {'name':'shadow',       'interface':IBool,  'value':False},
-            {'name':'autopct',      'interface':IStr,   'value':None} #,
+            {'name':'autopct',      'interface':IStr,   'value':None},
+            {'name':'hold',      'interface':IBool,   'value':True}
         ]
         Plotting.__init__(self, inputs)
         self.add_output(name='output')
@@ -1764,7 +1767,7 @@ class PyLabPcolor(Plotting):
             {'name':"vmin",   'interface':IFloat, 'value' : None},
             {'name':"vmax",   'interface':IFloat, 'value' : None},
             {'name':"alpha", 'interface':IFloat(0,1,0.1), 'value':1.0},
-            {'name':"shading",   'interface':IEnumStr(list(tools.shadings.keys())), 'value' : 'flat'},
+            {'name':"shading",   'interface':IEnumStr(list(tools.shadings.keys())), 'value' : 'auto'},
             {'name':"kwargs(polycollection)",    'interface':IDict,     'value' : {}},
         ]
 
@@ -1890,7 +1893,7 @@ class PyLabContour(Plotting):
         X = self.get_input('X')
         Y = self.get_input('Y')
         Z = self.get_input('Z')
-        if Z == None:
+        if Z is None:
             raise ValueError('Z must be connected to a 2D array at least!')
 
         NV = self.get_input('N or V')
@@ -1919,7 +1922,7 @@ class PyLabContour(Plotting):
 
 
 
-        if X == None and Y == None:
+        if X is None and Y is None:
             if NV == None:
                 if self.get_input('filled')==True:
                     c = kwds['colors']
@@ -2039,12 +2042,9 @@ class PyLabPsd(Plotting):
         else:
             for key,value in self.get_input('kwargs(line2d)').items():
                 kwds[key] = value
-        for this in ['axes', 'children', 'path','data','ydata','xdata',
+        for this in ['axes', 'bbox', 'children', 'path', 'picker','data','ydata','xdata',
                      'xydata','transformed_clip_path_and_affine', 'transform' ]:
-            try:
-                del kwds[this]
-            except:
-                pass
+            kwds.pop(this,None)
 
         x = self.get_input('x')
 
@@ -2152,12 +2152,9 @@ class PyLabCsd(Plotting):
         else:
             for key,value in self.get_input('kwargs(line2d)').items():
                 kwds[key] = value
-        for this in ['axes', 'children', 'path','data','ydata','xdata',
+        for this in ['axes', 'bbox', 'children', 'path','picker', 'data','ydata','xdata',
                      'xydata','transformed_clip_path_and_affine', 'transform' ]:
-            try:
-                del kwds[this]
-            except:
-                pass
+            kwds.pop(this,None)
 
         x = self.get_input('x')
         y = self.get_input('y')
@@ -2667,10 +2664,9 @@ class PyLabFillBetween(Plotting, PlotxyInterface):
         self.axes()
 
         kwds = self.get_input('kwargs (Patch)')
-        try:
-            del kwds['fill']
-        except:
-            pass
+        kwds.pop('fill', None)
+        kwds.pop('axes', None)
+        kwds.pop('figure', None)
 
         x = self.get_input('x')
         y1 = self.get_input('y1')
@@ -2752,6 +2748,7 @@ class PyLabErrorBar(Plotting, PlotxyInterface):
                     {'name':'uplims', 'interface':IBool, 'value':False},
                     {'name':'xuplims', 'interface':IBool, 'value':False},
                     {'name':'xlolims', 'interface':IBool, 'value':False},
+                    {'name':'hold', 'interface':IBool, 'value':None},
                     {'name':'kwargs(line2d)','interface':IDict, 'value':{}},
 
         ]
@@ -2767,12 +2764,11 @@ class PyLabErrorBar(Plotting, PlotxyInterface):
 
         if type(self.get_input('kwargs(line2d)')) == Line2D:
             kwds = tools.line2d2kwds(self.get_input('kwargs(line2d)'))
-            for this in ['axes', 'children',  'path', 'data', 'xdata', 'ydata',
+            for this in ['axes', 'bbox', 'children',  'path', 'data', 'xdata', 'ydata',
                          'xydata','transform', 'transformed_clip_path_and_affine',]:
-                    try:
-                        del kwds[this]
-                    except:
-                        pass
+                kwds.pop(this,None)
+        elif self.get_input('kwargs(line2d)') is None:
+            kwds = {}
         else:
             kwds = self.get_input('kwargs(line2d)')
 

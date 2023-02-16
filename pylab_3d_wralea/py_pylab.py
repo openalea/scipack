@@ -99,9 +99,9 @@ class PyLabPlot3D(Plotting):
             for key, value in self.get_input('kwargs').items():
                 kwds[key] = value
 
-        for x in ['axes', 'children',  'path','xdata', 'ydata', 'data','transform',
+        for x in ['axes', 'bbox', 'children', 'picker', 'path','xdata', 'ydata', 'data','transform',
                           'xydata','transformed_clip_path_and_affine']:
-            del kwds[x]
+            kwds.pop(x,None)
 
 
         kwds['markersize']=self.get_input("markersize")

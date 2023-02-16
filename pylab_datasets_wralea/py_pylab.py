@@ -38,11 +38,14 @@ class PyLabBivariateNormal(Node):
         self.add_output(name='Z', interface=ISequence, value=[])
 
     def __call__(self, inputs):
-        from matplotlib.mlab import bivariate_normal
+        from scipy.stats import multivariate_normal
+        import numpy as np
         X = self.get_input('X')
         Y = self.get_input('Y')
-        Z1 = bivariate_normal(X, Y, 1.0, 1.0, 0.0, 0.0)
-        Z2 = bivariate_normal(X, Y, 1.5, 0.5, 1, 1)
+        rv1 = multivariate_normal([0.0, 0.0], [[1.0, 0.0], [0.0, 1.0]])
+        rv2 = multivariate_normal([1.0, 1.0], [[1.5, 0.0], [0.0, 0.5]])
+        Z1 = rv1.pdf(np.dstack((X, Y)))
+        Z2 = rv2.pdf(np.dstack((X, Y)))
         # difference of Gaussians
         Z = 10.0 * (Z2 - Z1)
 

@@ -37,7 +37,6 @@ class PyLabPatchDictionary(Node):
     :class:`PyLabCircle`, :class:`PyLabPolygon` and so on. 
 
     :param float alpha: The alpha blending value. (default is 1.0)
-    :param axes:
     :param color:
     :param edgecolor:
     :param facecolor:
@@ -72,9 +71,9 @@ class PyLabPatchDictionary(Node):
         self.add_output(name='output')
     def __call__(self, inputs):
         kwds = {}
-        for x in ['alpha', 'axes', 'figure', 'fill', 'label', 'linestyle', 'linewidth']:
+        for x in ['alpha', 'figure', 'fill', 'label', 'linestyle', 'linewidth']:
             kwds[x]=self.get_input(x)
-        if self.get_input('color')!='None':
+        if bool(self.get_input('color')) and self.get_input('color')!='None':
             kwds['color'] = tools.colors[self.get_input('color')] 
         kwds['edgecolor'] = tools.colors[self.get_input('edgecolor')]
         kwds['facecolor'] = tools.colors[self.get_input('facecolor')]

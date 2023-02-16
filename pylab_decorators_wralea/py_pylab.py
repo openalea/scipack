@@ -863,7 +863,7 @@ class PyLabXLim(Node, CustomizeAxes):
         CustomizeAxes.__init__(self)
         self.add_input(name='axes')
         self.add_input(name='xmin', interface=IFloat, value=0. )
-        self.add_input(name='xmax', interface=IFloat, value=0. )
+        self.add_input(name='xmax', interface=IFloat, value=3. )
         self.add_input(name='kwargs', interface=IDict, value={})
         self.add_output(name='axes')
 

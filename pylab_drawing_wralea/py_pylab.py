@@ -292,21 +292,20 @@ class PyLabAxhline(Node,CustomizeAxes):
         y = self.get_input('y')
         xmin = self.get_input('xmin')
         xmax = self.get_input('xmax')
-        hold = self.get_input('hold')
 
         axes = self.get_axes()
 
         if type(self.get_input('kwargs or line2d')) == Line2D:
             line2d = self.get_input('kwargs or line2d')
             kwds = line2d.properties()
-            for this in ['transform','children','axes','path', 'data', 'xdata', 'ydata', 'xydata','transformed_clip_path_and_affine']:
-                del kwds[this]
+            for this in ['transform','bbox','children','axes','path', 'data', 'xdata', 'ydata', 'xydata', 'picker', 'tightbbox', 'transformed_clip_path_and_affine']:
+                kwds.pop(this,None)
         else:
             kwds = self.get_input('kwargs or line2d')
 
 
         for axe in axes:
-            line2d = axhline(y, xmin=xmin, xmax=xmax, hold=hold, **kwds)
+            line2d = axhline(y, xmin=xmin, xmax=xmax, **kwds)
             axe.add_line(line2d)
             axe.get_figure().canvas.draw()
 
@@ -356,20 +355,19 @@ class PyLabAxvline(Node,CustomizeAxes):
         x = self.get_input('x')
         ymin = self.get_input('ymin')
         ymax = self.get_input('ymax')
-        hold = self.get_input('hold')
 
         axes = self.get_axes()
 
         if type(self.get_input('kwargs or line2d')) == Line2D:
             line2d = self.get_input('kwargs or line2d')
             kwds = line2d.properties()
-            for this in ['transform','children','axes','path', 'data', 'xdata', 'ydata', 'xydata','transformed_clip_path_and_affine']:
+            for this in ['transform', 'bbox', 'children','axes','path', 'data', 'ticker', 'tightbbox', 'xdata', 'ydata', 'xydata','transformed_clip_path_and_affine']:
                 del kwds[this]
         else:
             kwds = self.get_input('kwargs or line2d')
 
         for axe in axes:
-            line2d = axvline(x, ymin=ymin, ymax=ymax, hold=hold, **kwds)
+            line2d = axvline(x, ymin=ymin, ymax=ymax, **kwds)
             axe.add_line(line2d)
             axe.get_figure().canvas.draw()
 
@@ -426,6 +424,11 @@ class PyLabAxhspan(Node, CustomizeAxes):
         self.add_output(name="axes")
     def __call__(self, inputs):
         from pylab import axhspan
+#        kwds = self.get_input('kwargs (Patch)')
+#        if ('figure' in kwds) and (type(kwds['figure'])==str):
+#            kwds.pop('figure')
+#        res = axhspan(self.get_input('ymin'), self.get_input('ymax'), xmin=self.get_input('xmin'),
+#                xmax=self.get_input('xmax'), **kwds)
         res = axhspan(self.get_input('ymin'), self.get_input('ymax'), xmin=self.get_input('xmin'),
                 xmax=self.get_input('xmax'), **self.get_input('kwargs (Patch)'))
         return res
