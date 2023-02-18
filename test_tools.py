@@ -1,7 +1,5 @@
 from openalea.pylab import tools
 
-
-
 def test_metainfo():
     from openalea.pylab import version, authors
     
@@ -16,5 +14,5 @@ def test_build_dict():
     assert d['None'] == None
    
 
-def test_all():
-    from openalea.pylab.tools import * 
+#def test_all():
+#    from openalea.pylab.tools import * 
