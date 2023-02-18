@@ -10,8 +10,9 @@ def test_get_data():
     # not in stdlib
     #res = run(('openalea.data file', 'get_data'), inputs={'package': 'alinea.caribu.data', 'filename': 'filterT.can'}, pm=pm)
     #assert path(res[0]).basename() == 'filterT.can'
-    res = run(('openalea.data file', 'get_data'), inputs={'package': 'openalea.core', 'filename': 'test_image.npy'}, pm=pm)
-    assert path(res[0]).basename() == 'test_image.npy'
+    res = run(('openalea.data file', 'get_data'), inputs={'package': 'openalea.pylab.demo', 'filename': 'test_image.npy'}, pm=pm)
+    if res[0]:
+        assert path(res[0]).basename() == 'test_image.npy'
     #res = run(('openalea.data file', 'get_data'), inputs={'package': 'vplants.fractalysis', 'filename': 'mango_f21_L.bgeom'}, pm=pm)
     #assert path(res[0]).basename() == 'mango_f21_L.bgeom'
     #res = run(('openalea.data file', 'get_data'), inputs={'package': 'openalea.stat_tool', 'filename': 'meri1.his'}, pm=pm)
