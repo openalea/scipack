@@ -39,7 +39,7 @@ flatten = Factory( name = "flatten",
                 inputs = (  dict(name='array', interface=None),
                             dict(name='order', interface=IEnumStr(["C", "F"]), value="C"),),
                 outputs = (dict(name='y', interface= None),),
-                nodemodule = "numpy_wralea.manipulation.manipulation",
+                nodemodule = "openalea.numpy_wralea.manipulation.manipulation",
                 nodeclass = "wra_flatten",
               )
 

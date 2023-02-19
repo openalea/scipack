@@ -52,7 +52,7 @@ std =  Factory(name = "std",
         dict(name='ddof', interface=IInt, value=0),
         ),
     outputs = None,
-    nodemodule="numpy_wralea.math.numpy_math",
+    nodemodule="openalea.numpy_wralea.math.numpy_math",
     nodeclass = "std",
     )
 __all__.append("std")
@@ -197,7 +197,7 @@ inv = Factory(name = "inv",
 		category = "numpy",
 		inputs = (dict(name='array', interface=ISequence),),
 		outputs = (dict(name='array', interface= ISequence),),
-                nodemodule = "numpy_wralea.math.numpy_math",
+                nodemodule = "openalea.numpy_wralea.math.numpy_math",
 		nodeclass = "inv",
 		)
 
@@ -629,7 +629,7 @@ sum = Factory(name = "sum",
         dict(name='axis', interface=IInt,  value=None),
         dict(name='dtype', interface=IEnumStr(list_type), value='float64')),
     outputs = None,
-    nodemodule="numpy_wralea.math.numpy_math",
+    nodemodule="openalea.numpy_wralea.math.numpy_math",
     nodeclass = "wra_sum",
     )
 __all__.append("sum")
@@ -642,7 +642,7 @@ min = Factory(name = "min",
         dict(name='array', interface=None),
         dict(name='axis', interface=IInt,  value=None),),
     outputs = None,
-    nodemodule="numpy_wralea.math.numpy_math",
+    nodemodule="openalea.numpy_wralea.math.numpy_math",
     nodeclass = "wra_min",
     )
 __all__.append("min")
@@ -654,7 +654,7 @@ max = Factory(name = "max",
                 inputs = (dict(name='array', interface=None),
                           dict(name='axis', interface=IInt, value=None),),
                 outputs = (dict(name='out', interface= None),),
-                nodemodule = "numpy_wralea.math.numpy_math",
+                nodemodule = "openalea.numpy_wralea.math.numpy_math",
                 nodeclass = "wra_max",
               )
 
