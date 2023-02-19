@@ -18,13 +18,13 @@ Test point selection
 __license__= "Cecill-C"
 __revision__ = " $Id: $ "
 
-from openalea.vpltk.qt import QtGui
+from qtpy import QtWidgets
 from openalea.image.all import point_selection, SpatialImage
 from square import square
 from scipy.ndimage import rotate
 
 
-qapp = QtGui.QApplication.instance()
+qapp = QtWidgets.QApplication.instance()
 if qapp:
     im1 = square()
     im2 = rotate(im1, 30)

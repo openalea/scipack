@@ -20,17 +20,17 @@ Test frame manipulator
 __license__= "Cecill-C"
 __revision__ = " $Id: __init__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
-from openalea.vpltk.qt import QtGui
+from qtpy import QtGui, QtWidgets
 from openalea.image.all import rainbow, FrameAnimator
 
-qapp = QtGui.QApplication.instance()
+qapp = QtWidgets.QApplication.instance()
 
 if qapp:
 	pal = rainbow(99)
 
 	frames = []
 
-	for i in xrange(100) :
+	for i in range(100) :
 		pix = QtGui.QPixmap(300,200)
 		pix.fill(QtGui.QColor(*tuple(pal[i]) ) )
 		frames.append(pix)
