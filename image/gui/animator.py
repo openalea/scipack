@@ -2,7 +2,7 @@
 #
 #       image: image manipulation GUI
 #
-#       Copyright 2006-2011 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Jerome Chopard <jerome.chopard@sophia.inria.fr>
 #                       Eric Moscardi <eric.moscardi@sophia.inria.fr>
@@ -20,20 +20,9 @@ This module defines a widget to animate a sequence of images
 __license__= "Cecill-C"
 __revision__ = " $Id: __wralea__.py 2245 2010-02-08 17:11:34Z cokelaer $ "
 
-def load_local(mod,modules):
-    modules = modules.split()
-    modules = ''.join(modules).split(',')
+from qtpy import QtCore, QtGui, QtWidgets
 
-    for m in modules:
-        globals()[m] = mod.__getattribute__(m)
-
-from openalea.vpltk.qt import QtGui, QtCore
-load_local(QtCore,'QObject,Qt,SIGNAL,QTimer')
-load_local(QtGui,"""QMainWindow,QLabel,QToolBar,
-                         QAction,QIcon,QSlider,
-                         QPixmap,QSpinBox""")
-
-import icons_rc
+from . import icons_rc
 
 def clone_action (ref_action, clone) :
 	clone.setText(ref_action.text() )
@@ -41,77 +30,69 @@ def clone_action (ref_action, clone) :
 	clone.setToolTip(ref_action.toolTip() )
 	clone.setShortcuts(ref_action.shortcuts() )
 
-class FrameAnimator (QMainWindow) :
+class FrameAnimator (QtWidgets.QMainWindow) :
 	"""Animate a list of frames
 	"""
 	def __init__ (self, parent = None) :
-		QMainWindow.__init__(self,parent)
+		QtWidgets.QMainWindow.__init__(self,parent)
 
-		self._pix_no_frames = QPixmap(":/image/forbidden.png")
+		self._pix_no_frames = QtGui.QPixmap(":/image/forbidden.png")
 
 		self._frames = [] #list of frame
 		self._current_frame = None #currently displayed frame
 
-		self._timer = QTimer() #used to animate the display
+		self._timer = QtCore.QTimer() #used to animate the display
 		self._timer.setInterval(40)
-		QObject.connect(self._timer,SIGNAL("timeout()"),self.step)
+		#QObject.connect(self._timer,SIGNAL("timeout()"),self.step)
+		self._timer.timeout.connect(self.step)
 
-		self._view = QLabel() #widget used to display the current frame
+		self._view = QtWidgets.QLabel() #widget used to display the current frame
 		self.setCentralWidget(self._view)
 
 		#UI
 		self._menu = self.menuBar().addMenu("anim")
 		self._action_bar = self.addToolBar("movie")
-		self._slider_bar = QToolBar("slider")
-		self.addToolBar(Qt.BottomToolBarArea,self._slider_bar)
+		self._slider_bar = QtWidgets.QToolBar("slider")
+		self.addToolBar(QtCore.Qt.BottomToolBarArea,self._slider_bar)
 
 		#close
-		self._action_close = QAction("close",self)
+		self._action_close = QtWidgets.QAction("close",self)
 		self._action_close.setShortcut("Escape")
 		self._menu.addAction(self._action_close)
-		QObject.connect(self._action_close,
-		                SIGNAL("triggered(bool)"),
-		                self.close_window)
+		self._action_close.triggered.connect(self.close_window)
 
 		self._menu.addSeparator()
 
 		#clear frames
-		self._action_clear = QAction("clear frames",self)
+		self._action_clear = QtWidgets.QAction("clear frames",self)
 		self._menu.addAction(self._action_clear)
-		QObject.connect(self._action_clear,
-		                SIGNAL("triggered(bool)"),
-		                self.clear_frames)
+		self._action_clear.triggered.connect(self.clear_frames)
 
 		self._menu.addSeparator()
 
 		#stop play/pause step
 		self._action_stop =self._action_bar.addAction("stop")
-		self._action_stop.setIcon(QIcon(":image/stop.png") )
-		QObject.connect(self._action_stop,
-		                SIGNAL("triggered(bool)"),
-		                self.stop)
+		self._action_stop.setIcon(QtGui.QIcon(":image/stop.png") )
+		self._action_stop.triggered.connect(self.stop)
 		self._menu.addAction(self._action_stop)
 
-		self._action_play = QAction("play",self)
-		self._action_play.setIcon(QIcon(":image/play.png") )
+		self._action_play = QtWidgets.QAction("play",self)
+		self._action_play.setIcon(QtGui.QIcon(":image/play.png") )
 		self._action_play.setShortcut("Space")
 
-		self._action_pause = QAction("pause",self)
-		self._action_pause.setIcon(QIcon(":image/pause.png") )
+		self._action_pause = QtWidgets.QAction("pause",self)
+		self._action_pause.setIcon(QtGui.QIcon(":image/pause.png") )
 		self._action_pause.setShortcut("Space")
 
 		self._toggle_running = self._action_bar.addAction("toggle")
-		QObject.connect(self._toggle_running,
-		                SIGNAL("triggered(bool)"),
-		                self.toggle_running)
+		
+		self._toggle_running.triggered.connect(self.toggle_running)
 		self._menu.addAction(self._toggle_running)
 
-		self._action_step = QAction("step",self)
-		self._action_step.setIcon(QIcon(":image/step.png") )
+		self._action_step = QtWidgets.QAction("step",self)
+		self._action_step.setIcon(QtGui.QIcon(":image/step.png") )
 		self._action_step.setShortcut("Ctrl+Space")
-		QObject.connect(self._action_step,
-		                SIGNAL("triggered(bool)"),
-		                self.step)
+		self._action_step.triggered.connect(self.step)
 		self._action_bar.addAction(self._action_step)
 		self._menu.addAction(self._action_step)
 
@@ -122,30 +103,24 @@ class FrameAnimator (QMainWindow) :
 		self._action_loop = self._action_bar.addAction("loop")
 		self._action_loop.setCheckable(True)
 		self._action_loop.setChecked(True)
-		self._action_loop.setIcon(QIcon(":image/loop.png") )
+		self._action_loop.setIcon(QtGui.QIcon(":image/loop.png") )
 		self._menu.addAction(self._action_loop)
 
-		QObject.connect(self._action_loop,
-		                SIGNAL("triggered(bool)"),
-		                self._loop_changed)
+		self._action_loop.triggered.connect(self._loop_changed)
 
 		#fps
-		self._fps_edit = QSpinBox()
+		self._fps_edit = QtWidgets.QSpinBox()
 		self._fps_edit.setRange(1,99)
 		self._fps_edit.setSuffix(" fps")
 		self._fps_edit.setValue(25)
 		self._action_bar.addWidget(self._fps_edit)
 
-		QObject.connect(self._fps_edit,
-		                SIGNAL("valueChanged(int)"),
-		                self._fps_changed)
+		self._fps_edit.valueChanged.connect(self._fps_changed)
 
 		#slider
-		self._frame_slider = QSlider(Qt.Horizontal)
+		self._frame_slider = QtWidgets.QSlider(QtCore.Qt.Horizontal)
 		self._slider_bar.addWidget(self._frame_slider)
-		QObject.connect(self._frame_slider,
-		                SIGNAL("valueChanged(int)"),
-		                self._current_frame_changed)
+		self._frame_slider.valueChanged.connect(self._current_frame_changed)
 
 		#init GUI
 		self.pause()
@@ -185,7 +160,7 @@ class FrameAnimator (QMainWindow) :
 		 - `frames` (list of str or QPixmap) - list of pixmap or frame path
 		"""
 		self.stop()
-		self._frames = [QPixmap(fr) for fr in frames]
+		self._frames = [QtGui.QPixmap(fr) for fr in frames]
 		self.nb_frame_changed()
 
 	def append_frame (self, frame) :
@@ -194,7 +169,7 @@ class FrameAnimator (QMainWindow) :
 		:Parameters:
 		 - `frame` (str or QPixmap) - filename or pixmap
 		"""
-		self._pix.append(QPixmap(frame) )
+		self._pix.append(QtGui.QPixmap(frame) )
 		self.nb_frame_changed()
 
 	def update_pix (self) :

@@ -40,7 +40,7 @@ except ImportError:
     from enthought.mayavi.core import lut_manager
 
 
-from colormaps import black_and_white, rainbow_full, rainbow_green2red, rainbow_red2blue
+from .colormaps import black_and_white, rainbow_full, rainbow_green2red, rainbow_red2blue
 import warnings
 #TODO : decorateurs
 
@@ -66,12 +66,12 @@ def img2polydata_simple(image, dictionnaire=None, verbose=True):
     #print image.shape
 
     xyz = {}
-    if verbose:print "on récupère les bounding box"
+    if verbose:print("on récupère les bounding box")
     bbox = nd.find_objects(image)
     #print labels
-    for label in xrange(2,max(labels)+1):
+    for label in range(2,max(labels)+1):
         if not label in labels: continue
-        if verbose:print "% until cells are built", label/float(max(labels))*100
+        if verbose:print("% until cells are built", label/float(max(labels))*100)
         slices = bbox[label-1]
         label_image = (image[slices] == label)
         #here we could add a laplacian function to only have the external shape
@@ -93,15 +93,15 @@ def img2polydata_simple(image, dictionnaire=None, verbose=True):
 
     polydata = tvtk.AppendPolyData()
     polys = {}
-    filtre=[i for i in xyz.keys() if i in dictionnaire.keys()]
+    filtre=[i for i in list(xyz.keys()) if i in list(dictionnaire.keys())]
     k=0.0
     for c in filtre:
-        if verbose: print "% until first polydata is built", k/float(len(filtre))*100
+        if verbose: print("% until first polydata is built", k/float(len(filtre))*100)
         k+=1.
         p=xyz[c]
         p=p.astype(np.float)
         pd = tvtk.PolyData(points=xyz[c].astype(np.float))
-        pd.point_data.scalars = [float(dictionnaire[c]) for i in xrange(len(xyz[c]))]    
+        pd.point_data.scalars = [float(dictionnaire[c]) for i in range(len(xyz[c]))]    
         f=tvtk.VertexGlyphFilter(input=pd)
         f2=tvtk.PointDataToCellData(input=f.output)
         polys[c]=f2.output
@@ -135,12 +135,12 @@ def img2polydata_complexe(image, list_remove=[], sc=None, verbose=False):
     #print image.shape
 
     xyz = {}
-    if verbose:print "on récupère les bounding box"
+    if verbose:print("on récupère les bounding box")
     bbox = nd.find_objects(image)
     #print labels
-    for label in xrange(2,max(labels)+1):
+    for label in range(2,max(labels)+1):
         if not label in labels: continue
-        if verbose:print "% until cells are built", label/float(max(labels))*100
+        if verbose:print("% until cells are built", label/float(max(labels))*100)
         slices = bbox[label-1]
         label_image = (image[slices] == label)
         #here we could add a laplacian function to only have the external shape
@@ -163,21 +163,21 @@ def img2polydata_complexe(image, list_remove=[], sc=None, verbose=False):
 
     polydata = tvtk.AppendPolyData()
     polys = {}
-    filtre=[i for i in xyz.keys() if i not in list_remove]
+    filtre=[i for i in list(xyz.keys()) if i not in list_remove]
     k=0.0
     for c in filtre:
-        if verbose: print "% until first polydata is built", k/float(len(filtre))*100
+        if verbose: print("% until first polydata is built", k/float(len(filtre))*100)
         k+=1.
         p=xyz[c]
         p=p.astype(np.float)
         pd = tvtk.PolyData(points=xyz[c].astype(np.float))
         if sc:
             try:
-                pd.point_data.scalars = [float(sc[c]) for i in xrange(len(xyz[c]))]
+                pd.point_data.scalars = [float(sc[c]) for i in range(len(xyz[c]))]
             except:
-                pd.point_data.scalars = [float(0) for i in xrange(len(xyz[c]))]
+                pd.point_data.scalars = [float(0) for i in range(len(xyz[c]))]
         else:
-            pd.point_data.scalars = [float(c) for i in xrange(len(xyz[c]))]
+            pd.point_data.scalars = [float(c) for i in range(len(xyz[c]))]
         f=tvtk.VertexGlyphFilter(input=pd)
         f2=tvtk.PointDataToCellData(input=f.output)
         polys[c]=f2.output
@@ -192,18 +192,18 @@ def img2polydata_complexe(image, list_remove=[], sc=None, verbose=False):
 
     if 0 in labels_not_in_sc: labels_not_in_sc.remove(0)
     if 1 in labels_not_in_sc: labels_not_in_sc.remove(1)
-    filtre=[i for i in xyz.keys() if i in list_remove or i in labels_not_in_sc]
+    filtre=[i for i in list(xyz.keys()) if i in list_remove or i in labels_not_in_sc]
     if filtre!=[]:
         polydata2 = tvtk.AppendPolyData()
         polys2 = {}    
         k=0.0
         for c in filtre:
-            if verbose: print "% until second polydata is built", k/float(len(filtre))*100
+            if verbose: print("% until second polydata is built", k/float(len(filtre))*100)
             k+=1.
             p=xyz[c]
             p=p.astype(np.float)
             pd = tvtk.PolyData(points=xyz[c].astype(np.float))
-            pd.point_data.scalars = [0. for i in xrange(len(xyz[c]))]
+            pd.point_data.scalars = [0. for i in range(len(xyz[c]))]
             f=tvtk.VertexGlyphFilter(input=pd)
             f2=tvtk.PointDataToCellData(input=f.output)
             polys2[c]=f2.output
@@ -228,9 +228,9 @@ def rootSpI(img, list_remove=[], sc=None, lut_range = False, verbose=False):
     
     # -- definition of the scalar range (default : min to max of the scalar value).
     if sc:
-        ran=[sc[i] for i in sc.keys() if i not in list_remove]
+        ran=[sc[i] for i in list(sc.keys()) if i not in list_remove]
         if (lut_range != None) and (lut_range != False):
-            print lut_range
+            print(lut_range)
             m.scalar_range = lut_range[0],lut_range[1]
         else:
             m.scalar_range = np.min(ran), np.max(ran)
@@ -341,7 +341,7 @@ def display3D(img, list_remove=[], dictionary=None, lut=black_and_white, lut_ran
         elif isinstance(img,SpatialImage):
             im = compute_cell_separation(img)
         else:
-            print "for now this file format is not managed by display3D"
+            print("for now this file format is not managed by display3D")
             return None
 
     # -- Management of file format
@@ -352,7 +352,7 @@ def display3D(img, list_remove=[], dictionary=None, lut=black_and_white, lut_ran
     elif isinstance(img,SpatialImage):
         a, a2, sc, m, m2 = rootSpI(img, list_remove = list_remove, sc = dictionary, lut_range = lut_range, verbose=verbose)
     else:
-        print "for now this file format is not managed by display3D"
+        print("for now this file format is not managed by display3D")
         return None
 
     # -- choice of colormap
@@ -454,7 +454,7 @@ def compute_cell_separation(mat):
 if __name__ == '__main__':
     im1 = imread('../../../test/segmentation.inr.gz')
     im1a=SpatialImageAnalysis(im1)
-    dictionary=dict(zip(im1a.labels(), im1a.volume()))
+    dictionary=dict(list(zip(im1a.labels(), im1a.volume())))
     labs=im1a.labels()
     L1=im1a.L1()[1]
     filtre=[i for i in labs if i not in L1]

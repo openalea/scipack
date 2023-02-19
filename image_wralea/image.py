@@ -1,7 +1,7 @@
 # -*- python -*-
 #
 #
-#       Copyright 2006-2010 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Chopard
 #
@@ -25,7 +25,7 @@ except ImportError:
     try:
         from scipy.misc import lena as sci_lena
     except ImportError:
-        print "lena unavailable"
+        print("lena unavailable")
 
 def lena():
     return SpatialImage(sci_lena())

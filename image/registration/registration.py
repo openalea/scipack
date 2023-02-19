@@ -165,7 +165,7 @@ def pts2transfo(x,y):
     At = A.transpose(0,2,1)
 
     #Maybe there is an another way to do not the "FOR" loop
-    for i in xrange(nx):
+    for i in range(nx):
         B[i] = np.dot(At[i],A[i])
 
     B = B.sum(0)

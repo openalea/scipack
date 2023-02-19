@@ -16,21 +16,21 @@
 __license__= "Cecill-C"
 __revision__ = " $Id$ "
 
-from pixmap import to_img,to_pix,to_tex
+from .pixmap import to_img,to_pix,to_tex
 
-from animator import FrameAnimator
-from pixmap_view import *
-from slide_viewer import *
-from palette import *
-from point_selection import *
-from colormaps import *
+from .animator import FrameAnimator
+from .pixmap_view import *
+from .slide_viewer import *
+from .palette import *
+from .point_selection import *
+from .colormaps import *
 
 try:
     from enthought.tvtk.tools import ivtk
 except ImportError:
     pass
 else:
-    from stack_view3D import *
+    from .stack_view3D import *
 
 # not these:
 #from scalable_view import *

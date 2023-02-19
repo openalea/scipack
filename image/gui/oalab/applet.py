@@ -4,7 +4,7 @@
 #
 #       OpenAlea.OALab: Multi-Paradigm GUI
 #
-#       Copyright 2015 INRIA - CIRAD - INRA
+#       Copyright 2015-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Guillaume Baty <guillaume.baty@inria.fr>
 #
@@ -18,17 +18,17 @@
 #
 ###############################################################################
 
-from openalea.vpltk.qt import QtGui, QtCore
+from qtpy import QtWidgets, QtCore
 from openalea.image.gui.slide_viewer_widget import ImageStackViewerWidget, ImageStackViewerPanel, connect, disconnect
 from openalea.core.observer import AbstractListener
 from openalea.core.world import World
 from openalea.image.spatial_image import SpatialImage
 
 
-class ImageStackViewer(QtGui.QTabWidget, AbstractListener):
+class ImageStackViewer(QtWidgets.QTabWidget, AbstractListener):
 
     def __init__(self):
-        QtGui.QTabWidget.__init__(self)
+        QtWidgets.QTabWidget.__init__(self)
         AbstractListener.__init__(self)
 
         self.setAcceptDrops(True)

@@ -2,7 +2,7 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006 - 2008 INRIA - CIRAD - INRA
+#       Copyright 2006 - 2023 INRIA - CIRAD - INRA
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
@@ -85,10 +85,10 @@ class AnimatorWidget(NodeWidget,FrameAnimator) :
 			elif event[1] == 3 :
 				self.set_loop(self.node.get_input(3) )
 			elif event[1] == 4 :
-				print "reinit",self.node.get_input(4)
+				print("reinit",self.node.get_input(4))
 
 	def fps_changed (self, fps) :
-		print "fps",fps
+		print("fps ",fps)
 		FrameAnimator.fps_changed(self,fps)
 		self.node.set_input(2,fps)
 

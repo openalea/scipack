@@ -60,7 +60,7 @@ class IdSetGenerator(object) :
                 return self._available_ids.pop()
         else :
             if id >= self._id_max :
-                self._available_ids.update(xrange(self._id_max,id))
+                self._available_ids.update(range(self._id_max,id))
                 self._id_max = id+1
                 return id
             else :
@@ -102,7 +102,7 @@ class IdListGenerator(object) :
                 return self._id_list.pop()
         else :
             if id>=self._id_max :
-                self._id_list.extend(range(self._id_max,id))
+                self._id_list.extend(list(range(self._id_max,id)))
                 self._id_max=id+1
                 return id
             else :

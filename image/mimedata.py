@@ -19,7 +19,8 @@
 ###############################################################################
 import mimetypes
 from openalea.core.path import path
-from openalea.oalab.mimedata import (MimeConversionError, QMimeCodec)
+from openalea.oalab.mimedata.qcodec import QMimeCodec
+from openalea.oalab.mimedata.exception import MimeConversionError
 from openalea.core.service.project import project_item
 from openalea.image.serial.basics import imread
 from openalea.oalab.mimedata.builtin import BuiltinDataCodec
@@ -27,14 +28,14 @@ from openalea.oalab.mimedata.builtin import BuiltinDataCodec
 
 def read_image_path(urls, mimetype_in, mimetype_out):
 
-    if isinstance(urls, basestring):
+    if isinstance(urls, str):
         urls = [urls]
     for url in urls:
         url = path(url)
         if url.exists():
             try:
                 data = imread(url)
-            except Exception, e:
+            except Exception as e:
                 e = MimeConversionError(url, mimetype_in, mimetype_out, e)
                 raise e
             else:
@@ -70,7 +71,7 @@ class IImageCodec(QMimeCodec):
         if not raw_data:
             return False
         if mimetype_in == 'openalealab/data':
-            data = BuiltinDataCodec().decode(raw_data, mimetype_in, mimetype_out)
+            data, _ = BuiltinDataCodec().decode(raw_data, mimetype_in, mimetype_out)
             url = data.path
         elif mimetype_in == 'text/uri-list':
             url = raw_data[0]
@@ -91,7 +92,7 @@ class IImageCodec(QMimeCodec):
             if mimetype_out == 'openalea/interface.IImage':
                 return read_image_path(raw_data, mimetype_in, mimetype_out)
         elif mimetype_in == 'openalealab/data':
-            data = BuiltinDataCodec().decode(raw_data, mimetype_in, mimetype_out)
+            data, _ = BuiltinDataCodec().decode(raw_data, mimetype_in, mimetype_out)
             if mimetype_out == 'openalea/interface.IImage':
                 return read_image_path(data.path, mimetype_in, mimetype_out)
         return None, {}

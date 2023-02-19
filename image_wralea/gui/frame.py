@@ -2,14 +2,13 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006 - 2008 INRIA - CIRAD - INRA  
+#       Copyright 2006 - 2023 INRIA - CIRAD - INRA  
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
 #           http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
 # 
-#       OpenAlea WebSite : http://openalea.gforge.inria.fr
-#
+#       OpenAlea WebSite : https://openalea.rtfd.io
 ################################################################################
 """ openalea.image """
 
@@ -26,7 +25,7 @@ def register_frames (viewer, step, im_path, name_template) :
 		viewer.saveSnapshot(imname)
 	else :
 		imname = ""
-		print "open viewer first :)"
+		print("open viewer first :)")
 	
 	return imname,
 

@@ -26,8 +26,8 @@ def liste():
     """
     list of accessible colormaps
     """
-    l=["black_and_white", "white_and_black", "rainbow_full", "rainbow_green2red", "rainbow_red2blue", "rainbow_green2blue", "rainbow_red2green", "rainbow_blue2red", "rainbow_blue2green"]
-    print 
+    l=["black_and_white", "white_and_black", "rainbow_full", "rainbow_green2red", 
+       "rainbow_red2blue", "rainbow_green2blue", "rainbow_red2green", "rainbow_blue2red", "rainbow_blue2green"]
 
 
 def black_and_white(lut):
