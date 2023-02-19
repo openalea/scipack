@@ -130,7 +130,7 @@ def test_recursion_factory():
     sgfactory1 = CompositeNodeFactory("graph1")
     sgfactory2 = CompositeNodeFactory("graph2")
 
-    map(pkg.add_factory, (sgfactory1, sgfactory2))
+    list(map(pkg.add_factory, (sgfactory1, sgfactory2)))
 
     assert len(pkg.get_names()) == 2
 

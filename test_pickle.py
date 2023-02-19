@@ -27,10 +27,10 @@ def test3():
 
 def check(node):
     d = node.__getstate__()
-    for k, v in d.iteritems():
+    for k, v in d.items():
         try:
             pickle.dumps(v)
         except:
-            print 'Pickle Error ', k
+            print(('Pickle Error ', k))
 
 

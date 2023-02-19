@@ -28,7 +28,7 @@ def test_getitem():
         inputs={'obj': {'a': 1, 'b': 2}, 'key': 'a'}, pm=pm)
     assert res[0] == 1
     res = run(('openalea.python method', 'getitem'),\
-        inputs={'obj': range(10), 'key': 2}, pm=pm)
+        inputs={'obj': list(range(10)), 'key': 2}, pm=pm)
     assert res[0] == 2
 
 
@@ -38,7 +38,7 @@ def test_setitem():
         inputs={'obj': {'a': 1, 'b': 2}, 'key': 'c', 'value': 3}, pm=pm)
     assert len(res[0]) == 3
     res = run(('openalea.python method', 'setitem'),
-        inputs={'obj': range(10), 'key': 2, 'value': 3}, pm=pm)
+        inputs={'obj': list(range(10)), 'key': 2, 'value': 3}, pm=pm)
     assert len(res[0]) == 10
     assert res[0][2] == 3
 
@@ -49,7 +49,7 @@ def test_delitem():
         inputs={'obj': {'a': 1, 'b': 2}, 'key': 'a'}, pm=pm)
     assert len(res[0]) == 1
     res = run(('openalea.python method', 'delitem'),
-        inputs={'obj': range(10), 'key': 2}, pm=pm)
+        inputs={'obj': list(range(10)), 'key': 2}, pm=pm)
     assert len(res[0]) == 9
 
 
@@ -59,7 +59,7 @@ def test_len():
         inputs={'obj': {'a': 1, 'b': 2}}, pm=pm)
     assert res[0] == 2
     res = run(('openalea.python method', 'len'),
-        inputs={'obj': range(10)}, pm=pm)
+        inputs={'obj': list(range(10))}, pm=pm)
     assert res[0] == 10
 
 
@@ -88,13 +88,13 @@ def test_range():
     """ Test of node range """
     res = run(('openalea.python method', 'range'),
         inputs={'start': 0, 'stop': 10, 'step': 2}, pm=pm)
-    assert res[0] == range(0, 10, 2)
+    assert res[0] == list(range(0, 10, 2))
 
 
 def test_enumerate():
     """ Test of node enumerate """
     res = run(('openalea.python method', 'enumerate'),
-        inputs={'obj': range(2, 10)}, pm=pm)
+        inputs={'obj': list(range(2, 10))}, pm=pm)
     assert res[0] == [(i-2, i) for i in range(2, 10)]
 
 
@@ -152,7 +152,7 @@ def test_eval():
 def test_zip():
     """ Test of node zip """
     res = run(('openalea.python method', 'zip'),
-        inputs={'s1': range(10), 's2': range(10)}, pm=pm)
+        inputs={'in1': list(range(10)), 'in2': list(range(10))}, pm=pm)
     assert res[0] == [(i, i) for i in range(10)]
 
 
@@ -161,7 +161,7 @@ def test_flatten():
     res = run(('openalea.python method', 'flatten'),
         inputs={'obj': [(3*i, 3*i+1, 3*i+2) for i in range(5)]}, pm=pm)
     assert len(res[0]) == 15
-    assert res[0] == range(15)
+    assert res[0] == list(range(15))
 
 
 def test_sum():
