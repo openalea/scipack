@@ -57,8 +57,8 @@ class PyLabFancyArrowDict(Node):
 
         #self.get_input('axes')
 
-        self.add_input(name='arrowstyle', interface=IEnumStr(tools.arrowstyles.keys()), value='simple')
-        self.add_input(name='connectionstyle', interface=IEnumStr(tools.connectionstyles.keys()), value='arc3')
+        self.add_input(name='arrowstyle', interface=IEnumStr(list(tools.arrowstyles.keys())), value='simple')
+        self.add_input(name='connectionstyle', interface=IEnumStr(list(tools.connectionstyles.keys())), value='arc3')
         self.add_input(name='relpos', interface=ITuple, value=(0.5,0.5))
         self.add_input(name='patchA', interface=IDict, value=None)
         self.add_input(name='patchB', interface=IDict, value=None)
@@ -67,7 +67,7 @@ class PyLabFancyArrowDict(Node):
         self.add_input(name='mutation_scale', interface=IFloat, value=1)
         self.add_input(name='mutation_aspect', interface=IFloat, value=1)
         self.add_input(name='pathPatch', interface=IDict, value=None)
-        self.add_input(name='ec', interface=IEnumStr(tools.linestyles.keys()), value='solid')
+        self.add_input(name='ec', interface=IEnumStr(list(tools.linestyles.keys())), value='solid')
         self.add_input(name='kwargs', interface=IDict, value={})
         #todo for connection style, connectionstyle="angle,angleA=0,angleB=-90,rad=10"
         #todo for arrowstyle:head_length=0.4,head_width=0.2 tail_width=0.3,shrink_factor=0.5
@@ -85,10 +85,10 @@ class PyLabFancyArrowDict(Node):
         kwds['mutation_scale'] = self.get_input('mutation_scale')
         kwds['mutation_aspect'] = self.get_input('mutation_aspect')
         #kwds['ec'] = tools.linestyles[self.get_input('ec')]
-        for key, value in self.get_input('kwargs').iteritems():
+        for key, value in self.get_input('kwargs').items():
             kwds[key] = value
 
-        print kwds
+        print(kwds)
 
         return (kwds,)
 
@@ -118,7 +118,7 @@ class PyLabYAArowDict(Node):
         self.add_input(name='headwidth', interface=IFloat(0,100,0.1), value=12)
         self.add_input(name='frac', interface=IFloat(0,1,0.05), value=0.1)
         self.add_input(name='alpha', interface=IFloat(0,1,0.05), value=1)
-        self.add_input(name='color', interface=IEnumStr(tools.colors.keys()), value='blue')
+        self.add_input(name='color', interface=IEnumStr(list(tools.colors.keys())), value='blue')
         self.add_input(name='kwargs', interface=IDict, value={})
         self.add_output(name='output', interface=IDict, value = {})
 
@@ -150,7 +150,7 @@ class PyLabBBox(Node):
     def __init__(self):
         Node.__init__(self)
 
-        self.add_input(name='boxstyle',interface=IEnumStr(tools.boxstyles.keys()), value='round')
+        self.add_input(name='boxstyle',interface=IEnumStr(list(tools.boxstyles.keys())), value='round')
         self.add_input(name='fc',interface=IFloat(0,1,0.1), value=0.8)
         self.add_input(name='pad',interface=IFloat(0,1,0.1), value=0.3)
         self.add_output(name='output', interface=IDict)
@@ -207,8 +207,8 @@ class PyLabAnnotate(Node):
         self.add_input(name='text', interface=IStr, value=None)
         self.add_input(name='xy', interface=ITuple, value=(0,0))
         self.add_input(name='xytext', interface=ITuple, value=(0,0))
-        self.add_input(name='xycoords', interface=IEnumStr(tools.xycoords.keys()), value='data')
-        self.add_input(name='textcoords', interface=IEnumStr(tools.xycoords.keys()), value='data')
+        self.add_input(name='xycoords', interface=IEnumStr(list(tools.xycoords.keys())), value='data')
+        self.add_input(name='textcoords', interface=IEnumStr(list(tools.xycoords.keys())), value='data')
         self.add_input(name='arrowprops', interface=IDict, value={'arrowstyle':'->', 'connectionstyle':'arc3'})
         self.add_input(name='bbox', interface=IDict, value=None)
         self.add_input(name='kwargs(text properties)', interface=IDict, value={})
@@ -292,21 +292,20 @@ class PyLabAxhline(Node,CustomizeAxes):
         y = self.get_input('y')
         xmin = self.get_input('xmin')
         xmax = self.get_input('xmax')
-        hold = self.get_input('hold')
 
         axes = self.get_axes()
 
         if type(self.get_input('kwargs or line2d')) == Line2D:
             line2d = self.get_input('kwargs or line2d')
             kwds = line2d.properties()
-            for this in ['transform','children','axes','path', 'data', 'xdata', 'ydata', 'xydata','transformed_clip_path_and_affine']:
-                del kwds[this]
+            for this in ['transform','bbox','children','axes','path', 'data', 'xdata', 'ydata', 'xydata', 'picker', 'tightbbox', 'transformed_clip_path_and_affine']:
+                kwds.pop(this,None)
         else:
             kwds = self.get_input('kwargs or line2d')
 
 
         for axe in axes:
-            line2d = axhline(y, xmin=xmin, xmax=xmax, hold=hold, **kwds)
+            line2d = axhline(y, xmin=xmin, xmax=xmax, **kwds)
             axe.add_line(line2d)
             axe.get_figure().canvas.draw()
 
@@ -356,20 +355,19 @@ class PyLabAxvline(Node,CustomizeAxes):
         x = self.get_input('x')
         ymin = self.get_input('ymin')
         ymax = self.get_input('ymax')
-        hold = self.get_input('hold')
 
         axes = self.get_axes()
 
         if type(self.get_input('kwargs or line2d')) == Line2D:
             line2d = self.get_input('kwargs or line2d')
             kwds = line2d.properties()
-            for this in ['transform','children','axes','path', 'data', 'xdata', 'ydata', 'xydata','transformed_clip_path_and_affine']:
+            for this in ['transform', 'bbox', 'children','axes','path', 'data', 'ticker', 'tightbbox', 'xdata', 'ydata', 'xydata','transformed_clip_path_and_affine']:
                 del kwds[this]
         else:
             kwds = self.get_input('kwargs or line2d')
 
         for axe in axes:
-            line2d = axvline(x, ymin=ymin, ymax=ymax, hold=hold, **kwds)
+            line2d = axvline(x, ymin=ymin, ymax=ymax, **kwds)
             axe.add_line(line2d)
             axe.get_figure().canvas.draw()
 
@@ -426,6 +424,11 @@ class PyLabAxhspan(Node, CustomizeAxes):
         self.add_output(name="axes")
     def __call__(self, inputs):
         from pylab import axhspan
+#        kwds = self.get_input('kwargs (Patch)')
+#        if ('figure' in kwds) and (type(kwds['figure'])==str):
+#            kwds.pop('figure')
+#        res = axhspan(self.get_input('ymin'), self.get_input('ymax'), xmin=self.get_input('xmin'),
+#                xmax=self.get_input('xmax'), **kwds)
         res = axhspan(self.get_input('ymin'), self.get_input('ymax'), xmin=self.get_input('xmin'),
                 xmax=self.get_input('xmax'), **self.get_input('kwargs (Patch)'))
         return res

@@ -211,36 +211,36 @@ colors =  {
         
 def get_valid_color(color='blue'):
 
-    if color in colors.keys():
-        print '1'
+    if color in list(colors.keys()):
+        print('1')
         return colors[color]
     elif type(color)==str:
         if len(color)!=7 or color[0]!='#':
             raise ValueError('hexa string must be like #ffffff')
-        print '2', color
+        print(('2', color))
         return color
     else:
-        print '3',
+        print(('3',))
         from matplotlib.colors import rgb2hex
         try:
             import numpy
             c = rgb2hex(numpy.array(color)/256.)
-            print c
+            print(c)
             return c
         except:
             raise TypeError('colors must be valid matplotlib symbol, or a string (hex code) or a RGB list/array. %s provided' % color)
 
 from pylab import Line2D
 drawstyles = {}
-for key,value in Line2D.drawStyles.iteritems():
+for key,value in Line2D.drawStyles.items():
     drawstyles[value.replace('_draw_','')]=key
 
 linestyles = {}
-for key,value in Line2D.lineStyles.iteritems():
+for key,value in Line2D.lineStyles.items():
     linestyles[value.replace('_draw_','')]=key
 
 markers = {}
-for key,value in Line2D.markers.iteritems():
+for key,value in Line2D.markers.items():
     markers[value.replace('_draw_','')]=key
 
 
@@ -493,7 +493,7 @@ def get_kwds_from_line2d(line2d=None, input_kwds={}, type=None):
             pass
         
     if type=='specgram':
-        for x in s['facecolor','color','linewidth',
+        for x in ['facecolor','color','linewidth',
                    'linestyle','marker','markersize','markeredgewidth',
                    'fillstyle','markeredgecolor']:
             try:
@@ -515,10 +515,10 @@ def get_kwds_from_line2d(line2d=None, input_kwds={}, type=None):
 
 def line2d2kwds(line2d, kwds={}):
     try:
-        for key, value in line2d.properties().iteritems():
+        for key, value in line2d.properties().items():
             kwds[key] = value
     except:
-        print 'warning: line2d may not be a valid Line2D object'
+        print('warning: line2d may not be a valid Line2D object')
         pass
     return kwds
 
@@ -528,7 +528,7 @@ def text2kwds(text, kwds={}):
         for key, value in text.properties().properties():
             kwds[key] = value
     except:
-        print 'warning: text may not be a valid Text object'
+        print('warning: text may not be a valid Text object')
         pass
     return kwds
 
@@ -552,7 +552,7 @@ class CustomizeAxes(object):
             axes = [axes]
             for axe in axes:
                 import matplotlib
-                assert axe.__module__ in [matplotlib.axes.__name__,matplotlib.projections.polar.__name__], 'input must be a valid axes from matplotlib.axes %s given for %s' % (type(axes), axes)
+                assert axe.__module__ in [matplotlib.axes._axes.__name__,matplotlib.axes._subplots.__name__,matplotlib.projections.polar.__name__], 'input must be a valid axes from matplotlib.axes %s given for %s' % (type(axes), axes)
             return axes
 
 
