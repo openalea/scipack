@@ -64,7 +64,7 @@ def ExtractLigne(data, l, val):
     :attention: l must be greater or equal than 0 
     """
 
-    res = filter(lambda x: x!=val, data[l])
+    res = [x for x in data[l] if x!=val]
 
     return (res, )
 
@@ -88,7 +88,7 @@ def ExtractCol(data, c, val):
     :attention: c must be greater or equal than 0 
     """
 
-    res = filter(lambda x: x!=val, data[: ,c])
+    res = [x for x in data[: ,c] if x!=val]
 
     return (res, )
 

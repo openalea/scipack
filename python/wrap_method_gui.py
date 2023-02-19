@@ -2,7 +2,7 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2010 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Daniel Barbeau <daniel.barbeau@sophia.inria.fr>
 #
@@ -19,17 +19,19 @@ __revision__ = " $Id$ "
 
 import types
 from inspect import getmembers, ismethod, isfunction, isbuiltin
+
 from openalea.visualea.node_widget import NodeWidget, DefaultNodeWidget
 from openalea.core.observer import lock_notify
-from openalea.vpltk.qt import QtGui, QtCore
 
-class SelectCallable(QtGui.QWidget, NodeWidget):
+from qtpy import QtGui, QtCore, QtWidgets
+
+class SelectCallable(QtWidgets.QWidget, NodeWidget):
     def __init__(self, node, parent):
         """
         @param node
         @param parent
         """
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
         NodeWidget.__init__(self, node)
 
         # -- imitate DefaultNodeWidget : refactor DefaultNodeWidget??? --
@@ -41,29 +43,27 @@ class SelectCallable(QtGui.QWidget, NodeWidget):
 
         # -- own custom layout
         self.setMinimumSize(100, 20)
-        # self.setSizePolicy(QtGui.QSizePolicy.Preferred,
-        #                    QtGui.QSizePolicy.Preferred)
-        self._mainLayout = QtGui.QVBoxLayout(self)
-        self._mainLayout.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
+
+        self._mainLayout = QtWidgets.QVBoxLayout(self)
+        self._mainLayout.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
         self._mainLayout.setContentsMargins(3, 3, 3, 3)
         self._mainLayout.setSpacing(2)
 
         # -- the method name selection group box -- #
-        self.__methodGBox = QtGui.QGroupBox("Method to wrap")
-        # self.__methodGBox.setSizePolicy(QtGui.QSizePolicy.Preferred,
-        #                                 QtGui.QSizePolicy.Preferred)
+        self.__methodGBox = QtWidgets.QGroupBox("Method to wrap")
+
         self._mainLayout.addWidget(self.__methodGBox, 0, QtCore.Qt.AlignTop)
 
-        methNameLayout = QtGui.QHBoxLayout()
+        methNameLayout = QtWidgets.QHBoxLayout()
         methNameLayout.setContentsMargins(3, 3, 3, 3)
         methNameLayout.setSpacing(2)
 
-        methNameLabel  = QtGui.QLabel("Method name:")
-        self.__methodComboBox = QtGui.QComboBox()
-        self.__lockChoice     = QtGui.QPushButton()
-        style = QtGui.QApplication.style()
+        methNameLabel  = QtWidgets.QLabel("Method name:")
+        self.__methodComboBox = QtWidgets.QComboBox()
+        self.__lockChoice     = QtWidgets.QPushButton()
+        style = QtWidgets.QApplication.style()
         self.__lockChoice.setCheckable(True)
-        self.__lockChoice.setIcon(style.standardIcon(QtGui.QStyle.SP_DialogApplyButton))
+        self.__lockChoice.setIcon(style.standardIcon(QtWidgets.QStyle.SP_DialogApplyButton))
         self.__lockChoice.toggled.connect(self._methodChosen)
         methNameLayout.addWidget(methNameLabel, 0, QtCore.Qt.AlignLeft)
         methNameLayout.addWidget(self.__methodComboBox)
@@ -72,7 +72,7 @@ class SelectCallable(QtGui.QWidget, NodeWidget):
         self.__methodGBox.setLayout(methNameLayout)
 
         # -- The method's inputs widget --
-        self.__vboxlayout = QtGui.QVBoxLayout()
+        self.__vboxlayout = QtWidgets.QVBoxLayout()
         self._mainLayout.addLayout(self.__vboxlayout, 0)
 
         # -- map between string and combobox index --
@@ -132,22 +132,22 @@ class SelectCallable(QtGui.QWidget, NodeWidget):
 
 
     def _methodChosen(self, toggled):
-        style = QtGui.QApplication.style()
+        style = QtWidgets.QApplication.style()
         if toggled:
             methodName = str(self.__methodComboBox.currentText())
             instance = self.node.get_input(0)
             # if instance is not None and not hasattr(instance, methodName):
-            #     QtGui.QMessageBox.warning(self, "Type error", "Object of type " + str(type(instance)) + " does not have \n" + \
+            #     QtWidgets.QMessageBox.warning(self, "Type error", "Object of type " + str(type(instance)) + " does not have \n" + \
             #     "such attribute " + methodName)
             #     return
             self.__methodComboBox.setEnabled(False)
-            self.__lockChoice.setIcon(style.standardIcon(QtGui.QStyle.SP_DialogCancelButton))
+            self.__lockChoice.setIcon(style.standardIcon(QtWidgets.QStyle.SP_DialogCancelButton))
             if not self.__isInit:
                 self.node.set_method_name(methodName)
             DefaultNodeWidget.do_layout(self, self.node, self.__vboxlayout)
         else:
             self.__methodComboBox.setEnabled(True)
-            self.__lockChoice.setIcon(style.standardIcon(QtGui.QStyle.SP_DialogApplyButton))
+            self.__lockChoice.setIcon(style.standardIcon(QtWidgets.QStyle.SP_DialogApplyButton))
 
             if not self.__isInit:
                 self.node.discard_method_name()

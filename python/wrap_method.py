@@ -2,7 +2,7 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2010 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Daniel Barbeau <daniel.barbeau@sophia.inria.fr>
 #
@@ -17,10 +17,11 @@
 __doc__ = """ A node that morphs its inputs according to a user chosen method of the input object. """
 __revision__ = " $Id$ "
 
-from openalea.core.node import Node
-from openalea.core.signature import Signature
 import inspect
 import re
+
+from openalea.core.node import Node
+from openalea.core.signature import Signature
 
 class SelectCallable(Node):
     def __init__(self, *args, **kwargs):
@@ -51,13 +52,13 @@ class SelectCallable(Node):
 
     def set_method_name(self, name):
         instance = self.get_input(0)
-        if instance is not None and name is not None:
+        if (instance is not None) and (name is not None):
             meth = getattr(instance, name, None)
             if meth:
                 sig = Signature(meth)
                 inputs = sig.get_all_parameters()
-                prefix = type(instance).__name__ if not hasattr(instance, "__name__") \
-                         else instance.__name__
+                prefix = (type(instance).__name__ if not hasattr(instance, "__name__") 
+                         else instance.__name__)
                 if len(prefix)>15:
                     prefix = prefix[:5]+"..."+prefix[-5:]
                 self.set_caption(prefix+" : "+name)

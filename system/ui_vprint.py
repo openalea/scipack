@@ -11,25 +11,26 @@
 __revision__ = "$Id$"
 __license__ = "Cecill-C"
 
-from openalea.vpltk.qt import QtCore, QtGui
+from qtpy import QtCore, QtWidgets
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(288,170)
-        self.gridLayout = QtGui.QGridLayout(Dialog)
+        self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
-        self.captionText = QtGui.QLabel(Dialog)
+        self.captionText = QtWidgets.QLabel(Dialog)
         self.captionText.setObjectName("captionText")
         self.gridLayout.addWidget(self.captionText,0,0,1,1)
-        self.valueDisplay = QtGui.QTextEdit(Dialog)
+        self.valueDisplay = QtWidgets.QTextEdit(Dialog)
         self.valueDisplay.setReadOnly(True)
         self.valueDisplay.setTabStopWidth(20)
         self.valueDisplay.setObjectName("valueDisplay")
         self.gridLayout.addWidget(self.valueDisplay,1,0,1,2)
-        spacerItem = QtGui.QSpacerItem(330,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(330,20,QtWidgets.QSizePolicy.Expanding,
+                                                  QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem,2,0,1,1)
-        self.okButton = QtGui.QPushButton(Dialog)
+        self.okButton = QtWidgets.QPushButton(Dialog)
         self.okButton.setObjectName("okButton")
         self.gridLayout.addWidget(self.okButton,2,1,1,1)
 
@@ -38,7 +39,7 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "Value Display", None, QtGui.QApplication.UnicodeUTF8))
-        self.captionText.setText(QtGui.QApplication.translate("Dialog", "Value is", None, QtGui.QApplication.UnicodeUTF8))
-        self.okButton.setText(QtGui.QApplication.translate("Dialog", "Ok", None, QtGui.QApplication.UnicodeUTF8))
+        Dialog.setWindowTitle(QtWidgets.QApplication.translate("Dialog", "Value Display", None, QtWidgets.QApplication.UnicodeUTF8))
+        self.captionText.setText(QtWidgets.QApplication.translate("Dialog", "Value is", None, QtWidgets.QApplication.UnicodeUTF8))
+        self.okButton.setText(QtWidgets.QApplication.translate("Dialog", "Ok", None, QtWidgets.QApplication.UnicodeUTF8))
 

@@ -2,7 +2,7 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       File author(s): Da SILVA David <david.da_silva@cirad.fr>
 #                       BOUDON Frederic <frederic.boudon@cirad.fr>
@@ -178,7 +178,7 @@ def regular_distrib(n =100, xr=(0, 1), yr=(0, 1)):
             NbTry = 0
 
     if NbTry >= 100:
-        print "Impossible to get all Type2 points with required parameters"
+        print("Impossible to get all Type2 points with required parameters")
 
     return (ptX, ptY)
 
@@ -257,7 +257,7 @@ def regular_distribution(n=10):
             NbTry = 0
 
     if NbTry >= 100:
-        print "Impossible to get all Type2 points with required parameters"
+        print("Impossible to get all Type2 points with required parameters")
 
     return ptX, ptY
 
@@ -276,7 +276,7 @@ class basic_distrib(Node):
 
         Node.__init__(self)
 
-        funs = self.distr_func.keys()
+        funs = list(self.distr_func.keys())
         funs.sort()
         self.add_input(name="Type", interface=IEnumStr(funs), value=funs[0])
         self.add_output(name="Distribution", interface=None)
@@ -325,7 +325,7 @@ class aggregative_distrib(Node):
 
         Node.__init__(self)
 
-        funs = self.distr_func.keys()
+        funs = list(self.distr_func.keys())
         funs.sort()
         self.add_input(name="Type", interface=IEnumStr(funs), value=funs[0])
         self.add_input(name="Cluster number", interface=IInt(min=1), value=2)

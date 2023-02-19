@@ -2,7 +2,7 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
@@ -230,8 +230,8 @@ class FileName(Node):
         :returns:  the file path string
         """
 
-        print "This node is DEPRECATED. Use %s instead" % \
-            "Catalog.File.FileName"
+        print(("This node is DEPRECATED. Use %s instead" % 
+            "Catalog.File.FileName"))
         fname, cwd = inputs
         if len(cwd)>0 :
             return (join(str(cwd), str(fname)), )
@@ -251,7 +251,7 @@ class DirName(Node):
         :returns:  the path string
         """
 
-        print "This node is DEPRECATED. Use %s instead" % "Catalog.File.DirName"
+        print(("This node is DEPRECATED. Use %s instead" % "Catalog.File.DirName"))
         rep, cwd = inputs
         if len(cwd) > 0 :
             return ( join(str(cwd),str(rep)), )
@@ -271,8 +271,8 @@ class PackageDir(Node):
         :returns: The Path of the package wralea
         """
 
-        print "This node is DEPRECATED. Use %s instead" % \
-            "Catalog.File.PackageDir"
+        print(("This node is DEPRECATED. Use %s instead" % \
+            "Catalog.File.PackageDir"))
         pname = str(inputs[0])
 
         from openalea.core.pkgmanager import PackageManager

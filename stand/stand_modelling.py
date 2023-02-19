@@ -2,7 +2,7 @@
 #
 #       OpenAlea.Core.Library: OpenAlea Core Library module
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA  
+#       Copyright 2006-2023 INRIA - CIRAD - INRA  
 #
 #       File author(s): BOUDON Frederic <frederic.boudon@cirad.fr>
 #                       Da SILVA David <david.da_silva@cirad.fr>
@@ -49,11 +49,11 @@ def stand_positioner( objList = [], ptX = [], ptY = [],
     if type == 'Position mapping (PM)':
         return position_mapping(objList, ptX, ptY)
     elif type == 'Best PM':
-        print 'Best Position mapping not implemented'
+        print('Best Position mapping not implemented')
     elif type == 'Best PM with radius deformation':
-        print 'Best PM with radius deformation not implemented'
+        print('Best PM with radius deformation not implemented')
     elif type == 'Gibbs':
-        print 'Gibbs not implemented'
+        print('Gibbs not implemented')
 
 
 #---------------- Associating geometry --------------------------#

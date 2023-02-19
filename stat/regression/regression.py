@@ -62,8 +62,6 @@ def Glm(x, y, famil = 'gaussian'):
 
     reg = rpy.r.glm(model, data = d, family = famil)
 
-    #print reg
-    
     intercept = reg['coefficients']['(Intercept)']
     slope = reg['coefficients']['X']
     family = reg['family']['family']
@@ -88,7 +86,7 @@ class LinearRegression(Node):
     def __call__( self, inputs ):
         """ inputs is the list of input values """
         if self.get_input( "origin" ):
-            print "Origin will not work if x values are < 0"
+            print("Origin will not work if x values are < 0")
             reg = regLinOri(self.get_input( "X" ), self.get_input( "Y" ),
                             self.get_input( "alpha" ) )
         else:
@@ -115,7 +113,7 @@ class LR2Plot(Node):
         reg = self.get_input( 'reg' )
         reg_x = numpy.array( [ min(reg[ 'x' ]), max(reg[ 'x' ]) ] )
         reg_y = reg_x*reg[ 'slope' ]+reg[ 'intercept' ]
-        if reg.has_key('ic'):
+        if 'ic' in reg:
             reg_legend = "y = " + str( round(reg['slope'], 3 ) ) + \
                        "x + " + str( round(reg['intercept'], 3 )) + \
                        " $\pm$ "+str( round(reg['ic'], 3 ) ) + \
@@ -170,7 +168,7 @@ def multiReg(x, y, colList, alpha):
       d[name] = x[i]
       newX.append(x[i])
       model_string = model_string + name + "+"
-    print d
+
     #rpy.r.colnames(d) = names
     model_string = model_string + "1"
     model = rpy.r(model_string)
@@ -180,7 +178,7 @@ def multiReg(x, y, colList, alpha):
     Rlm = rpy.with_mode(rpy.NO_CONVERSION, rpy.r.lm)
     reg = Rlm(model, data = d)
     result = rpy.r.summary(reg)
-    print result
+
     coef =result['coefficients']
     r2 = result['r.squared']
     r2adj = result['adj.r.squared']

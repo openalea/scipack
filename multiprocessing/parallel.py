@@ -2,7 +2,7 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA  
+#       Copyright 2006-2023 INRIA - CIRAD - INRA  
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
@@ -19,6 +19,7 @@ __revision__ = " $Id$ "
 from openalea.core import Node, ITextStr
 
 from multiprocessing import Pool, cpu_count
+from functools import reduce
 try:
     import dill as pickle
 except ImportError:
@@ -28,9 +29,7 @@ def pymap(func, seq, N):
     """ map(func, seq) """
     
     # try to pickle the function
-    print 'Try to pickle the function'
     pickle.dumps(func)
-    print 'SUCCESS'
     if N <1:
         N = cpu_count()
 
@@ -51,7 +50,7 @@ def pyfilter(func, seq):
     """ filter(func, seq) """
     
     if func and seq:
-        return ( filter(func, seq), )
+        return ( list(filter(func, seq)), )
     else:
         return ( [], )
 
@@ -76,7 +75,7 @@ def pyapply(func, seq):
         seq = list([seq])
 
     if func:
-        return apply(func, seq)
+        return func(*seq)
     else:
         return ()
 

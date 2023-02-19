@@ -1,1 +1,1 @@
-from descriptive import *
+from .descriptive import *

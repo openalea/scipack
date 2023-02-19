@@ -6,21 +6,21 @@ __license__ = "Cecill-C"
 from openalea.core.node import AbstractNode, Node
 
 try:
-    from openalea.vpltk.qt import QtCore, QtGui
+    from qtpy import QtCore, QtWidgets
     __visual_print_enabled = True
-    from ui_vprint import Ui_Dialog
+    from .ui_vprint import Ui_Dialog
     
-    class VisualPrintDialog (QtGui.QDialog,Ui_Dialog):
+    class VisualPrintDialog (QtWidgets.QDialog,Ui_Dialog):
         def __init__(self,parent = None):
             if parent:
-                QtGui.QDialog.__init__(self,parent)
+                QtWidgets.QDialog.__init__(self,parent)
             else:
-                QtGui.QDialog.__init__(self)
+                QtWidgets.QDialog.__init__(self)
             Ui_Dialog.__init__(self)
             self.setupUi(self)
             
 except:
-    print 'visual print disabled'
+    print('visual print disabled')
     __visual_print_enabled = False
 
     
@@ -53,7 +53,7 @@ class VPrint(Node):
         txt = strfunc(obj)
         if self.enabled:            
             if self.widget is None:
-                mw = QtGui.QApplication.topLevelWidgets()[0]
+                mw = QtWidgets.QApplication.topLevelWidgets()[0]
                 self.widget = VisualPrintDialog(parent=mw)
             if self.widget.isModal() != blocking and self.widget.isVisible():
                 self.widget.hide()
@@ -68,7 +68,7 @@ class VPrint(Node):
                 else:
                     self.widget.show()
         else:
-            print(caption+':'+txt)
+            print((caption+':'+txt))
         return (obj,)
 
 

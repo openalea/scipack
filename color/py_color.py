@@ -20,7 +20,7 @@ __revision__ = " $Id$ "
 import random as rd
 from openalea.core import *
 from openalea.core.observer import lock_notify
-import colormap
+from . import colormap
 from colorsys import hsv_to_rgb,rgb_to_hsv
 
 color_list=[(0,0,0),
@@ -135,9 +135,9 @@ def rgb_color_map(value, minval=0, maxval=1, hue1=0,
         hue2=100, sat=220, val=220):
     """todo"""
     if value < minval:
-	value = minval
+        value = minval #inconsistent use of tabs and spaces in indentation
     if value > maxval:
-	value = maxval
+        value = maxval
 	
     newHue = ((value - minval)/(maxval - minval))*(hue2 - hue1) + hue1
     r, g, b = hsv_to_rgb(newHue/400., sat/255., val/255.)

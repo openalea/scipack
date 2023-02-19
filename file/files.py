@@ -133,7 +133,7 @@ class FileRead(object):
 
     def __call__(self, filename=""):
 
-        if(not isinstance(filename, basestring)):
+        if(not isinstance(filename, str)):
             filename = str(filename)
 
         try:

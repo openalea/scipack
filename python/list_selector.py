@@ -2,24 +2,23 @@
 #
 #       OpenAlea.StdLib
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA
+#       Copyright 2006-2023 INRIA - CIRAD - INRA
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
 #           http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
 #
-#       OpenAlea WebSite : http://openalea.gforge.inria.fr
+#       OpenAlea WebSite : http://openalea.rtfd.io
 #
 ################################################################################
 # Widgets
 
-from openalea.visualea.node_widget import NodeWidget
+from qtpy import QtGui, QtCore, QtWidgets
+
 from openalea.core.observer import lock_notify
+from openalea.visualea.node_widget import NodeWidget
 
-from openalea.vpltk.qt import QtGui, QtCore
-
-
-class ListSelectorWidget(QtGui.QListWidget, NodeWidget):
+class ListSelectorWidget(QtWidgets.QListWidget, NodeWidget):
     """ This Widget allows to select an element in a list
     or in a dictionnary """
 
@@ -29,10 +28,10 @@ class ListSelectorWidget(QtGui.QListWidget, NodeWidget):
         @param parent
         """
 
-        QtGui.QListWidget.__init__(self, parent)
+        QtWidgets.QListWidget.__init__(self, parent)
         NodeWidget.__init__(self, node)
-        self.connect(self, QtCore.SIGNAL("currentRowChanged(int)"),
-                     self.changed)
+        # self.connect(self, QtCore.pyqtSignal("currentRowChanged(int)"), self.changed)
+        self.currentRowChanged.connect(self.changed)
 
         self.mode = None
         self.notify(node, ("input_modified", 0))
@@ -63,7 +62,7 @@ class ListSelectorWidget(QtGui.QListWidget, NodeWidget):
 
             if(self.mode == "DICT"):
                 try:
-                    i = seq.keys().index(index)
+                    i = list(seq.keys()).index(index)
                     self.setCurrentRow(i)
                 except:
                     pass
@@ -81,11 +80,11 @@ class ListSelectorWidget(QtGui.QListWidget, NodeWidget):
             return
 
         if(self.mode == "DICT"):
-            seq = seq.keys()
+            seq = list(seq.keys())
 
         for elt in seq:
 
-            item = QtGui.QListWidgetItem(str(elt))
+            item = QtWidgets.QListWidgetItem(str(elt))
             item.setFlags(QtCore.Qt.ItemIsEnabled |
                           QtCore.Qt.ItemIsSelectable)
             self.addItem(item)

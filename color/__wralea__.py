@@ -19,7 +19,7 @@ __revision__ = " $Id$ "
 
 from openalea.core import Factory as Fa
 from openalea.core import Alias, Factory, IFloat, IInt, IRGBColor
-from color_interface import IColor
+from openalea.color.color_interface import IColor
 
 __name__ = "openalea.color"
 __alias__ = ["catalog.color"]

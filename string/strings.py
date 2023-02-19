@@ -47,8 +47,8 @@ def str_strip(string_, chars):
     """
     Return a copy of the string with leading and trailing whitespace removed.
 
-    :param string_: a list of string
-    :param chars: a join character
+    :param string_: a string
+    :param chars: the leading and trailing character to delete (default is whitespace)
 
     :returns: a stripped string
 

@@ -9,7 +9,7 @@ __license__ = "Cecill-C"
 __authors__ = 'OpenAlea Consortium'
 __institutes__ = 'INRIA/CIRAD'
 __description__ = ''
-__url__ = 'http://openalea.gforge.inria.fr'
+__url__ = 'https://openalea.rtfd.io'
 
 __all__ = ['qd']
 
