@@ -25,7 +25,7 @@ from openalea.core import Node
 from openalea.core import Factory, IFileStr, IInt, IBool, IFloat, \
     ISequence, IEnumStr, IStr, IDirStr, ITuple3, IDict
 
-from openalea.pylab import tools
+from openalea.oapylab import tools
 
 
 class PyLabPatchDictionary(Node):

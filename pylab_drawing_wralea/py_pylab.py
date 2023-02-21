@@ -21,12 +21,12 @@ __revision__=" $Id$ "
 
 
 from openalea.core import Node
-from openalea.core import Factory, IFileStr, IInt, IBool, IFloat, \
-    ISequence, IEnumStr, IStr, IDirStr, ITuple3, IDict, ITuple
+from openalea.core import (Factory, IFileStr, IInt, IBool, IFloat, 
+    ISequence, IEnumStr, IStr, IDirStr, ITuple3, IDict, ITuple)
 
 import pylab
-from openalea.pylab import tools
-from openalea.pylab.tools import CustomizeAxes
+from openalea.oapylab import tools
+from openalea.oapylab.tools import CustomizeAxes
 
 
 class PyLabFancyArrowDict(Node):
