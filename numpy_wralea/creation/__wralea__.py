@@ -52,7 +52,7 @@ array = Factory(name= "array",
         dict(name='ndmin', interface= IInt,
         value=0),),
         outputs = (dict(name='array', interface=None),),
-        nodemodule = "openalea.numpy.creation",
+        nodemodule = "openalea.numpy_wralea.creation.basics",
         nodeclass = "wra_array",
             )
 
