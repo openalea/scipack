@@ -1,7 +1,7 @@
-from openalea.pylab import tools
+from openalea.oapylab import tools
 
 def test_metainfo():
-    from openalea.pylab import version, authors
+    from openalea.oapylab import version, authors
     
 
 

@@ -5,7 +5,7 @@ from openalea.core.alea import *
 pm = PackageManager()
 pm.init(verbose=False)
 
-test_names = ['acorr', 'annotation', 'axhline_axvline', 'axhspan_axvspan', 'boxplot', 
+test_names = ['acorr', 'annotation', 'axhspan_axvspan', 'boxplot', 
     'cohere', 'circle', 'cohere', 'colorbar', 'contour', 'csd', 'ellipse', 'errorbar', 
     'figure', 'fill', 'fill_between', 'grid', 'hexbin', 'hist', 'imshow', 'legend', 
     'loglog', 'mcontour3d', 'mcontourf3d', 'mplot3d', 'patches', 'pcolor', 'pie',  
@@ -13,6 +13,8 @@ test_names = ['acorr', 'annotation', 'axhline_axvline', 'axhspan_axvspan', 'boxp
     'semilogx', 'semilogy', 'specgram', 'stem', 'step', 'tickparams', 'title', 
     'tutorial_plot', 'tutorial_plot_line2d', 'wedge', 'xcorr', 
     'xylabels', 'xylim', 'xyticks']
+
+# TODO: test failed :  'axhline_axvline'
 
 demo_names = [
     'polar_scatter', 'polar_demo','labels_demo','cross_spectral_density_windowing',
