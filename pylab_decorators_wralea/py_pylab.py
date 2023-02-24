@@ -24,16 +24,13 @@ __revision__=" $Id$ "
 
 
 from openalea.core import Node
-from openalea.core import Factory, IFileStr, IInt, IBool, IFloat, \
-    ISequence, IEnumStr, IStr, IDirStr, ITuple3, IDict
+from openalea.core import (Factory, IFileStr, IInt, IBool, IFloat, 
+    ISequence, IEnumStr, IStr, IDirStr, ITuple3, IDict)
 
 import pylab
 from openalea.core.external import add_docstring
-from openalea.pylab import tools
-from openalea.pylab.tools import CustomizeAxes
-
-
-
+from openalea.oapylab import tools
+from openalea.oapylab.tools import CustomizeAxes
 
 class PyLabLegend(Node, CustomizeAxes):
     """Add a legend to the axe. see pylab.legend for details

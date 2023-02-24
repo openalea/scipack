@@ -30,7 +30,7 @@ from openalea.core import Factory, IFileStr, IInt, IBool, IFloat, \
 
 
 from openalea.pylab_plotting_wralea.py_pylab import Plotting
-from openalea.pylab import tools
+from openalea.oapylab import tools
 
 
 
