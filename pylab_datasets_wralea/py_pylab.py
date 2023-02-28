@@ -24,8 +24,8 @@ __revision__=" $Id$ "
 
 
 from openalea.core import Node
-from openalea.core import Factory, IFileStr, IInt, IBool, IFloat, \
-    ISequence, IEnumStr, IStr, IDirStr, ITuple3, IDict
+from openalea.core import (Factory, IFileStr, IInt, IBool, IFloat,
+    ISequence, IEnumStr, IStr, IDirStr, ITuple3, IDict)
 
 
 class PyLabBivariateNormal(Node):
@@ -38,7 +38,7 @@ class PyLabBivariateNormal(Node):
         self.add_output(name='Z', interface=ISequence, value=[])
 
     def __call__(self, inputs):
-        from scipy.stats import multivariate_normal
+        from numpy.random import multivariate_normal
         import numpy as np
         X = self.get_input('X')
         Y = self.get_input('Y')
