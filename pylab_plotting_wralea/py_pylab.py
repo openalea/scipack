@@ -276,7 +276,10 @@ class PlotxyInterface():
                     print('warning more x inputs than y inputs. correct the connectors')
                 for x,y in zip(xinputs, yinputs):
                     try:
-                        output = plot(x, y, **kwds)
+                        linestyle=kwds.get('linestyle', '-')
+                        if 'linestyle' in kwds:
+                            del kwds['linestyle']
+                        output = plot(x, y, linestyle=linestyle, **kwds)
                     except:
                         #print kwds
                         raise ValueError("plot failed")
