@@ -1,7 +1,7 @@
-from openalea.deploy import get_metainfo
+#from openalea.deploy import get_metainfo
 
 
-version = get_metainfo('openalea.pylab', 'version')
-authors = get_metainfo('openalea.pylab', 'author')
+#version = get_metainfo('openalea.pylab', 'version')
+#authors = get_metainfo('openalea.pylab', 'author')
 
 from . import tools
