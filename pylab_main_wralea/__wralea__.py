@@ -1,10 +1,10 @@
 
 # This file has been generated at Fri Mar  5 11:20:24 2010
 
-from openalea.deploy import get_metainfo
+from importlib import metadata
 
-version = get_metainfo('openalea.pylab', 'version')
-authors = get_metainfo('openalea.pylab', 'author')
+version = metadata.metadata('openalea.pylab')['version']
+authors = metadata.metadata('openalea.pylab')['Author']
 
 __name__ = 'openalea.pylab'
 __editable__ = False
