@@ -1,0 +1,24 @@
+{
+  "template": "https://github.com/openalea/cookiecutter-openalea",
+  "commit": "d914b5b76a2c4b5255347ac4e7adc942e6d82912",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "scipack",
+      "email": "christophe.pradal@cirad.fr",
+      "github_username": "openalea",
+      "project_name": "scipack",
+      "project_slug": "scipack",
+      "description": "Sientific Python wrappers for OpenAlea Visual Programming environment",
+      "pure_python": "yes",
+      "version": "0.0.1",
+      "_copy_without_render": [
+        "conda/meta.yaml",
+        ".github/workflows/conda-package-build.yml"
+      ],
+      "_template": "https://github.com/openalea/cookiecutter-openalea",
+      "_commit": "d914b5b76a2c4b5255347ac4e7adc942e6d82912"
+    }
+  },
+  "directory": null
+}
