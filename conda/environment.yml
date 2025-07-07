@@ -4,6 +4,11 @@ channels:
   - openalea3
 dependencies:
   - python
+  - openalea.core
+  - numpy
+  - matplotlib
+  - ipykernel
+  - configobj
   - pip
   - pip:
       - -e '..[test,dev,doc]'
