@@ -957,7 +957,7 @@ class PyLabGrid(Node, CustomizeAxes):
         CustomizeAxes.__init__(self)
 
         self.add_input(name='axes')
-        self.add_input(name='b', interface=IBool, value=True)
+        #self.add_input(name='b', interface=IBool, value=True)
         self.add_input(name='which', interface=IEnumStr(list(tools.which.keys())), value='major')
         self.add_input(name='linestyle', interface=IEnumStr(list(tools.linestyles.keys())),   value='dotted')
         self.add_input(name='color', interface=IEnumStr(list(tools.colors.keys())),   value='black')
@@ -973,7 +973,7 @@ class PyLabGrid(Node, CustomizeAxes):
         kwds['linestyle']=tools.linestyles[self.get_input("linestyle")]
         kwds['color']=tools.colors[self.get_input("color")]
         kwds['linewidth']=self.get_input("linewidth")
-        kwds['b']=self.get_input("b")
+        #kwds['b']=self.get_input("b")
         kwds['which']=self.get_input("which")
 
         axes = self.get_axes()
