@@ -2,10 +2,10 @@
 # This file has been generated at Sat Mar  6 21:17:54 2010
 
 from openalea.core import Factory
-from openalea.deploy import get_metainfo
+from importlib import metadata
 
-version = get_metainfo('openalea.pylab', 'version')
-authors = get_metainfo('openalea.pylab', 'author')
+version = metadata.metadata('openalea.pylab')['version']
+authors = metadata.metadata('openalea.pylab')['Author']
 
 
 __name__ = 'openalea.pylab.mplot3d'
