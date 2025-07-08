@@ -20,7 +20,7 @@ name = "openalea.scipack"
 authors = [
   { name = "scipack" },
 ]
-description = "FSPM tools for OpenAlea"
+description = "Sientific Python wrappers for OpenAlea Visual Programming environment."
 readme = "README.md"
 license = "CECILL-C"
 license-files = ["LICEN[CS]E*"]
@@ -43,6 +43,12 @@ classifiers = [
 # you can list here all dependencies that are pip-instalable, and that have a name identical to the one used by conda (to allow reuse of this list in meta.yaml)
 # If conda name is different, please do not declare the pip name, and declare conda name in the next section
 dependencies = [
+    "numpy",
+    "matplotlib",
+    "ipykernel",
+    "configobj",
+    "imageio",
+    "square",
 ]
 
 [project.optional-dependencies]
@@ -72,15 +78,94 @@ channels = [
   "conda-forge"
 ]
 dependencies = [
-    "openalea.plantgl",
+    "openalea.core",
+    "openalea.stdlib"
 ]
 
 [project.urls]
 Repository = "https://github.com/openalea/scipack"
-Homepage = "https://scipack.readthedocs.io/"
+Homepage = "https://openalea.rtfd.io"
 "Bug Tracker" = "https://github.com/openalea/scipack/issues"
 Discussions = "https://github.com/openalea/scipack/discussions"
 Changelog = "https://github.com/openalea/scipack/releases"
 
+[tool.setuptools.package-data]
+"scipack" = ['*.csv', '*.pyd', '*.so', '*.zip', '*.png', '*.qrc']
+
 [project.entry-points."wralea"]
-"my_pkg" = "openalea.scipack_wralea"
+#numpy
+"openalea.numpy" = "openalea.numpy_wralea"
+"openalea.numpy.random" = "openalea.numpy_wralea.random"
+"openalea.numpy.creation" = "openalea.numpy_wralea.creation"
+"openalea.numpy.infos" = "openalea.numpy_wralea.infos"
+"openalea.numpy.input_output" = "openalea.numpy_wralea.input_output"
+"openalea.numpy.manipulation" = "openalea.numpy_wralea.manipulation"
+"openalea.numpy.math" = "openalea.numpy_wralea.math"
+"openalea.numpy.sorting_searching" = "openalea.numpy_wralea.sorting_searching"
+"openalea.numpy.window" = "openalea.numpy_wralea.window"
+"openalea.numpy.demo" = "openalea.numpy_demo_wralea"
+"openalea.numpy.test" = "openalea.numpy_test_wralea"
+#pylab
+"pylab" = "openalea.pylab_main_wralea"
+"pylab.demo" = "openalea.pylab_demo_wralea"
+"pylab.plotting" = "openalea.pylab_plotting_wralea"
+"pylab.datasets" = "openalea.pylab_datasets_wralea"
+"pylab.decorators" = "openalea.pylab_decorators_wralea"
+"pylab.Drawing" = "openalea.pylab_drawing_wralea"
+"pylab.test" = "openalea.pylab_test_wralea"
+"pylab.patches" = "openalea.pylab_patches_wralea"
+"pylab.mplot3d" = "openalea.pylab_3d_wralea"
+#stdlib
+"openalea.color" = "openalea.color"
+"openalea.csv" = "openalea.csv"
+"openalea.string" = "openalea.string"
+"openalea.data" = "openalea.data"
+"openalea.datafile" = "openalea.datafile"
+"openalea.file" = "openalea.file"
+"openalea.functional" = "openalea.functional"
+"openalea.math" = "openalea.math"
+"openalea.model" = "openalea.model"
+"openalea.pickling" = "openalea.pickling"
+"openalea.plotools" = "openalea.plotools"
+"openalea.python" = "openalea.python"
+"openalea.spatial" = "openalea.spatial"
+"openalea.stand" = "openalea.stand"
+"openalea.stat" = "openalea.stat"
+"openalea.system" = "openalea.system"
+"openalea.tutorial" = "openalea.tutorial"
+"openalea.tutorial.design pattern" = "openalea.tutorial.pattern"
+"openalea.tutorial.functional" = "openalea.tutorial.functional"
+"openalea.tutorial.multiprocess" = "openalea.tutorial.multiprocess"
+"openalea.multiprocessing" = "openalea.multiprocessing"
+"openalea.path" = "openalea.path"
+# Deprecated
+"catalog.color" = "deprecated"
+"catalog.data" = "deprecated"
+"catalog.csv" = "deprecated"
+"catalog.file" = "deprecated"
+"catalog.functional" = "deprecated"
+"catalog.math" = "deprecated"
+"catalog.model" = "deprecated"
+"catalog.pickling" = "deprecated"
+"catalog.python" = "deprecated"
+"catalog.string" = "deprecated"
+#image
+"openalea.image" = "openalea.image_wralea"
+"openalea.image.serial" = "openalea.image_wralea.serial"
+"openalea.image.interpolation" = "openalea.image_wralea.interpolation"
+"openalea.image.algo" = "openalea.image_wralea.algo"
+"openalea.image.registration" = "openalea.image_wralea.registration"
+"openalea.image.gui" = "openalea.image_wralea.gui"
+"openalea.image.demo" = "openalea.image_demo_wralea"
+
+[project.entry-points."openalea.image"]
+"openalea.image/image" = "openalea.image.plugin.algo"
+
+[project.entry-points."oalab.plugin"]
+"oalab/image" = "openalea.image.plugin.oalab"
+
+[project.entry-points."oalab.applet"]
+"oalab.applet/image" = "openalea.image.plugin.applet"
+
+[project.entry-points."openalea.interface"]
+"openalea.interface/image" = "openalea.image.plugin.interface"

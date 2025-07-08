@@ -16,9 +16,7 @@ source:
   path: ..
 
 build:
-  {%- if cookiecutter.pure_python == 'yes' %}
   noarch: python
-  {%- endif %}
   number: 0
   preserve_egg_dir: True
   string: py{{ PY_VER }}
@@ -44,13 +42,19 @@ requirements:
 
 test:
   imports:
-    - openalea.{{ cookiecutter.project_slug }}
+    - openalea.core
+    - {{ name }}
   requires:
     - pytest
+    - nbmake
+    - setuptools
+    - imageio
+    - square
   source_files:
-    - test/
+    - test/test*.py
   commands:
-    - pytest
+    - pytest -v
+    - pytest --nbmake
 
 about:
   home: {{ home }}
@@ -59,5 +63,5 @@ about:
 
 extra:
   recipe-maintainers:
-    - jane
-    - joe
+    - pradal
+    - baugetfa
