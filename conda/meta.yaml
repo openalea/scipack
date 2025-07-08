@@ -49,9 +49,9 @@ test:
     - nbmake
     - setuptools
     - imageio
-    - square
   source_files:
-    - test/test*.py
+    - test/test_numpy/test*
+    - test/test_stdlib/test*
   commands:
     - pytest -v
     - pytest --nbmake

@@ -48,7 +48,6 @@ dependencies = [
     "ipykernel",
     "configobj",
     "imageio",
-    "square",
 ]
 
 [project.optional-dependencies]
