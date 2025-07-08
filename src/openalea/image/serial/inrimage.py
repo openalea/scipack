@@ -229,7 +229,7 @@ def write_inrimage_to_stream(stream, img):
 
     header += "##}\n"
 
-    stream.write(header)
+    stream.write(header.encode('utf-8')) # needs to be bite because opened in "wb" see in write_inrimage f = open(filename,'wb')
     if img.ndim == 3:
         stream.write(img.tostring("F"))
     elif img.ndim == 4 :
