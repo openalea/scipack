@@ -19,7 +19,7 @@ import numpy as np
 
 from openalea.image.serial.basics import imread
 #from vplants.tissue_analysis.spatial_image_analysis import SpatialImageAnalysis
-from openalea.image.algo.graph_from_image import graph_from_image
+from openalea.image.algo.graph_from_image import graph_from_image # there is no graph_from_image function in algo
 #from openalea.plantgl.gui import Viewer
 
 def test_graph_from_image(visual = False):

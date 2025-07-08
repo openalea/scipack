@@ -48,6 +48,8 @@ test:
     - pytest
     - nbmake
     - setuptools
+    - imageio
+    - square
   source_files:
     - test/test*.py
   commands:
