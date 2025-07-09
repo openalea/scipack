@@ -168,9 +168,9 @@ class PyLabEllipse(Node):
 
     def __call__(self, inputs):
         from matplotlib.patches import Ellipse
-
-        c = Ellipse((self.get_input('x'), self.get_input('y')),
-            self.get_input('width'), self.get_input('height'), self.get_input('angle'), 
+        # needed to specify the arg name other why error on number of positional arg
+        c = Ellipse(xy=(self.get_input('x'), self.get_input('y')),
+            width=self.get_input('width'), height=self.get_input('height'), angle=self.get_input('angle'),
             **self.get_input('patch'))
         return c
 
@@ -261,9 +261,10 @@ class PyLabWedge(Node):
 
     def __call__(self, inputs):
         from matplotlib.patches import Wedge
-        c = Wedge((self.get_input('x'), self.get_input('y')), 
-                self.get_input('r'), self.get_input('theta1'), 
-                self.get_input('theta2'), self.get_input('width'),
+        # center, r, theta1, theta2, width=None,
+        c = Wedge(center=(self.get_input('x'), self.get_input('y')),
+                r=self.get_input('r'), theta1=self.get_input('theta1'),
+                theta2=self.get_input('theta2'), width=self.get_input('width'),
                 **self.get_input('patch'))
         return c
 
@@ -309,6 +310,7 @@ class PyLabPolygon(Node):
         a = []
         for x,y in zip(self.get_input('x'), self.get_input('y')):
             a.append((x,y))
-        c = Polygon(a, self.get_input('closed'), **self.get_input('patch'))
+            # needed to specify the arg name other why error on number of positional arg
+        c = Polygon(xy=a, closed=self.get_input('closed'), **self.get_input('patch'))
         return c
 
