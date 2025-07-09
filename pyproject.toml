@@ -78,7 +78,6 @@ channels = [
 ]
 dependencies = [
     "openalea.core",
-    "openalea.stdlib"
 ]
 
 [project.urls]
@@ -87,9 +86,6 @@ Homepage = "https://openalea.rtfd.io"
 "Bug Tracker" = "https://github.com/openalea/scipack/issues"
 Discussions = "https://github.com/openalea/scipack/discussions"
 Changelog = "https://github.com/openalea/scipack/releases"
-
-[tool.setuptools.package-data]
-"scipack" = ['*.csv', '*.pyd', '*.so', '*.zip', '*.png', '*.qrc']
 
 [project.entry-points."wralea"]
 #numpy

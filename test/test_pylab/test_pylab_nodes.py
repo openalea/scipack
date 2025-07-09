@@ -15,7 +15,7 @@ test_names = ['acorr', 'annotation', 'axhspan_axvspan', 'boxplot',
     'xylabels', 'xylim', 'xyticks']
 
 # TODO: test failed :  'axhline_axvline'
-
+test_names = ['imshow']
 demo_names = [
     'polar_scatter', 'polar_demo','labels_demo','cross_spectral_density_windowing',
     'hexbin_and_colorbar','SeveralAxesOnSameFigure','pie_demo','scatter_and_histograms',

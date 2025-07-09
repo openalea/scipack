@@ -29,7 +29,7 @@ qapp = QtWidgets.QApplication.instance()
 
 if qapp:
     try:
-        img = imread("4_ocean_currents.png")
+        img = imread("../../src/openalea/shared_data/test/4_ocean_currents.png")
     except:
         img = imread("test/4_ocean_currents.png")
 
