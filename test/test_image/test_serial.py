@@ -32,7 +32,7 @@ def test_numpy_serialiser():
 
     img = pal[data]
 
-    sp = SpatialImage(img,(0.5,0.6),vdim = 3)
+    sp = SpatialImage(img,(0.5,0.6,0.5),vdim = 3)
 
     #save
     save("00_data",data)
@@ -50,7 +50,7 @@ def test_numpy_serialiser():
     assert (rsp[:,:,0] == sp).all()
 
     assert hasattr(rsp,"resolution")
-    assert rsp.resolution[:2] == sp.resolution
+    assert rsp.resolution == sp.resolution
     assert hasattr(rsp,"info")
 
 

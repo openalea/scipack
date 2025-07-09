@@ -26,7 +26,7 @@ from os import path
 import numpy as np
 from struct import calcsize,pack,unpack
 import gzip
-from io import StringIO
+from io import BytesIO
 from openalea.image.spatial_image import SpatialImage
 
 __all__ = ["read_inriheader","read_inrimage","write_inrimage"]
@@ -40,26 +40,31 @@ specific_header_keys = ("XDIM","YDIM","ZDIM",
 
 def open_inrifile (filename) :
     """Open an inrimage file
+    :param filename: str
+    :returns: f (_io.BytesIO)
 
     Manage the gz attribute
     """
     if path.splitext(filename)[1] in (".gz",".zip") :
         fzip = gzip.open(filename,'rb')
-        f = StringIO(fzip.read() )
+        f = BytesIO(fzip.read()) # must be bytes see below
         fzip.close()
     else :
-        f = open(filename,'rb')
+        f = open(filename,'rb') # this is bytes in py3 ok => above bytes too
 
     return f
 
 def _read_header (f) :
     """Extract header from a stream and return it
     as a python dict
+    :param f : _io.BytesIO
+    :returns: prop (dict of str)
     """
+
     #read header string
     header = ""
     while header[-4:] != "##}\n" :
-        header += f.read(256)
+        header += f.read(256).decode('utf-8') # f is _io.BytesIO we whant str
 
     #read infos in header
     prop = {}
@@ -80,8 +85,8 @@ def _read_header (f) :
 def read_inriheader (filename) :
     """Read only the header of an inrimage
 
-    :Parameters:
-     - `filename` (str) - name of the file to read
+    :param filename: str - name of the file to read
+    :returns:  prop (dict of str)
     """
     f = open_inrifile(filename)
     prop = _read_header(f)
@@ -91,8 +96,8 @@ def read_inriheader (filename) :
 def read_inrimage (filename) :
     """Read an inrimage, either zipped or not according to extension
 
-    :Parameters:
-     - `filename` (str) - name of the file to read
+    :param filename: str - name of the file to read
+    :returns:  img (SpatialImage)
     """
     f = open_inrifile(filename)
 
@@ -165,6 +170,12 @@ def read_inrimage (filename) :
 
 
 def write_inrimage_to_stream(stream, img):
+    """
+    Write img to a _io.BytesIO stream with the proper header
+    :param stream: _io.BytesIO
+    :param img: |SpatialImage| - image to write
+
+    """
     assert img.ndim in (3,4)
 
     #metadata
@@ -245,16 +256,15 @@ def write_inrimage (filename, img) :
     .. warning:: if img is not a |SpatialImage|, default values will be used
                  for the resolution of the image
 
-    :Parameters:
-     - `img` (|SpatialImage|) - image to write
-     - `filename` (str) - name of the file to read
+    :param img: |SpatialImage| - image to write
+    :param filename: str - name of the file to read
     """
     #open stream
     zipped = ( path.splitext(filename)[1] in (".gz",".zip") )
 
+    # we got here an _io.BytesIO
     if zipped :
         f = gzip.GzipFile(filename, "wb")
-        #f = StringIO()
     else :
         f = open(filename,'wb')
 
