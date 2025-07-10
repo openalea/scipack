@@ -3,7 +3,6 @@ from openalea.image.spatial_image import SpatialImage,checkerboard,random_vector
 import os
 import numpy
 from openalea.shared_data import data_dir
-from pathlib import Path
 
 def attenuation(x):
     return 1-x
@@ -36,8 +35,6 @@ def test_read_write_read():
 
     # load a file, write it and reread it:
     f = data_dir/'test'/'SAM.inr.gz'
-    f = os.path.expandvars(f)
-    f = Path(f)
     f_p = "SAM_prime.inr.gz"
     read_im = read_inrimage(f)
     write_inrimage(f_p, read_im)

@@ -87,6 +87,9 @@ Homepage = "https://openalea.rtfd.io"
 Discussions = "https://github.com/openalea/scipack/discussions"
 Changelog = "https://github.com/openalea/scipack/releases"
 
+[tool.setuptools.package-data]
+"*" = ['*']
+
 [project.entry-points."wralea"]
 #numpy
 "openalea.numpy" = "openalea.numpy_wralea"

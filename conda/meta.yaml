@@ -59,7 +59,7 @@ test:
     - test/test_image/test*
     - test/test_pylab/test*
   commands:
-    - pytest -v --ignore=test/test_image/test_inrimage.py --ignore=test/test_image/test_morpho.py --ignore=test/test_image/test_read_sequence.py --ignore=test/test_pylab/test_pylab_nodes.py
+    - pytest -v
 
 about:
   home: {{ home }}

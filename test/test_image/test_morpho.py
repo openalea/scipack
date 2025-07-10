@@ -58,7 +58,7 @@ def test_component_labeling_with_threshold():
     """
 
     try:
-        img = np.load(data_dir/'labels.npy')
+        img = np.load(data_dir/'test'/'labels.npy')
     except:
         img = np.load('test/labels.npy')
     assert img.shape == (1024, 1344)
@@ -84,7 +84,7 @@ def test_component_labeling_with_number_labels():
     - `number_labels`
     """
     try:
-        img = np.load(data_dir/'labels.npy')
+        img = np.load(data_dir/'test'/'labels.npy')
     except:
         img = np.load('test/labels.npy')
     assert img.shape == (1024, 1344)
