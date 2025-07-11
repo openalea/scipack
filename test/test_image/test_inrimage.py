@@ -2,7 +2,7 @@ from openalea.image.serial.all import read_inrimage,write_inrimage
 from openalea.image.spatial_image import SpatialImage,checkerboard,random_vector_field_like
 import os
 import numpy
-
+from openalea.shared_data import data_dir
 
 def attenuation(x):
     return 1-x
@@ -34,7 +34,7 @@ def test_read_write_read():
     Can't test if they are compatible with other Inrimage tools here, use ZViewer!"""
 
     # load a file, write it and reread it:
-    f = "SAM.inr.gz"
+    f = data_dir/'test'/'SAM.inr.gz'
     f_p = "SAM_prime.inr.gz"
     read_im = read_inrimage(f)
     write_inrimage(f_p, read_im)

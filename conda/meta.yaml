@@ -41,20 +41,25 @@ requirements:
 
 
 test:
-  imports:
-    - openalea.core
-    - {{ name }}
   requires:
+    - openalea.core
+    - openalea.visualea
     - pytest
     - nbmake
     - setuptools
     - imageio
-    - square
+    - QtPy
+    - PyQt
+    - scipy
+  imports:
+    - openalea.oapylab
   source_files:
-    - test/test*.py
+    - test/test_stdlib/test*
+    - test/test_numpy/test*
+    - test/test_image/test*
+    - test/test_pylab/test*
   commands:
     - pytest -v
-    - pytest --nbmake
 
 about:
   home: {{ home }}

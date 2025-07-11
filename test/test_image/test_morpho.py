@@ -18,6 +18,7 @@ from qtpy import QtWidgets
 import matplotlib.pyplot as plt
 
 from openalea.image.all import component_labeling
+from openalea.shared_data import data_dir
 
 qapp = QtWidgets.QApplication.instance()
 
@@ -29,7 +30,7 @@ def test_component_labeling_with_threshold_image():
     - `threshold image`
     """
     try:
-        img = np.load('labels.npy')
+        img = np.load(data_dir/'test'/'labels.npy')
     except:
         img = np.load('test/labels.npy')
     assert img.shape == (1024, 1344)
@@ -57,7 +58,7 @@ def test_component_labeling_with_threshold():
     """
 
     try:
-        img = np.load('labels.npy')
+        img = np.load(data_dir/'test'/'labels.npy')
     except:
         img = np.load('test/labels.npy')
     assert img.shape == (1024, 1344)
@@ -83,7 +84,7 @@ def test_component_labeling_with_number_labels():
     - `number_labels`
     """
     try:
-        img = np.load('labels.npy')
+        img = np.load(data_dir/'test'/'labels.npy')
     except:
         img = np.load('test/labels.npy')
     assert img.shape == (1024, 1344)

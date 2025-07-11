@@ -3,8 +3,8 @@
 
 from importlib import metadata
 
-version = metadata.metadata('openalea.pylab')['version']
-authors = metadata.metadata('openalea.pylab')['Author']
+version = metadata.metadata('openalea.scipack')['version']
+authors = metadata.metadata('openalea.scipack')['Author']
 
 __name__ = 'openalea.pylab'
 __editable__ = False

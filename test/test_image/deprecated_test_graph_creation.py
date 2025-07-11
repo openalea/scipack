@@ -23,7 +23,7 @@ from openalea.image.algo.graph_from_image import graph_from_image # there is no 
 #from openalea.plantgl.gui import Viewer
 
 def test_graph_from_image(visual = False):
-    im =  imread("segmentation.inr.gz")
+    im =  imread("../../src/openalea/shared_data/test/segmentation.inr.gz")
     graph = graph_from_image(im)
 
 

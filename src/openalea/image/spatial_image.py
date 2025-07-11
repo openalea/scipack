@@ -174,7 +174,7 @@ def checkerboard(nx=9, ny=8, nz=5, size=10, vs=(1.,1.,1.), dtype=np.uint8):
     `ny` squares in height and `nz` squares in depth. The length of the edge in real units
     of each square is `size`."""
 
-    sxv, syv, szv = np.array([size]*3) / np.array(vs)
+    sxv, syv, szv = (np.array([size]*3) / np.array(vs)).astype(int) # need int below
     array = np.zeros( (sxv*nx, syv*ny, szv*nz), dtype=dtype, order="F")
     typeinfo = np.iinfo(dtype)
 

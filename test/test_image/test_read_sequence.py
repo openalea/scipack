@@ -20,12 +20,13 @@ __license__= "Cecill-C"
 __revision__ = " $Id:  $ "
 
 from openalea.image.all import read_sequence
+from openalea.shared_data import data_dir
 
 def test_read_sequence():
     """
     Test of read_sequence function
     """
-    directory = "../share/data/p60-tiff/"
+    directory = data_dir/'p60-tiff'
     verbose = False
 
     # Test of read_sequence with "directory path"

@@ -65,7 +65,7 @@ def save (filename, img, is_vectorial=False) :
             file_ = open(filename,'wb')
         else :
             file_ = open("%s.npy" % filename,'wb')
-    file_.write("SpatialImage")
+    file_.write("SpatialImage".encode('utf-8'))
 
 
     lenShape = len(img.shape)
@@ -124,7 +124,15 @@ def load (file, mmap_mode=None, is_vectorial=False) :
     if isinstance(file,str) :
         file = open(file,'rb')
 
-    header = file.read(12)
+    # header = file.read(12).decode("utf-8") # considered as a string see line below
+    b = file.read(12)
+    try:
+        header = b.decode('utf-8')
+    except UnicodeDecodeError:
+        try:
+            header = b.decode('latin1')  # or 'iso-8859-1'
+        except UnicodeDecodeError:
+            header = b.decode('utf-8', errors='replace')  # Final fallback
 
     if header == "SpatialImage" :
         nb, = unpack('i',file.read(calcsize('i') ) )
