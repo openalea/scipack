@@ -7,6 +7,7 @@
 {% set build_deps = pyproject.get("build-system", {}).get("requires", []) %}
 {% set deps = pyproject.get('project', {}).get('dependencies', []) %}
 {% set conda_deps = pyproject.get('tool', {}).get('conda', {}).get('environment', {}).get('dependencies',[]) %}
+{% set test_deps = pyproject.get('project', {}).get('optional-dependencies', {}).get('test',[]) %}
 
 package:
   name: {{ name }}
@@ -42,15 +43,9 @@ requirements:
 
 test:
   requires:
-    - openalea.core
-    - openalea.visualea
-    - pytest
-    - nbmake
-    - setuptools
-    - imageio
-    - QtPy
-    - PyQt
-    - scipy
+    {% for dep in deps + conda_deps + test_deps %}
+    - {{ dep }}
+    {% endfor %}
   imports:
     - openalea.oapylab
   source_files:

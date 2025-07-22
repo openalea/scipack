@@ -149,7 +149,7 @@ def read_inrimage (filename) :
 
     #read datas
     size = ntyp.itemsize * xdim * ydim * zdim * vdim
-    mat = np.fromstring(f.read(size),ntyp)
+    mat = np.frombuffer(f.read(size),ntyp)
     if vdim != 1 :
         mat = mat.reshape( (vdim,xdim,ydim,zdim), order="F" )
         mat = mat.transpose(1,2,3,0)
@@ -242,10 +242,10 @@ def write_inrimage_to_stream(stream, img):
 
     stream.write(header.encode('utf-8')) # needs to be bite because opened in "wb" see in write_inrimage f = open(filename,'wb')
     if img.ndim == 3:
-        stream.write(img.tostring("F"))
+        stream.write(img.tobytes("F"))
     elif img.ndim == 4 :
         mat = img.transpose(3,0,1,2)
-        stream.write(mat.tostring("F") )
+        stream.write(mat.tobytes("F") )
     else:
         raise Exception("Unhandled image dimension %d."%img.ndim)
 
