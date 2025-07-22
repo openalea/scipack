@@ -48,12 +48,15 @@ dependencies = [
     "ipykernel",
     "configobj",
     "imageio",
+    "scipy",
 ]
 
 [project.optional-dependencies]
 test = [
   "pytest",
   "nbmake",
+  "setuptools",
+  "openalea.visualea",
 ]
 dev = [
   "pytest >=6",
@@ -78,6 +81,8 @@ channels = [
 ]
 dependencies = [
     "openalea.core",
+    "QtPy",
+    "PyQt",
 ]
 
 [project.urls]
