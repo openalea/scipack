@@ -15,7 +15,7 @@ include-package-data = false # force explicit declaration of data (disable autom
 # enable dynamic version based on git tags
 [tool.setuptools_scm]
 # Format version to ease alignment with conda/meta.yaml tag-based versioning
-fallback_version = "2.0.0.dev0"
+fallback_version = "2.1.1.dev0"
 version_scheme = "guess-next-dev"
 local_scheme = "no-local-version"
 
@@ -48,7 +48,6 @@ classifiers = [
 # If conda name is different, please do not declare the pip name, and declare conda name in the next section
 dependencies = [
     "numpy",
-    "matplotlib",
     "ipykernel",
     "configobj",
     "imageio",
@@ -87,6 +86,7 @@ dependencies = [
     "openalea.core",
     "QtPy",
     "PyQt",
+    "matplotlib-base",
 ]
 
 [project.urls]
