@@ -5,10 +5,9 @@ channels:
 dependencies:
   - python
   - openalea.core
-  - numpy
-  - matplotlib
-  - ipykernel
-  - configobj
+  - QtPy
+  - PyQt
+  - matplotlib-base
   - pip
   - pip:
       - -e '..[test,dev,doc]'
