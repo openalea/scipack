@@ -3,7 +3,7 @@
 _________________
 
 [![Docs](https://readthedocs.org/projects/scipack/badge/?version=latest)](https://scipack.readthedocs.io/)
-[![Build Status](https://github.com/openalea/scipack/actions/workflows/openalea-ci.yml/badge.svg?branch=main)](https://github.com/openalea/scipack/actions/workflows/openalea-ci.yml?query=branch%3Amain)
+[![Build Status](https://github.com/openalea/scipack/actions/workflows/openalea_ci.yml/badge.svg?branch=main)](https://github.com/openalea/scipack/actions/workflows/openalea_ci.yml?query=branch%3Amain)
 [![License](https://img.shields.io/badge/License--CeCILL-C-blue)](https://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html)
 [![Anaconda-Server Badge](https://anaconda.org/openalea3/openalea.scipack/badges/version.svg)](https://anaconda.org/openalea3/openalea.scipack)
 
