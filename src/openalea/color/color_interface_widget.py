@@ -43,7 +43,7 @@ class IColorWidget (IInterfaceWidget, QtWidgets.QPushButton,metaclass=make_metac
         self.setMinimumSize(64, 64)
 
         self._color = (0, 0, 0)
-        self._brush = QtWidgets.QBrush(QtGui.QColor(*self._color[:3]))
+        self._brush = QtGui.QBrush(QtGui.QColor(*self._color[:3]))
 
         #QtCore.QObject.connect(self, QtCore.pyqtSignal("clicked(bool)"), self.open_color_dialog)
         self.clicked.connect(self.open_color_dialog)
