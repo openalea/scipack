@@ -1,0 +1,10 @@
+This is an OpenAlea package that provide a graphical user interface to  
+`Pylab/Matplotlib <http://matplotlib.sourceforge.net/index.html>`_ functionalities
+as nodes in VisuAlea. 
+
+See the User Guide to learn how to create this scatter plot within VisuAlea.
+
+  .. figure:: _static/Screenshot.png
+     :width: 100%
+
+     **Example of dataflow that allows a graphical usage of Matplotlib library.**

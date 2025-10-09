@@ -1,0 +1,2 @@
+This package brings image manipulation capabilities to Openalea. The possibilities range from
+image loading/saving to morphology operations or registration.
