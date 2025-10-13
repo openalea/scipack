@@ -9,17 +9,8 @@ Openalea.Image
 Module description
 ==================
 
-.. sidebar:: Summary
-
-    :Version: |version|
-    :Release: |release|
-    :Date: |today|
-    :Author: See `Authors`_ section
-    :ChangeLog: See `ChangeLog`_ section
-
-.. topic:: Overview
-
-    .. include:: user/overview.txt
+This package brings image manipulation capabilities to Openalea. The possibilities range from
+image loading/saving to morphology operations or registration.
 
 Documentation
 =============
@@ -27,34 +18,6 @@ Documentation
 .. toctree::
     :maxdepth: 1
 
-    User Guide<user/index.rst>
+    Input/Output<user/io.rst>
+    Graphical Tools<user/gui.rst>
     Reference Guide<reference.rst>
-
-
-..    Reference Guide<celltissue/index.rst>
-
-- A `PDF <../latex/main.pdf>`_ version of Openalea.Image documentation is
-  available.
-
-.. seealso::
-
-   More documentation can be found on the
-   `openalea wiki <http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=packages:openalea.image>`_
-
-Authors
-=======
-
-.. include:: ../AUTHORS.txt
-
-ChangeLog
-=========
-
-.. include:: ../ChangeLog.txt
-
-License
-=======
-
-Openalea.Image is released under a Cecill-C License.
-
-.. note:: `Cecill-C <http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html>`_
-    license is a LGPL compatible license.

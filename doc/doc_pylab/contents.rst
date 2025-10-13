@@ -1,59 +1,25 @@
-.. Do not edit. 
-
-.. _pylab:
-
-.. module:: openalea.pylab
-
 OpenAlea Pylab documentation
 ###############################
 
 Module description
 ==================
 
-.. sidebar:: Summary
+This is an OpenAlea package that provide a graphical user interface to
+`Pylab/Matplotlib <https://matplotlib.org/stable/api/pylab.html>`_ functionalities
+as nodes in VisuAlea.
 
-    :Version: |version|
-    :Release: |release|
-    :Date: |today|
-    :Author: See `Authors`_ section
-    :ChangeLog: See `ChangeLog`_ section
+See the User Guide to learn how to create this scatter plot within VisuAlea.
 
-.. topic:: Overview
+.. figure:: _static/screenshot.png
 
-    .. include:: user/overview.txt
+ **Example of dataflow that allows a graphical usage of Matplotlib library.**
 
 Documentation
 =============
 
 .. toctree::
     :maxdepth: 1
-    :numbered:
 
     User Guide<user/index.rst>   
     Reference Guide<user/autosum.rst>
     Developer Guide <user/todo.rst>
-
-- A `PDF <../latex/main.pdf>`_ version of |pylab| documentation is 
-  available.
-
-.. seealso:: `openalea <http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=packages:pylab:pylab:pylab>`__ wiki.
-
-Authors
-=======
-
-.. include:: ../AUTHORS.txt
-
-ChangeLog
-=========
-
-.. include:: ../ChangeLog.txt
-
-License
-=======
-
-|pylab| is released under a Cecill-C License.
-
-.. note:: `Cecill-C <http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html>`_ 
-    license is a LGPL compatible license.
-
-.. |pylab| replace:: OpenAlea.Pylab

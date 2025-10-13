@@ -1,73 +1,13 @@
 List of Numpy functionalities available as VisuAlea nodes
 #########################################################
 
-Array creation routines
-***********************
-
-.. currentmodule:: numpy
-
-Ones and zeros
---------------
-.. autosummary::
-   :toctree: generated/
-
-   empty
-   empty_like
-   eye
-   identity
-   ones
-   ones_like
-   zeros
-   zeros_like
-
-From existing data
-------------------
-.. autosummary::
-   :toctree: generated/
-
-   array
-   fromfunction
-   loadtxt
-
-.. todo:: asarray, asanyarray, ascontiguousarray, asmatrix, copy, frombuffer, fromfile, fromiter, fromstring
-
-Numerical ranges
-----------------
-.. autosummary::
-   :toctree: generated/
-
-   arange
-   linspace
-   logspace
-
-.. todo:: meshgrid, mgrid, ogrid
-
-Building matrices
------------------
-.. autosummary::
-   :toctree: generated/
-
-   diag
-   diagflat
-   tri
-   tril
-   triu
-   vander
-
-The Matrix class
-----------------
-.. autosummary::
-   :toctree: generated/
-
-.. todo:: mat, bmat
-
-Mathematical functions
-**********************
-
 .. currentmodule:: numpy
 
 Trigonometric functions
 -----------------------
+All trigonometric functions use radians when an angle is called for.
+The ratio of degrees to radians is :math:`180^{\circ}/\pi.`
+
 .. autosummary::
    :toctree: generated/
 
@@ -106,7 +46,7 @@ Rounding
    ceil
    trunc
 
-.. todo:: around, round_, fix
+.. todo:: around, fix
 
 Sums, products, differences
 ---------------------------
@@ -151,11 +91,12 @@ Floating point routines
 Arithmetic operations
 ---------------------
 .. autosummary::
-   :toctree: generated/
+    :toctree: generated/
 
-   add
-   
-.. todo:: reciprocal, negative, multiply, divide, power, subtract, true_divide, floor_divide, fmod, mod, modf, remainder
+    add
+    multiply
+
+.. todo:: reciprocal, negative, divide, power, subtract, true_divide, floor_divide, fmod, mod, modf, remainder
 
 Handling complex numbers
 ------------------------
@@ -167,98 +108,52 @@ Handling complex numbers
 Miscellaneous
 -------------
 .. autosummary::
-   :toctree: generated/
+    :toctree: generated/
 
-   convolve
-   clip
-   sqrt
-   square
-   absolute
-   fabs
+    convolve
+    clip
+    sqrt
+    square
+    absolute
+    fabs
+    sign
+    maximum
+    minimum
+    dtype
+    dtype.itemsize
 
-.. todo:: sign, maximum, minimum, nan_to_num, real_if_close, interp
+.. todo:: nan_to_num, real_if_close, interp
 
-Array manipulation routines
-***************************
-
-This is the list of nodes available within VisuAlea in the **numpy.manipulation** package.
-
-.. currentmodule:: numpy
-
-Changing array shape
---------------------
-.. autosummary::
-   :toctree: generated/
-
-
-   reshape
-   ravel
-   ndarray.flatten
-
-.. todo:: ndarray.flat
-
-Transpose-like operations
--------------------------
-
-.. autosummary::
-   :toctree: generated/
-
-   transpose
-
-.. todo:: rollaxis, swapaxes, ndarray.T
-
-Changing number of dimensions
------------------------------
-.. autosummary::
-   :toctree: generated/
-
-.. todo:: atleast_1d, atleast_2d, atleast_3d, broadcast, broadcast_arrays, expand_dims, squeeze
-
-Changing kind of array
-----------------------
-.. autosummary::
-   :toctree: generated/
-
-.. todo:: asarray, asanyarray, asmatrix, asfarray, asfortranarray, asscalar, require
-
-Joining arrays
---------------
-.. autosummary::
-   :toctree: generated/
-
-   hstack
-   vstack
-
-.. todo:: column_stack, concatenate, dstack
-
-Splitting arrays
+Array operations
 ----------------
 .. autosummary::
-   :toctree: generated/
+    :toctree: generated/
 
-.. todo:: array_split, dsplit, hsplit, split, vsplit
+    linalg.inv
+    std
+    dot
+    outer
+    mean
+    putmask
+    shape
+    ndim
+    size
 
-Tiling arrays
--------------
+Random functions
+----------------
 .. autosummary::
-   :toctree: generated/
+    :toctree: generated/
 
-.. todo:: tile, repeat
+    random.rand
+    random.randn
+    random.random
+    random.standard_normal
+    random.uniform
 
-Adding and removing elements
-----------------------------
+Sorting, searching
+------------------
 .. autosummary::
-   :toctree: generated/
+    :toctree: generated/
 
-   unique
-
-.. todo:: delete, insert, append, resize, trim_zeros
-
-Rearranging elements
---------------------
-.. autosummary::
-   :toctree: generated/
-
-   reshape
-
-.. todo:: fliplr, flipud, roll, rot90
+    searchsorted
+    where

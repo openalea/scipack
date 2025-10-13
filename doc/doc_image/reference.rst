@@ -1,11 +1,6 @@
 Reference Guide
 ###############
 
-
-
-
-.. content::
-
 .. toctree::
     :maxdepth: 2
 

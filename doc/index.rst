@@ -8,7 +8,6 @@ Welcome to Openalea Scipack's documentation!
     Installation <installation.md>
     Images <doc_image/contents.rst>
     Numpy <doc_numpy/contents.rst>
-    Pandas <doc_pandas/contents.rst>
     Pylab <doc_pylab/contents.rst>
     Stdlib <doc_stdlib/contents.rst>
 

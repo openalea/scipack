@@ -1,3 +1,0 @@
-This package interfaces some of the `Pandas <http://pandas.pydata.org/>`_ 
-functionalities as nodes in VisuAlea. 
-

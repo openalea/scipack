@@ -86,4 +86,4 @@ site/
 out
 
 # Sphinx
-_static
+_build

@@ -4,6 +4,8 @@ Array creation routines
 .. currentmodule:: numpy
 
 This is the list of nodes available within VisuAlea in the **numpy.creation** package.
+The reference documentation is generated from numpy files, see also `API reference` on
+`Numpy <https://numpy.org/>`_
 
 
 Ones and zeros
@@ -34,13 +36,14 @@ From existing data
 Numerical ranges
 ----------------
 .. autosummary::
-   :toctree: generated/
+    :toctree: generated/
 
-   arange
-   linspace
-   logspace
+    arange
+    linspace
+    logspace
+    meshgrid
 
-.. todo:: meshgrid, mgrid, ogrid
+.. todo:: mgrid, ogrid
 
 Building matrices
 -----------------
@@ -57,7 +60,8 @@ Building matrices
 The Matrix class
 ----------------
 .. autosummary::
-   :toctree: generated/
+    :toctree: generated/
+
 
 .. todo:: mat, bmat
 

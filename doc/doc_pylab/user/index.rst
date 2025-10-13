@@ -10,7 +10,7 @@ OpenAlea.Pylab User Guide
 Introduction and Motivation
 ===========================
 
-This package is a pure VisuAlea package that provides a graphical interface to `Matplotlib <http://matplotlib.sourceforge.net/index.html>`_, which is a python package for 2D and 3D plottings. When combined with Numpy and Scipy packages, Matplotlib becomes a great tool to analyse and visualize scientific data. Due to the versatile capabilities of Matplotlib with many options and arguments, it may sometimes be quite cumbersome to know what are the arguments of each function -- despite the great documentation that authors put online. This difficulty motivated us in developing a visual interface of Matplotlib within VisuAlea.
+This package is a pure VisuAlea package that provides a graphical interface to `Matplotlib <http://matplotlib.org>`_, which is a python package for 2D and 3D plottings. When combined with Numpy and Scipy packages, Matplotlib becomes a great tool to analyse and visualize scientific data. Due to the versatile capabilities of Matplotlib with many options and arguments, it may sometimes be quite cumbersome to know what are the arguments of each function -- despite the great documentation that authors put online. This difficulty motivated us in developing a visual interface of Matplotlib within VisuAlea.
 
 
 .. note:: this package is called *openalea.pylab* instead of *openalea.matplotlib* so as to be as close as possible to the python commands that you would use in a Python environment. Indeed, if you were to use the plot command of matplotlib, you would type

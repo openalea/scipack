@@ -78,7 +78,5 @@ Rearranging elements
 .. autosummary::
    :toctree: generated/
 
-   reshape
-
 .. todo:: fliplr, flipud, roll, rot90
 

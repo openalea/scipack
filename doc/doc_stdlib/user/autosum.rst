@@ -9,7 +9,7 @@ Reference guide
 :mod:`openalea.color.colormap` module
 =====================================
 
-Download the source file :download:`../../src/openalea/color/colormap.py`.
+Download the source file :download:`../../../src/openalea/color/colormap.py`.
 
 
 .. automodule:: openalea.color.colormap
@@ -25,7 +25,7 @@ Download the source file :download:`../../src/openalea/color/colormap.py`.
 :mod:`openalea.color.py_color` module
 =====================================
 
-Download the source file :download:`../../src/openalea/color/py_color.py`.
+Download the source file :download:`../../../src/openalea/color/py_color.py`.
 
 
 .. automodule:: openalea.color.py_color
@@ -41,7 +41,7 @@ Download the source file :download:`../../src/openalea/color/py_color.py`.
 :mod:`openalea.csv.pycsv` module
 ================================
 
-Download the source file :download:`../../src/openalea/csv/pycsv.py`.
+Download the source file :download:`../../../src/openalea/csv/pycsv.py`.
 
 
 .. automodule:: openalea.csv.pycsv
@@ -57,7 +57,7 @@ Download the source file :download:`../../src/openalea/csv/pycsv.py`.
 :mod:`openalea.data.array.arrays` module
 ========================================
 
-Download the source file :download:`../../src/openalea/data/array/arrays.py`.
+Download the source file :download:`../../../src/openalea/data/array/arrays.py`.
 
 
 .. automodule:: openalea.data.array.arrays
@@ -73,7 +73,7 @@ Download the source file :download:`../../src/openalea/data/array/arrays.py`.
 :mod:`openalea.data.data` module
 ================================
 
-Download the source file :download:`../../src/openalea/data/data.py`.
+Download the source file :download:`../../../src/openalea/data/data.py`.
 
 
 .. automodule:: openalea.data.data
@@ -89,7 +89,7 @@ Download the source file :download:`../../src/openalea/data/data.py`.
 :mod:`openalea.data.dict.dicts` module
 ======================================
 
-Download the source file :download:`../../src/openalea/data/dict/dicts.py`.
+Download the source file :download:`../../../src/openalea/data/dict/dicts.py`.
 
 
 .. automodule:: openalea.data.dict.dicts
@@ -105,7 +105,7 @@ Download the source file :download:`../../src/openalea/data/dict/dicts.py`.
 :mod:`openalea.data.list.lists` module
 ======================================
 
-Download the source file :download:`../../src/openalea/data/list/lists.py`.
+Download the source file :download:`../../../src/openalea/data/list/lists.py`.
 
 
 .. automodule:: openalea.data.list.lists
@@ -121,7 +121,7 @@ Download the source file :download:`../../src/openalea/data/list/lists.py`.
 :mod:`openalea.data.set.sets` module
 ====================================
 
-Download the source file :download:`../../src/openalea/data/set/sets.py`.
+Download the source file :download:`../../../src/openalea/data/set/sets.py`.
 
 
 .. automodule:: openalea.data.set.sets
@@ -137,7 +137,7 @@ Download the source file :download:`../../src/openalea/data/set/sets.py`.
 :mod:`openalea.data.tuple.tuples` module
 ========================================
 
-Download the source file :download:`../../src/openalea/data/tuple/tuples.py`.
+Download the source file :download:`../../../src/openalea/data/tuple/tuples.py`.
 
 
 .. automodule:: openalea.data.tuple.tuples
@@ -153,7 +153,7 @@ Download the source file :download:`../../src/openalea/data/tuple/tuples.py`.
 :mod:`openalea.file.files` module
 =================================
 
-Download the source file :download:`../../src/openalea/file/files.py`.
+Download the source file :download:`../../../src/openalea/file/files.py`.
 
 
 .. automodule:: openalea.file.files
@@ -169,7 +169,7 @@ Download the source file :download:`../../src/openalea/file/files.py`.
 :mod:`openalea.functional.functional` module
 ============================================
 
-Download the source file :download:`../../src/openalea/functional/functional.py`.
+Download the source file :download:`../../../src/openalea/functional/functional.py`.
 
 
 .. automodule:: openalea.functional.functional
@@ -180,220 +180,12 @@ Download the source file :download:`../../src/openalea/functional/functional.py`
     :synopsis:  Standard python functions for functional programming. 
 
 
-.. currentmodule:: openalea.image.basics.basics
-
-:mod:`openalea.image.basics.basics` module
-==========================================
-
-Download the source file :download:`../../src/openalea/image/basics/basics.py`.
-
-
-.. automodule:: openalea.image.basics.basics
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
-.. currentmodule:: openalea.image.basics.view
-
-:mod:`openalea.image.basics.view` module
-========================================
-
-Download the source file :download:`../../src/openalea/image/basics/view.py`.
-
-
-.. automodule:: openalea.image.basics.view
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
-.. currentmodule:: openalea.image.basics.widgets
-
-:mod:`openalea.image.basics.widgets` module
-===========================================
-
-Download the source file :download:`../../src/openalea/image/basics/widgets.py`.
-
-
-.. automodule:: openalea.image.basics.widgets
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: declaration of pix interface and its widget
-
-
-.. currentmodule:: openalea.image.data_algo
-
-:mod:`openalea.image.data_algo` module
-======================================
-
-Download the source file :download:`../../src/openalea/image/data_algo.py`.
-
-
-.. automodule:: openalea.image.data_algo
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
-.. currentmodule:: openalea.image.data_image
-
-:mod:`openalea.image.data_image` module
-=======================================
-
-Download the source file :download:`../../src/openalea/image/data_image.py`.
-
-
-.. automodule:: openalea.image.data_image
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
-.. currentmodule:: openalea.image.geometry.geom_transfo
-
-:mod:`openalea.image.geometry.geom_transfo` module
-==================================================
-
-Download the source file :download:`../../src/openalea/image/geometry/geom_transfo.py`.
-
-
-.. automodule:: openalea.image.geometry.geom_transfo
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
-.. currentmodule:: openalea.image.image_morpho
-
-:mod:`openalea.image.image_morpho` module
-=========================================
-
-Download the source file :download:`../../src/openalea/image/image_morpho.py`.
-
-
-.. automodule:: openalea.image.image_morpho
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
-.. currentmodule:: openalea.image.images
-
-:mod:`openalea.image.images` module
-===================================
-
-Download the source file :download:`../../src/openalea/image/images.py`.
-
-
-.. automodule:: openalea.image.images
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: 
-
-
-.. currentmodule:: openalea.image.infos.data_access
-
-:mod:`openalea.image.infos.data_access` module
-==============================================
-
-Download the source file :download:`../../src/openalea/image/infos/data_access.py`.
-
-
-.. automodule:: openalea.image.infos.data_access
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
-.. currentmodule:: openalea.image.interface
-
-:mod:`openalea.image.interface` module
-======================================
-
-Download the source file :download:`../../src/openalea/image/interface.py`.
-
-
-.. automodule:: openalea.image.interface
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: declaration of pix interface and its widget 
-
-
-.. currentmodule:: openalea.image.lookup_table
-
-:mod:`openalea.image.lookup_table` module
-=========================================
-
-Download the source file :download:`../../src/openalea/image/lookup_table.py`.
-
-
-.. automodule:: openalea.image.lookup_table
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
-.. currentmodule:: openalea.image.raster
-
-:mod:`openalea.image.raster` module
-===================================
-
-Download the source file :download:`../../src/openalea/image/raster.py`.
-
-
-.. automodule:: openalea.image.raster
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
-.. currentmodule:: openalea.image.transformations.image_transfo
-
-:mod:`openalea.image.transformations.image_transfo` module
-==========================================================
-
-Download the source file :download:`../../src/openalea/image/transformations/image_transfo.py`.
-
-
-.. automodule:: openalea.image.transformations.image_transfo
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: This module provide basics function to handle 2D images
-
-
 .. currentmodule:: openalea.math.maths
 
 :mod:`openalea.math.maths` module
 =================================
 
-Download the source file :download:`../../src/openalea/math/maths.py`.
+Download the source file :download:`../../../src/openalea/math/maths.py`.
 
 
 .. automodule:: openalea.math.maths
@@ -409,7 +201,7 @@ Download the source file :download:`../../src/openalea/math/maths.py`.
 :mod:`openalea.model.models` module
 ===================================
 
-Download the source file :download:`../../src/openalea/model/models.py`.
+Download the source file :download:`../../../src/openalea/model/models.py`.
 
 
 .. automodule:: openalea.model.models
@@ -425,7 +217,7 @@ Download the source file :download:`../../src/openalea/model/models.py`.
 :mod:`openalea.pickling.pickling` module
 ========================================
 
-Download the source file :download:`../../src/openalea/pickling/pickling.py`.
+Download the source file :download:`../../../src/openalea/pickling/pickling.py`.
 
 
 .. automodule:: openalea.pickling.pickling
@@ -441,7 +233,7 @@ Download the source file :download:`../../src/openalea/pickling/pickling.py`.
 :mod:`openalea.plotools.plotable` module
 ========================================
 
-Download the source file :download:`../../src/openalea/plotools/plotable.py`.
+Download the source file :download:`../../../src/openalea/plotools/plotable.py`.
 
 
 .. automodule:: openalea.plotools.plotable
@@ -457,7 +249,7 @@ Download the source file :download:`../../src/openalea/plotools/plotable.py`.
 :mod:`openalea.python.python` module
 ====================================
 
-Download the source file :download:`../../src/openalea/python/python.py`.
+Download the source file :download:`../../../src/openalea/python/python.py`.
 
 
 .. automodule:: openalea.python.python
@@ -473,7 +265,7 @@ Download the source file :download:`../../src/openalea/python/python.py`.
 :mod:`openalea.spatial.distribGen` module
 =========================================
 
-Download the source file :download:`../../src/openalea/spatial/distribGen.py`.
+Download the source file :download:`../../../src/openalea/spatial/distribGen.py`.
 
 
 .. automodule:: openalea.spatial.distribGen
@@ -489,7 +281,7 @@ Download the source file :download:`../../src/openalea/spatial/distribGen.py`.
 :mod:`openalea.stand.stand_modelling` module
 ============================================
 
-Download the source file :download:`../../src/openalea/stand/stand_modelling.py`.
+Download the source file :download:`../../../src/openalea/stand/stand_modelling.py`.
 
 
 .. automodule:: openalea.stand.stand_modelling
@@ -499,93 +291,12 @@ Download the source file :download:`../../src/openalea/stand/stand_modelling.py`
     :show-inheritance:
     :synopsis: Set of spatial distribution for stands
 
-
-.. currentmodule:: openalea.stat.descriptive.descriptive
-
-:mod:`openalea.stat.descriptive.descriptive` module
-===================================================
-
-Download the source file :download:`../../src/openalea/stat/descriptive/descriptive.py`.
-
-
-.. automodule:: openalea.stat.descriptive.descriptive
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: Set of statistical functions
-
-
-.. currentmodule:: openalea.stat.distribution.distribution
-
-:mod:`openalea.stat.distribution.distribution` module
-=====================================================
-
-Download the source file :download:`../../src/openalea/stat/distribution/distribution.py`.
-
-
-.. automodule:: openalea.stat.distribution.distribution
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: Set of distributions
-
-
-.. currentmodule:: openalea.stat.file.file
-
-:mod:`openalea.stat.file.file` module
-=====================================
-
-Download the source file :download:`../../src/openalea/stat/file/file.py`.
-
-
-.. automodule:: openalea.stat.file.file
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis:  Utilities to read files 
-
-
-.. currentmodule:: openalea.stat.graphics.graphics
-
-:mod:`openalea.stat.graphics.graphics` module
-=============================================
-
-Download the source file :download:`../../src/openalea/stat/graphics/graphics.py`.
-
-
-.. automodule:: openalea.stat.graphics.graphics
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: Plotting routines
-
-
-.. currentmodule:: openalea.stat.regression.regression
-
-:mod:`openalea.stat.regression.regression` module
-=================================================
-
-Download the source file :download:`../../src/openalea/stat/regression/regression.py`.
-
-
-.. automodule:: openalea.stat.regression.regression
-    :members:
-    :undoc-members:
-    :inherited-members:
-    :show-inheritance:
-    :synopsis: synopsis to be provided
-
-
 .. currentmodule:: openalea.string.strings
 
 :mod:`openalea.string.strings` module
 =====================================
 
-Download the source file :download:`../../src/openalea/string/strings.py`.
+Download the source file :download:`../../../src/openalea/string/strings.py`.
 
 
 .. automodule:: openalea.string.strings
@@ -601,7 +312,7 @@ Download the source file :download:`../../src/openalea/string/strings.py`.
 :mod:`openalea.system.systemnodes` module
 =========================================
 
-Download the source file :download:`../../src/openalea/system/systemnodes.py`.
+Download the source file :download:`../../../src/openalea/system/systemnodes.py`.
 
 
 .. automodule:: openalea.system.systemnodes
@@ -617,7 +328,7 @@ Download the source file :download:`../../src/openalea/system/systemnodes.py`.
 :mod:`openalea.system.ui_vprint` module
 =======================================
 
-Download the source file :download:`../../src/openalea/system/ui_vprint.py`.
+Download the source file :download:`../../../src/openalea/system/ui_vprint.py`.
 
 
 .. automodule:: openalea.system.ui_vprint
@@ -633,7 +344,7 @@ Download the source file :download:`../../src/openalea/system/ui_vprint.py`.
 :mod:`openalea.system.vprint` module
 ====================================
 
-Download the source file :download:`../../src/openalea/system/vprint.py`.
+Download the source file :download:`../../../src/openalea/system/vprint.py`.
 
 
 .. automodule:: openalea.system.vprint
