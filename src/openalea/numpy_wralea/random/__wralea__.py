@@ -29,7 +29,7 @@ __license__ = 'CECILL-C'
 __authors__ = 'OpenAlea Consortium'
 __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Numpy wrapping and utils module.'
-__url__ = 'http://openalea.rtfd.io'
+__url__ = 'https://github.com/openalea'
 __icon__ = 'icon.png'
 
 __all__ = []
