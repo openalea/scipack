@@ -4,7 +4,7 @@ OpenAlea Stdlib documentation
 Package description
 ====================
 
-|stdlib| provides standard logical components based on python libraries.
+**Stdlib** provides standard logical components based on python libraries.
 
 * :mod:`data` : simple data structures (int, float, datetime, list, tuple3, …)
 * :mod:`file` : manipulation nodes (read, write, filename, dirname, …)
@@ -16,7 +16,7 @@ Package description
 * :mod:`pycsv` : csv manipulation structure
 * :mod:`colormap` : colormap nodes
 
-It doesn't include any GUI interface (See OpenAlea.Visualea for that).
+It doesn't include any GUI interface (See `OpenAlea.Visualea <https://visualea.readthedocs.io>`_ for that).
 
 Documentation
 =============

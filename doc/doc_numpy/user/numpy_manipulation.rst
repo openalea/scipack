@@ -1,7 +1,10 @@
 Array manipulation routines
 ***************************
 
-This is the list of nodes available within VisuAlea in the **numpy.manipulation** package.
+This is the list of nodes available within VisuAlea in the **numpy.manipulation**
+package.
+The reference documentation is generated from numpy files, see also `API reference` on
+`Numpy <https://numpy.org/>`_
 
 .. currentmodule:: numpy
 
@@ -79,4 +82,41 @@ Rearranging elements
    :toctree: generated/
 
 .. todo:: fliplr, flipud, roll, rot90
+
+Window functions
+================
+
+`window` is a wrapper of the flowwing numpy's window functions.
+
+.. autosummary::
+    :toctree: generated/
+
+    bartlett
+    blackman
+	hamming
+	hanning
+    kaiser
+
+Utilities
+=========
+
+`axis_rotation_matrix`: Create a 4x4 matrix that represents a rotation around one axis
+
+
+Comparison functions
+--------------------
+.. warning::
+
+    Do not use the Python keywords ``and`` and ``or`` to combine
+    logical array expressions. These keywords will test the truth
+    value of the entire array (not element-by-element as you might
+    expect). Use the bitwise operators & and \| instead.
+
+.. warning::
+
+    The bit-wise operators & and \| are the proper way to perform
+    element-by-element array comparisons. Be sure you understand the
+    operator precedence: ``(a > 2) & (a < 5)`` is the proper syntax because
+    ``a > 2 & a < 5`` will result in an error due to the fact that ``2 & a``
+    is evaluated first.
 

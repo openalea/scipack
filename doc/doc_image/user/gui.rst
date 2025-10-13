@@ -17,12 +17,12 @@ Qt Enabled Shell
 
     .. code-block:: bash
 
-        user@computer$ ipython --gui=qt # or -q4thread on pre- 0.11 versions of IPython.
+        user@computer$ ipython --gui=qt
 
     or you can manually start a QApplication. In the python command line::
 
-        from PyQt4 import QtGui
-	app = QtGui.QApplication([])
+        from qtpy import QtWidgets
+	app = QtWidgets.QApplication([])
 
 
 

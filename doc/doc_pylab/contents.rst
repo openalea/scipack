@@ -22,4 +22,4 @@ Documentation
 
     User Guide<user/index.rst>   
     Reference Guide<user/autosum.rst>
-    Developer Guide <user/todo.rst>
+..    Developer Guide <user/todo.rst>

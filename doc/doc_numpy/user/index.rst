@@ -8,18 +8,16 @@ OpenAlea.Numpy User Guide
 Introduction
 ============
 
-This package is a pure VisuAlea package that provides a graphical interface to `Numpy <http://numpy.scipy.org/>`_ , which provides powerful numerical arrays objects, and routines to manipulate them.
+This package is a pure VisuAlea package that provides a graphical interface to `Numpy <http://numpy.org/>`_ ,
+which provides powerful numerical arrays objects, and routines to manipulate them.
 
-The examples below are extract from `Tentative NumPy Tutorial <http://www.scipy.org/Tentative_NumPy_Tutorial#head-b85d2eebcc3e17026ecf98d2de83889f4dd5d8d8>`_.
+The examples below are inspired from `NumPy quickstart <https://numpy.org/devdocs/user/quickstart.html>`_.
 
 
 Prerequisites 
 =============
 
-Before reading this tutorial you should know a bit of `VisuAlea <http://openalea.gforge.inria.fr/dokuwiki/doku.php>`_. If you would like to refresh your memory, take a look at the `VisuAlea tutorials <http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=documentation:tutorials:beginners>`_.
-
-You also need to have some software installed on your computer. As a bare minimum you would need `OpenAlea packages <http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=download>`_.
-
+Before reading this tutorial you should know a bit of `VisuAlea <https://visualea.readthedocs.io>`_.
 
 An basic example
 ================

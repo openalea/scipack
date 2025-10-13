@@ -65,7 +65,8 @@ Let us start with a simple 2D plot that would be done as follows in pylab:
     plot(x,y)
     show()
 
-In VisuAlea, you first need to create the random data using the :class:`~openalea.numpy.randn` node (equivalent to line 3,4). Let us drag and drop two of those nodes in the workspace. Then, you need to select :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabPlot`. This node has many connectors but just keep in mind that the connectors roughly follows the same options as the original pylab.plot function. 
+In VisuAlea, you first need to create the random data using the :class:`~openalea.numpy.randn` node (equivalent to line 3,4).
+Let us drag and drop two of those nodes in the workspace. Then, you need to select :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabPlot`. This node has many connectors but just keep in mind that the connectors roughly follows the same options as the original pylab.plot function.
 
 Note also that, in VisuAlea, the first connector is reserved for the axes. So, you need to connect the x data to the second connector and the *y* data to the third connector.
 
@@ -75,9 +76,9 @@ Note also that, in VisuAlea, the first connector is reserved for the axes. So, y
 .. dataflow:: openalea.pylab.test tutorial_plot
     :width: 40%
 
-    **Figure 1: Simplest** PyLabPlot_ **usage.** Connect any valid arrays to the x and y connectors (x and y must have the same length)
+    **Figure 1: Simplest** :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabPlot` **usage.** Connect any valid arrays to the x and y connectors (x and y must have the same length)
 
-Now, it is time to run the dataflow. Press Ctrl+R or right click on the PyLabPlot_ node and select `run` (equivalent to line 6).
+Now, it is time to run the dataflow. Press Ctrl+R or right click on the :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabPlot` node and select `run` (equivalent to line 6).
 
 
 .. plot::
@@ -103,7 +104,7 @@ Playing with the options/connectors
     :height: 250pt
     :align: center
 
-    If you right-click on the PyLabPlot_ node then a pop-up window appears (figure above).   **The first options** (marker, markersize, linestyle and color) **are specific to** PyLabPlot_. The *figure*  options is common to all the plotting nodes. To further customize this node, you need to know the pylab options and add then in the kwargs section as key/value pairs. Another way is to convert the x/y data into a specialised object with PyLabLine2D_ as explained later on.
+    If you right-click on the :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabPlot` node then a pop-up window appears (figure above).   **The first options** (marker, markersize, linestyle and color) **are specific to** PyLabPlot_. The *figure*  options is common to all the plotting nodes. To further customize this node, you need to know the pylab options and add then in the kwargs section as key/value pairs. Another way is to convert the x/y data into a specialised object with PyLabLine2D_ as explained later on.
 
 So, in the pop-up window, we can select a different marker with a different color (e.g., square, red). Now, again the question is what if we want to change the transparency of the marker (the `alpha` option in pylab terminology). Well this is not possible as it is... since it is not part of the connectors. Because it is not reasonable to set too many connectors/options, we created a specialised node inspired from pylab class :class:`pylab.Line2D`, which is called PyLabLine2D_. It allows to convert the x and y input data sets into a matplotlib data structure that can be fully customised. It works as follows:
 
@@ -111,8 +112,8 @@ So, in the pop-up window, we can select a different marker with a different colo
 .. dataflow:: openalea.pylab.test tutorial_plot_line2d
     :width: 40%
 
-    **Figure 2: Customize plot with** PyLabLine2D_ **node.** In order to fully customised 
-    the style of the xy data, you should use a data convertor called PyLabLine2D_ as illustrated in the figure.
+    **Figure 2: Customize plot with** :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabLine2D` **node.** In order to fully customised
+    the style of the xy data, you should use a data convertor called :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabLine2D` as illustrated in the figure.
 
 .. plot::
     :width: 40%
@@ -126,7 +127,7 @@ So, in the pop-up window, we can select a different marker with a different colo
 multiple data set
 -------------------------------------
 
-In order to plot several datasets, the best method is to use the convertor PyLabLine2D_ 
+In order to plot several datasets, the best method is to use the convertor :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabLine2D`
 as many times as needed. Indeed, this method allows to customise each data set independantly. 
 
 This is also the simplest method to add specific label to a curve, which becomes handy when 
@@ -149,12 +150,16 @@ legend is required.
 .. warning:: all data converted with PyLabLine2D must be connected to the x connector only.
 .. note:: the `PyLabLine2D` node may have a x data set only; y is optional.
 
-If you do not want to use the PyLabLine2D_, you can still connect several data sets directly to the PyLabPlot_ nodes but customisation is not possible. If several x and y data sets are connected, then PyLabPlot will automatically select a color for each of them. Finally, you may connect a single data set to x, and several data sets to y connector. If so, x data set is supposed to be common to all y data sets.
+If you do not want to use the :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabLine2D`, you can still connect
+several data sets directly to the :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabPlot` nodes but customisation is not possible.
+If several x and y data sets are connected, then PyLabPlot will automatically select a color for each of them. Finally,
+you may connect a single data set to x, and several data sets to y connector. If so, x data set is supposed to be common to all y data sets.
 
 .. dataflow:: openalea.pylab.test legend
     :width: 40%
 
-    **Figure 3: adding several data sets on the same axes is possible and data sets are fully customisable using convertor such as** PyLabLine2D_
+    **Figure 3: adding several data sets on the same axes is possible and data sets are fully customisable using
+convertor such as** :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabLine2D`
 
 .. plot::
     :width: 40%
@@ -168,7 +173,7 @@ If you do not want to use the PyLabLine2D_, you can still connect several data s
 Enhance the layout
 ------------------
 
-In the previous section, we've seen in details the PyLabPlot_ node. There are many more nodes with 
+In the previous section, we've seen in details the :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabPlot` node. There are many more nodes with
 the same kind of behaviour and usage, which are fully described in the reference guide. None of 
 those functions allows you to customize the axes. To do so, you will need to use the 
 :mod:`~openalea.pylab_decorators_wralea.py_pylab` module. 
@@ -312,8 +317,3 @@ scatter plot and histograms
     from openalea.core.alea import *
     pm = PackageManager()
     run_and_display(('openalea.pylab.demo', 'scatter_and_histograms'),{},pm=pm)
-
-
-
-.. _PyLabPlot: :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabPlot`
-.. _PyLabLine2D: :class:`~openalea.pylab_plotting_wralea.py_pylab.PyLabLine2D`

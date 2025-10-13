@@ -25,11 +25,12 @@ Ones and zeros
 From existing data
 ------------------
 .. autosummary::
-   :toctree: generated/
+    :toctree: generated/
 
-   array
-   fromfunction
-   loadtxt
+    array
+    fromfunction
+    loadtxt
+    load
 
 .. todo:: asarray, asanyarray, ascontiguousarray, asmatrix, copy, frombuffer, fromfile, fromiter, fromstring
 
