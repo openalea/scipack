@@ -13,7 +13,7 @@ __license__ = 'CECILL-C'
 __authors__ = 'Thomas Cokelaer'
 __institutes__ = 'INRIA/CIRAD'
 __description__ = 'pylab test.'
-__url__ = 'http://openalea.gforge.inria.fr/doc/openalea/pylab/doc/_build/html/contents.html'
+__url__ = 'https://github.com/openalea'
 __icon__ = 'icon.png'
 __alias__ = []
 

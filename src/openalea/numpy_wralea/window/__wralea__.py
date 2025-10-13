@@ -28,7 +28,7 @@ __license__ = 'CECILL-C'
 __authors__ = 'Thomas Cokelaer, thomas.cokelaer@sophia.inria.fr'
 __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Numpy wrapping (window functions).'
-__url__ = 'http://openalea.gforge.inria.fr'
+__url__ = 'https://github.com/openalea'
 __icon__ = 'icon.png'
 
 __all__ = ['window']

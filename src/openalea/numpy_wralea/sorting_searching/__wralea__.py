@@ -28,7 +28,7 @@ __license__ = 'CECILL-C'
 __authors__ = 'Eric Moscardi, eric.moscardi@sophia.inria.fr'
 __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Numpy wrapping (Sorting and searching functions).'
-__url__ = 'http://openalea.gforge.inria.fr'
+__url__ = 'https://github.com/openalea'
 #__icon__ = 'icon.png'
 
 __all__ = []

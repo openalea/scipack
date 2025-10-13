@@ -28,7 +28,7 @@ __license__ = "Cecill-C"
 __authors__ = 'OpenAlea Consortium'
 __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Nodes for standard data structure creation, edition and visualisation.'
-__url__ = 'http://openalea.gforge.inria.fr'
+__url__ = 'https://github.com/openalea'
 
 __all__ = []
 

@@ -12,7 +12,7 @@ __license__ = 'CECILL-C'
 __authors__ = 'OpenAlea Consortium'
 __institutes__ = 'INRIA/CIRAD'
 __description__ = 'Image manipulation'
-__url__ = 'http://openalea.gforge.inria.fr'
+__url__ = 'https://github.com/openalea'
 __icon__ = ''
 __alias__ = []
 

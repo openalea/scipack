@@ -6,7 +6,7 @@ __name__ = 'openalea.image.registration.matrix'
 __editable__ = True
 __description__ = 'Nodes that compute transforms between images and compute resampled images'
 __license__ = 'CECILL-C'
-__url__ = 'http://openalea.gforge.inria.fr/doc/openalea/pylab/doc/_build/html/contents.html'
+
 __alias__ = []
 __version__ = '0.9.0'
 __authors__ = 'Daniel BARBEAU'
