@@ -4,7 +4,7 @@
 
 .. module:: numpy
 
-OpenAlea Starter documentation
+OpenAlea NumPy documentation
 ###############################
 
 Module description
