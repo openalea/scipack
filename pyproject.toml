@@ -59,7 +59,6 @@ test = [
   "pytest",
   "nbmake",
   "setuptools",
-  "openalea.visualea",
 ]
 dev = [
   "pytest >=6",
