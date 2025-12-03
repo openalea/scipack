@@ -50,6 +50,7 @@ test:
     - test/test_image/test*
     - test/test_pylab/test*
   commands:
+    - cd test
     - pytest -v
 
 about:
