@@ -3,7 +3,8 @@ from qtpy import QtCore, QtWidgets
 from openalea.core.interface import make_metaclass
 from openalea.core.system import systemnodes
 from openalea.core.observer import lock_notify
-from openalea.deploy.util import get_metadata
+#from openalea.deploy.util import get_metadata
+from importlib.metadata import metadata as get_metadata
 from openalea.visualea.node_widget import NodeWidget
 
 class GetDataBrowser(NodeWidget, QtWidgets.QDialog, metaclass=make_metaclass()):
