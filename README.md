@@ -12,15 +12,15 @@ _________________
 **OpenAlea Scientific Python Packages (aka OpenAlea.SciPack)** is a set of wrappers of standard Python packages
 for [Visualea](https://visualea.readthedocs.io) (OpenAlea Visual Programming application).
 
-### Installation
+## Installation
 ```bash
 mamba create -n scipack -c openalea3 -c conda-forge openalea.scipack
 ```
 
-### Usage
+## Usage
 [Read Latest Documentation](https://scipack.readthedocs.io/) 
 
-### Contributors
+## Contributors
 
 Thanks to all that ontribute making this package what it is !
 
