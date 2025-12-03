@@ -305,10 +305,11 @@ class ImageStackViewerWidget(QtWidgets.QWidget):
 
 
 if __name__ == '__main__':
-    from openalea.deploy.shared_data import shared_data
+    #from openalea.deploy.shared_data import shared_data
     from openalea.image.serial.basics import imread
     import openalea.oalab
-    img_path = shared_data(openalea.oalab, 'icons/Crystal_Clear_app_clock.png')
+    from openalea.oalab import resources
+    img_path = resources.resources_dir/'icons/Crystal_Clear_app_clock.png'
     img = imread(img_path)
 
     import numpy
