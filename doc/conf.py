@@ -123,7 +123,7 @@ latex_documents = [
         master_doc,
         "scipack.tex",
         "scipack Documentation",
-        "INRA / INRIA / CIRAD",
+        "INRAE / inria / CIRAD",
         "manual",
     ),
 ]
