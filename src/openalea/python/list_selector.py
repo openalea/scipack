@@ -18,7 +18,7 @@ from qtpy import QtGui, QtCore, QtWidgets
 from openalea.core.observer import lock_notify
 from openalea.visualea.node_widget import NodeWidget
 
-class ListSelectorWidget(QtWidgets.QListWidget, NodeWidget):
+class ListSelectorWidget(NodeWidget, QtWidgets.QListWidget):
     """ This Widget allows to select an element in a list
     or in a dictionnary """
 
