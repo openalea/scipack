@@ -188,7 +188,7 @@ class StackView( ElmView) :
 
         :Returns Type: :class:BoundingBox
         """
-        from vplants.plantgl.scenegraph import BoundingBox
+        from openalea.plantgl.scenegraph import BoundingBox
         if len(self._pixmaps) == 0 :
             return None
         else :

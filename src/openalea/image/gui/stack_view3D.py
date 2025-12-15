@@ -28,7 +28,10 @@ import scipy.ndimage as nd
 
 from openalea.image.serial.basics import imread
 from openalea.image.spatial_image import SpatialImage
-from vplants.tissue_analysis.spatial_image_analysis import SpatialImageAnalysis3D
+try:
+    from vplants.tissue_analysis.spatial_image_analysis import SpatialImageAnalysis3D
+except ImportError:
+    raise Exception("To use openalea.image.gui.stack_view3D, you need to install vplants.tissue_analysis package")
 
 #compatibility
 try:

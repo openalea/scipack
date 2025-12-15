@@ -11,7 +11,7 @@ __license__ = 'Cecill-c'
 __url__ = ''
 __alias__ = []
 __version__ = '0.1'
-__authors__ = 'VPlants'
+__authors__ = 'OpenAlea Consortium'
 __institutes__ = 'INRIA - CIRAD'
 __icon__ = 'icon.png'
  
@@ -34,12 +34,12 @@ _149001708 = CompositeNodeFactory(name='Stand_Reconstruction',
    7: ('openalea.plottools', 'VS Plot'),
    8: ('openalea.file', 'read'),
    9: ('openalea.csv', 'csv2objs'),
-   10: ('vplants.plantgl.dresser', 'PGL Dresser'),
-   11: ('vplants.stand', 'Stand Positioner'),
+   10: ('openalea.plantgl.dresser', 'PGL Dresser'),
+   11: ('openalea.stand', 'Stand Positioner'),
    12: ('openalea.functional', 'map'),
    13: ('openalea.python', 'flatten'),
-   14: ('vplants.plantgl.visualization', 'plot3D'),
-   15: ('vplants.plantgl.objects', 'Scene'),
+   14: ('openalea.plantgl.visualization', 'plot3D'),
+   15: ('openalea.plantgl.objects', 'Scene'),
    16: ('openalea.python', 'len'),
    17: ('system', 'annotation'),
    18: ('system', 'annotation'),

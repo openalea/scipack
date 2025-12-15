@@ -1,27 +1,28 @@
 # -*- python -*-
 #
-#       OpenAlea.Core.Library: OpenAlea Core Library module
+#       OpenAlea.SciPack.Stand: OpenAlea Scientific Package for Stand Modelling
 #
-#       Copyright 2006-2009 INRIA - CIRAD - INRA  
+#       Copyright 2006-20026 INRIA - CIRAD - INRA  
 #
 #       File author(s): BOUDON Frederic <frederic.boudon@cirad.fr>
 #                       Da SILVA David <david.da_silva@cirad.fr>
+#                       PRADAL Christophe
 #
 #       Distributed under the Cecill-C License.
 #       See accompanying file LICENSE.txt or copy at
 #           http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html
 # 
-#       OpenAlea WebSite : http://openalea.gforge.inria.fr
+#       OpenAlea WebSite : http://openalea.rtfd.io
 #
 
 
 from openalea.core import Factory as Fa
 from openalea.core import IDict, IEnumStr, ISequence
 
-__name__ = 'vplants.stand'
-__alias__ = ['stand']
+__name__ = 'openalea.stand'
+__alias__ = ['stand', 'vplants.stand']
 
-__version__ = '0.0.1'
+__version__ = '0.1.0'
 __license__ = 'CECILL-C'
 __authors__ = 'F. Boudon and D. Da Silva'
 __institutes__ = 'INRIA/CIRAD'
@@ -34,7 +35,7 @@ stand_pos = Fa(uid="e984a2964e7711e6bff6d4bed973e64a",
                name="Stand Positioner",
                description="Add spatial position to each object from list",
                category="scene",
-               nodemodule="vplants.stand.stand_modelling",
+               nodemodule="openalea.stand.stand_modelling",
                nodeclass="stand_positioner",
                inputs=(
                    dict(name="Object List", interface=ISequence,
@@ -57,7 +58,7 @@ stand_dresser = Fa(uid="e984a2974e7711e6bff6d4bed973e64a",
                    name="Stand Dresser",
                    description="Add geometry to each object from list",
                    category="scene",
-                   nodemodule="vplants.stand.stand_modelling",
+                   nodemodule="openalea.stand.stand_modelling",
                    nodeclass="stand_dresser",
                    lazy=False,
                    inputs=(dict(name="Object List", interface=ISequence,
