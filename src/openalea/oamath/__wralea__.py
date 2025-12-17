@@ -22,7 +22,7 @@ from openalea.core import Factory as Fa
 from openalea.core import IBool, IFloat, IInt, ISequence
 import math
 
-__name__ = "openalea.math"
+__name__ = "openalea.oamath"
 __alias__ = ["catalog.math"]
 
 __version__ = '0.0.1'
@@ -258,7 +258,7 @@ cmp_ = Fa(uid="a5bf86504e7411e6bff6d4bed973e64a",
           inputs=(dict(name="a", interface=IInt, value=0),
                   dict(name="b", interface=IInt, value=0),),
           outputs=(dict(name="out", interface=IInt),),
-          nodemodule="openalea.math.maths",
+          nodemodule="openalea.oamath.maths",
           nodeclass="py_cmp",
           )
 
@@ -379,7 +379,7 @@ round_ = Fa(uid="d75b6d3c4e7411e6bff6d4bed973e64a",
             category="Math",
             inputs=(dict(name="a", interface=IFloat, value=0.),),
             outputs=(dict(name="out", interface=IFloat),),
-            nodemodule="openalea.math.maths",
+            nodemodule="openalea.oamath.maths",
             nodeclass="py_round",
             )
 
@@ -464,7 +464,7 @@ min_ = Fa(uid="fa34939c4e7411e6bff6d4bed973e64a",
           category="Math",
           inputs=(dict(name="x", interface=ISequence, value=0.),),
           outputs=(dict(name="out", interface=IFloat),),
-          nodemodule="openalea.math.maths",
+          nodemodule="openalea.oamath.maths",
           nodeclass="py_min",
           )
 
@@ -476,7 +476,7 @@ max_ = Fa(uid="fe3795ca4e7411e6bff6d4bed973e64a",
           category="Math",
           inputs=(dict(name="x", interface=ISequence, value=0.),),
           outputs=(dict(name="out", interface=IFloat),),
-          nodemodule="openalea.math.maths",
+          nodemodule="openalea.oamath.maths",
           nodeclass="py_max",
           )
 
@@ -514,7 +514,7 @@ randlist = Fa(uid="0bb48aa04e7511e6bff6d4bed973e64a",
               name="randlist",
               description="List of Random integer",
               category="Math",
-              nodemodule="openalea.math.maths",
+              nodemodule="openalea.oamath.maths",
               nodeclass="py_randlist",
               inputs=(dict(name='a', interface=IInt, value=0),
                       dict(name='b', interface=IInt, value=100),
