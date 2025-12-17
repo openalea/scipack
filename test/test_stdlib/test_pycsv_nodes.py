@@ -15,8 +15,8 @@ pm.init(verbose=True)
 def test_read_csv_from_file():
     """ Test of node read_csv"""
 
-    res = run(('openalea.csv', 'read csv'),\
+    res = run(('openalea.csv', 'read csv'),
         inputs={'text': '1 1 2 3', 'separator': ' '}, pm=pm)
 
 
-test_read_csv_from_file()
+#test_read_csv_from_file()

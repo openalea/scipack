@@ -124,7 +124,7 @@ Changelog = "https://github.com/openalea/scipack/releases"
 "pylab.mplot3d" = "openalea.pylab_3d_wralea"
 #stdlib
 "openalea.color" = "openalea.color"
-"openalea.csv" = "openalea.csv"
+"openalea.csv" = "openalea.oacsv"
 "openalea.string" = "openalea.string"
 "openalea.data" = "openalea.data"
 "openalea.datafile" = "openalea.datafile"

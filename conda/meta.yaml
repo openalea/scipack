@@ -44,6 +44,7 @@ test:
     {% endfor %}
   imports:
     - openalea.oapylab
+    - openalea.oacsv
   source_files:
     - test/test_stdlib/test*
     - test/test_numpy/test*
