@@ -16,8 +16,9 @@
 __license__ = "Cecill-C"
 __revision__ = " $Id$ "
 
+import csv
 
-class Obj(object):
+class Obj:
 
     def __init__(self, pid, propnames, values):
         """ todo"""
@@ -134,7 +135,6 @@ def read_csv_from_file(filename=None, delimiter=' ', header=False):
         T. Cokelaer
 
     """
-    from . import csv
     from os import path
     if path.exists(filename):
         csv_data = csv.reader(open(filename), delimiter=delimiter)
