@@ -22,7 +22,7 @@ from openalea.core import Factory as Fa
 from openalea.core import IBool, IFloat, IInt, ISequence
 import math
 
-__name__ = "openalea.oamath"
+__name__ = "openalea.math"
 __alias__ = ["catalog.math"]
 
 __version__ = '0.0.1'
